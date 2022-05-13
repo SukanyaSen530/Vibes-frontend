@@ -1,2 +1,1 @@
-# Vibes-frontend
-Social Media
+Vibes - Social Media 
