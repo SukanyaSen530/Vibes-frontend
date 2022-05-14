@@ -1,7 +1,7 @@
-import "./input-field.scss";
-
 import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
+import "./input-field.scss";
 
 function InputField({
   labelName,
@@ -42,21 +42,25 @@ function InputField({
   return (
     <div className="input-group-new w-full mt-4 mx-auto mb-8 block relative capitalize">
       <label
-        className="input-group-new__label text-gray-600 mx-4 mb-4"
+        className="input-group-new__label text-gray-600 m-4 text-left block"
         htmlFor={name}
       >
         {labelName}
       </label>
       {content}
 
-      <span className="input-group-new__focus-border absolute"></span>
+      <span className="input-group-new__focus-border absolute bg-blue-300"></span>
 
       {type === "password" ? (
         <span
           onClick={() => setShowPass((val) => !val)}
           className="input-group-new__show-pass absolute"
         >
-          {showPass ? <AiFillEye /> : <AiFillEyeInvisible />}
+          {showPass ? (
+            <AiFillEye />
+          ) : (
+            <AiFillEyeInvisible className="text-blue-300" />
+          )}
         </span>
       ) : null}
     </div>

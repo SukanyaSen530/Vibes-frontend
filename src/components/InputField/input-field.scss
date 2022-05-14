@@ -2,7 +2,7 @@
 
 .input-group-new {
   &__label{
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   &__select{
@@ -11,10 +11,10 @@
 
   &__input {
     font-family: inherit;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     transition: 0.4s all ease;
     border: 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
     line-height: 2rem;
 
     &:focus {
@@ -26,8 +26,7 @@
     bottom: 0;
     left: 0;
     width: 0;
-    height: 3px;
-    background-color: #6b21a8;
+    height: 2px;
     transition: 0.4s;
   }
 
