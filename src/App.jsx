@@ -1,5 +1,5 @@
 import "./App.scss";
-import AllRoutes from "./pages/Routes/AllRoutes";
+import AllRoutes from "./Routes/AllRoutes";
 
 const App = () => {
   return (

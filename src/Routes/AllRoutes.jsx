@@ -1,11 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 
 import PreventedRoutes from "./PreventedRoutes";
-import ProtectedRoutes from "./ProtectedRoutes";
+// import ProtectedRoutes from "./ProtectedRoutes";
 
-import SignIn from "../Auth/SignIn";
-import SignUp from "../Auth/SignUp";
-import ForgetPassword from "../Auth/ForgetPassword";
+import { SignIn, SignUp, ForgetPassword, ResetPassword } from "../pages";
 
 const AllRoutes = () => {
   return (
@@ -32,6 +30,14 @@ const AllRoutes = () => {
         element={
           <PreventedRoutes>
             <ForgetPassword />
+          </PreventedRoutes>
+        }
+      />
+      <Route
+        path="/resetpassword"
+        element={
+          <PreventedRoutes>
+            <ResetPassword />
           </PreventedRoutes>
         }
       />

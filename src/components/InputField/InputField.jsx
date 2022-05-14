@@ -9,6 +9,7 @@ function InputField({
   value,
   name,
   placeholder,
+  options,
   errorMessage,
   ...other
 }) {
@@ -26,6 +27,29 @@ function InputField({
         value={value}
       />
     );
+  } else if (type === "dropdown") {
+    content = (
+      <select
+        {...other}
+        placeholder={labelName}
+        className="input-group-new__input w-full p-4 capitalize text-gray-600"
+        name={name}
+        value={value}
+      >
+        <option disabled value="">
+          Select {labelName}
+        </option>
+        {options?.map((option, index) => (
+          <option
+            key={index}
+            value={option}
+            className="text-gray-600 capitalize"
+          >
+            {option}
+          </option>
+        ))}
+      </select>
+    );
   } else {
     content = (
       <input
@@ -42,7 +66,7 @@ function InputField({
   return (
     <div className="input-group-new w-full mt-4 mx-auto mb-8 block relative capitalize">
       <label
-        className="input-group-new__label text-gray-600 m-4 text-left block"
+        className="input-group-new__label text-gray-600 mx-4 my-1 text-left block"
         htmlFor={name}
       >
         {labelName}
