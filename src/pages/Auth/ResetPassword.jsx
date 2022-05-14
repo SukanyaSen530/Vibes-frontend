@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 // Icons and Images
 import { resetPasswordImage, logo } from "../../assets/images";
@@ -11,6 +12,10 @@ import { InputField } from "../../components";
 import { resetPasswordData } from "./helper";
 
 const ResetPassword = () => {
+  const { token } = useParams();
+
+  console.log("token", token);
+
   const [userData, setUserData] = useState({ ...resetPasswordData });
 
   const handleSubmit = (e) => {

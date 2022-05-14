@@ -34,13 +34,14 @@ const AllRoutes = () => {
         }
       />
       <Route
-        path="/resetpassword"
+        path="/resetpassword/:token"
         element={
           <PreventedRoutes>
             <ResetPassword />
           </PreventedRoutes>
         }
       />
+      <Route path="*" element={<h1>Invalid Page</h1>} />
     </Routes>
   );
 };

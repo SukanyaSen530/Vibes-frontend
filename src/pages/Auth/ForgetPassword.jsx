@@ -12,6 +12,7 @@ import { InputField } from "../../components";
 import { forgotPasswordData } from "./helper";
 
 const ForgetPassword = () => {
+
   const [userData, setUserData] = useState({ ...forgotPasswordData });
 
   const handleSubmit = (e) => {
