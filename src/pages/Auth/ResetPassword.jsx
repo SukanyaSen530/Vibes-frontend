@@ -1,24 +1,41 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import loginImage from "../../assets/images/resetpass.jpg";
-import logo from "../../assets/images/mainLogo.png";
+// Icons and Images
+import { resetPasswordImage, logo } from "../../assets/images";
+import { BiLockAlt } from "react-icons/bi";
 
-import InputField from "../../components/InputField/InputField";
+// Custom Components
+import { InputField } from "../../components";
 
-import "./auth.scss";
-
-import { BiLockOpenAlt } from "react-icons/bi";
+//Initial State of form
+import { resetPasswordData } from "./helper";
 
 const ResetPassword = () => {
-  const handleSubmit = (e) => {};
+  const [userData, setUserData] = useState({ ...resetPasswordData });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(userData);
+
+    setTimeout(() => {
+      setUserData({ ...resetPasswordData });
+    }, 2000);
+  };
+
+  const handleChange = ({ target: { name, value } }) =>
+    setUserData((prevState) => ({ ...prevState, [name]: value }));
 
   return (
     <section className="auth-section h-screen flex">
       <div className="h-full">
-        <img src={loginImage} alt="loginImage" className="h-full w-full" />
+        <img
+          src={resetPasswordImage}
+          alt="loginImage"
+          className="h-full w-full"
+        />
       </div>
 
-      <div class="flex-1 flex justify-center items-center">
+      <div className="flex-1 flex justify-center items-center">
         <form
           className="auth-section__form w-6/12 p-8 rounded-2xl"
           onSubmit={handleSubmit}
@@ -34,6 +51,8 @@ const ResetPassword = () => {
             autoFocus
             required
             name="password"
+            onChange={handleChange}
+            value={userData.password}
           />
 
           <InputField
@@ -42,11 +61,15 @@ const ResetPassword = () => {
             autoFocus
             required
             name="confirmPassword"
+            onChange={handleChange}
+            pattern={userData.password}
+            title="Email should match!"
+            value={userData.confirmPassword}
           />
 
           <button className="bg-blue-300 my-6 p-5 relative font-medium text-gray-600 text-3xl rounded-lg block w-full hover:bg-blue-500 hover:text-white ease-in duration-150">
             <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-              <BiLockOpenAlt className="h-10 w-10" aria-hidden="true" />
+              <BiLockAlt className="h-10 w-10" aria-hidden="true" />
             </span>
             Reset Password
           </button>

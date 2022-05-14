@@ -1,24 +1,40 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import loginImage from "../../assets/images/signin.jpg";
-import InputField from "../../components/InputField/InputField";
+// Icons and Images
+import { signinImage, logo } from "../../assets/images";
 
+// Custom Components
+import { InputField } from "../../components";
+
+//Initial State of form
+import { signInData } from "./helper";
+
+// Styles
 import "./auth.scss";
 
-import logo from "../../assets/images/mainLogo.png";
-
 const SignIn = () => {
-  const handleSubmit = (e) => {};
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({ ...signInData });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(userData);
+
+    setTimeout(() => {
+      setUserData({ ...signInData });
+    }, 2000);
+  };
+
+  const handleChange = ({ target: { name, value } }) =>
+    setUserData((prevState) => ({ ...prevState, [name]: value }));
 
   return (
     <section className="auth-section h-screen flex">
       <div className="h-full">
-        <img src={loginImage} alt="loginImage" className="h-full w-full" />
+        <img src={signinImage} alt="loginImage" className="h-full w-full" />
       </div>
 
-      <div class="flex-1 flex justify-center items-center">
+      <div className="flex-1 flex justify-center items-center">
         <form
           className="auth-section__form w-6/12 p-8 rounded-2xl"
           onSubmit={handleSubmit}
@@ -34,6 +50,8 @@ const SignIn = () => {
             autoFocus
             required
             name="emailusername"
+            onChange={handleChange}
+            value={userData.emailusername}
           />
           <InputField
             type="password"
@@ -41,6 +59,8 @@ const SignIn = () => {
             required
             minLength={6}
             name="password"
+            onChange={handleChange}
+            value={userData.password}
           />
 
           <button className="bg-blue-300 my-6 p-5 font-medium text-gray-600 text-3xl rounded-lg block w-full hover:bg-blue-500 hover:text-white ease-in duration-150">
