@@ -16,6 +16,7 @@ import { useSignupUserMutation } from "../../redux/services/authApi";
 const SignUp = () => {
   const [signupUser, { data, isLoading, error, isError, isSuccess }] =
     useSignupUserMutation();
+  
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({ ...signUpData });
@@ -35,9 +36,8 @@ const SignUp = () => {
       }, 2000);
     }
 
-    if (isError) {
-      toast.error(error?.data?.message);
-    }
+    if (isError) toast.error(error?.data?.message);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, isError, data, error]);
 

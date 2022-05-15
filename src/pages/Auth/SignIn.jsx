@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Icons and Images
 import { signinImage, logo } from "../../assets/images";
 
 // Custom Components
-import { InputField } from "../../components";
+import { InputField, FullLoader } from "../../components";
 
 //Initial State of form
 import { signInData } from "./helper";
@@ -13,23 +14,37 @@ import { signInData } from "./helper";
 // Styles
 import "./auth.scss";
 
+import { useSigninUserMutation } from "../../redux/services/authApi";
+
 const SignIn = () => {
+  const [signinUser, { data, isLoading, error, isError, isSuccess }] =
+    useSigninUserMutation();
+
   const [userData, setUserData] = useState({ ...signInData });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
-
-    setTimeout(() => {
-      setUserData({ ...signInData });
-    }, 2000);
+    signinUser(userData);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setUserData(signInData);
+      toast.success("Logged in successfully!");
+    }
+
+    if (isError) toast.error(error?.data?.message);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError, data, error]);
 
   const handleChange = ({ target: { name, value } }) =>
     setUserData((prevState) => ({ ...prevState, [name]: value }));
 
   return (
     <section className="auth-section h-screen flex">
+      {isLoading ? <FullLoader /> : null}
+
       <div className="h-full">
         <img src={signinImage} alt="loginImage" className="h-full w-full" />
       </div>
