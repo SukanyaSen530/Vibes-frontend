@@ -1,14 +1,10 @@
 @import "../../sass/global";
 
 .full-loader {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(black, 0.2);
-
-  &__content{
+  &__content {
+    @include absCenter;
+    &__text {
       @include absCenter;
+    }
   }
 }

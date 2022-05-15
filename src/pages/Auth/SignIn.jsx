@@ -84,6 +84,7 @@ const SignIn = () => {
           </div>
         </form>
       </div>
+      <FullLoader />
     </section>
   );
 };
