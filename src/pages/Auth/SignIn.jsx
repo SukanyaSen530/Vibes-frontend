@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { signinImage, logo } from "../../assets/images";
 
 // Custom Components
-import { InputField, FullLoader } from "../../components";
+import { InputField } from "../../components";
 
 //Initial State of form
 import { signInData } from "./helper";
@@ -84,7 +84,7 @@ const SignIn = () => {
           </div>
         </form>
       </div>
-      <FullLoader />
+      {/* <FullLoader /> */}
     </section>
   );
 };

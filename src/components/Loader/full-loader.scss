@@ -3,8 +3,5 @@
 .full-loader {
   &__content {
     @include absCenter;
-    &__text {
-      @include absCenter;
-    }
   }
 }

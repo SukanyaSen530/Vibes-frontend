@@ -1,32 +1,53 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Icons and Images
 import { signupImage, logo } from "../../assets/images";
 
 // Custom Components
-import { InputField } from "../../components";
+import { InputField, FullLoader } from "../../components";
 
 //Initial State of form & gender Options
 import { signUpData, genderOptions } from "./helper";
 
+import { useSignupUserMutation } from "../../redux/services/authApi";
+
 const SignUp = () => {
+  const [signupUser, { data, isLoading, error, isError, isSuccess }] =
+    useSignupUserMutation();
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({ ...signUpData });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
-
-    setTimeout(() => {
-      setUserData({ ...signUpData });
-    }, 2000);
+    signupUser(userData);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setUserData(signUpData);
+      toast.success(data?.message);
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
+
+    if (isError) {
+      toast.error(error?.data?.message);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError, data, error]);
 
   const handleChange = ({ target: { name, value } }) =>
     setUserData((prevState) => ({ ...prevState, [name]: value }));
 
   return (
     <section className="h-screen flex">
+      {isLoading ? <FullLoader /> : null}
+
       <div className="h-full">
         <img src={signupImage} alt="signupImage" className="h-full" />
       </div>
@@ -50,14 +71,25 @@ const SignUp = () => {
             value={userData.email}
           />
 
-          <InputField
-            type="text"
-            labelName="Username"
-            required
-            name="userName"
-            onChange={handleChange}
-            value={userData.userName}
-          />
+          <div className="flex gap-8">
+            <InputField
+              type="text"
+              labelName="FullName"
+              required
+              name="fullName"
+              onChange={handleChange}
+              value={userData.fullName}
+            />
+
+            <InputField
+              type="text"
+              labelName="Username"
+              required
+              name="userName"
+              onChange={handleChange}
+              value={userData.userName}
+            />
+          </div>
 
           <div className="flex gap-8">
             <InputField

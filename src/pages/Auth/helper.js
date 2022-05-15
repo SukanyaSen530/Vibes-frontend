@@ -6,6 +6,7 @@ export const signInData = {
 export const signUpData = {
   email: "",
   userName: "",
+  fullName: "",
   password: "",
   gender: "",
   confirmPassword: "",
