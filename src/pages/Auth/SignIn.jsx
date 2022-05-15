@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { signinImage, logo } from "../../assets/images";
 
 // Custom Components
-import { InputField } from "../../components";
+import { InputField, FullLoader } from "../../components";
 
 //Initial State of form
 import { signInData } from "./helper";

@@ -1,11 +1,6 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { baseApi } from "./baseApi";
 
-const baseUrl = "http://localhost:8000";
-
-// Define a service using a base URL and expected endpoints
-export const authApi = createApi({
-  reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl }),
+export const extendedAuthApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     signinUser: builder.mutation({
       query: (body) => {
@@ -51,4 +46,4 @@ export const {
   useSignupUserMutation,
   useSendMailForgotPasswordMutation,
   useResetPasswordMutation,
-} = authApi;
+} = extendedAuthApi;
