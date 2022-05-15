@@ -32,11 +32,14 @@ export const extendedAuthApi = baseApi.injectEndpoints({
     resetPassword: builder.mutation({
       query: ({ token, ...body }) => {
         return {
-          url: `/reset/password/${token}`,
+          url: `auth/reset/password/${token}`,
           method: "put",
           body,
         };
       },
+    }),
+    refreshToken: builder.query({
+      query: () => "/refreshToken",
     }),
   }),
 });
@@ -46,4 +49,5 @@ export const {
   useSignupUserMutation,
   useSendMailForgotPasswordMutation,
   useResetPasswordMutation,
+  useRefreshTokenQuery,
 } = extendedAuthApi;

@@ -1,37 +1,55 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Icons and Images
 import { resetPasswordImage, logo } from "../../assets/images";
 import { BiLockAlt } from "react-icons/bi";
 
 // Custom Components
-import { InputField } from "../../components";
+import { InputField, FullLoader } from "../../components";
 
 //Initial State of form
 import { resetPasswordData } from "./helper";
 
-const ResetPassword = () => {
-  const { token } = useParams();
+import { useResetPasswordMutation } from "../../redux/services/authApi";
 
-  console.log("token", token);
+const ResetPassword = () => {
+  const [resetPassword, { isLoading, error, isError, isSuccess }] =
+    useResetPasswordMutation();
+
+  const { token } = useParams();
+  const navigate = useNavigate();
 
   const [userData, setUserData] = useState({ ...resetPasswordData });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
-
-    setTimeout(() => {
-      setUserData({ ...resetPasswordData });
-    }, 2000);
+    resetPassword({ token, password: userData.password });
   };
 
   const handleChange = ({ target: { name, value } }) =>
     setUserData((prevState) => ({ ...prevState, [name]: value }));
 
+  useEffect(() => {
+    if (isSuccess) {
+      setUserData(resetPassword);
+      toast.success("Password changed successfully! Please login...");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
+
+    if (isError) toast.error(error?.data?.message);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError, error]);
+
   return (
     <section className="auth-section h-screen flex">
+      {isLoading ? <FullLoader /> : null}
+
       <div className="h-full">
         <img
           src={resetPasswordImage}

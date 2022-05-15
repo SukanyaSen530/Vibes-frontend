@@ -1,34 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Icons and Images
 import { BiLockOpenAlt } from "react-icons/bi";
 import { forgetPasswordImage, logo } from "../../assets/images";
 
 // Custom Components
-import { InputField } from "../../components";
+import { InputField, FullLoader } from "../../components";
 
 //Initial State of form
 import { forgotPasswordData } from "./helper";
 
+import { useSendMailForgotPasswordMutation } from "../../redux/services/authApi";
+
 const ForgetPassword = () => {
+  const [sendMailForgotPassword, { isLoading, error, isError, isSuccess }] =
+    useSendMailForgotPasswordMutation();
 
   const [userData, setUserData] = useState({ ...forgotPasswordData });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
-
-    setTimeout(() => {
-      setUserData({ ...forgotPasswordData });
-    }, 2000);
+    sendMailForgotPassword(userData);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setUserData(forgotPasswordData);
+      toast.success("Please check your email for resetting the password!");
+    }
+
+    if (isError) toast.error(error?.data?.message);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError, error]);
 
   const handleChange = ({ target: { name, value } }) =>
     setUserData((prevState) => ({ ...prevState, [name]: value }));
 
   return (
     <section className="auth-section h-screen flex">
+      {isLoading ? <FullLoader /> : null}
+
       <div className="h-full">
         <img
           src={forgetPasswordImage}
