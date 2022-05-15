@@ -1,5 +1,9 @@
 import { baseApi } from "./baseApi";
 
+const headers = new Headers();
+headers.append("Access-Control-Allow-Origin", "*");
+headers.append("Access-Control-Allow-Credentials", "true");
+
 export const extendedAuthApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     signinUser: builder.mutation({
@@ -8,6 +12,8 @@ export const extendedAuthApi = baseApi.injectEndpoints({
           url: "/auth/signin",
           method: "post",
           body,
+          credentials: "include",
+          headers,
         };
       },
     }),
@@ -39,7 +45,16 @@ export const extendedAuthApi = baseApi.injectEndpoints({
       },
     }),
     refreshToken: builder.query({
-      query: () => "/refreshToken",
+      query: () => {
+        return {
+          url: "auth/refreshToken",
+          credentials: "include",
+          headers,
+        };
+      },
+    }),
+    logoutUser: builder.query({
+      query: () => "auth/logout",
     }),
   }),
 });
@@ -50,4 +65,5 @@ export const {
   useSendMailForgotPasswordMutation,
   useResetPasswordMutation,
   useRefreshTokenQuery,
+  useLogoutUserQuery,
 } = extendedAuthApi;
