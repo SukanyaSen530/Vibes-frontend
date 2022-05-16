@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom";
 
 import { menuOptions } from "./sidebarData";
 
-import "./sidebar.scss";
+import "./sidebar-main.scss";
 
-const Sidebar = () => {
+const SidebarMain = () => {
   return (
     <aside className="sidebar bg-slate-100 flex items-center justify-center sticky">
       <ul className="sidebar__menu">
@@ -31,4 +31,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarMain;

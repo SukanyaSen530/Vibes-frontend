@@ -3,6 +3,16 @@
     rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
   border-radius: 10px;
   height: 9rem;
+  z-index: 5;
+
+  &__icons{
+    font-size: 3rem;
+    transition: 0.3s;
+
+    &:hover{
+      transform: scale(1.1);
+    }
+  }
 
   &__search {
     &__input {
@@ -14,3 +24,4 @@
     }
   }
 }
+

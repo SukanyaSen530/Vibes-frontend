@@ -5,7 +5,8 @@ import { selectAuth } from "../../redux/slices/authSlice";
 
 import { smallLogo } from "../../assets/images";
 
-import { RiUserSearchFill } from "react-icons/ri";
+import { RiUserSearchFill, RiImageAddFill } from "react-icons/ri";
+import { GrNotification } from "react-icons/gr";
 
 import "./navbar.scss";
 
@@ -23,7 +24,7 @@ function Navbar() {
           id="search"
           type="search"
           placeholder="Search Users..."
-          autofocus
+          autoFocus
           required
           className="navbar__search__input ml-10 h-16 border-0 text-gray-700 text-2xl outline-0 px-7 rounded-tl-2xl rounded-bl-2xl"
         />
@@ -37,8 +38,15 @@ function Navbar() {
       </div>
 
       <ul className="ml-auto flex items-center gap-10">
+        <RiImageAddFill className="navbar__icons cursor-pointer" />
+
+        <article class="badge">
+          <GrNotification className="navbar__icons cursor-pointer" />
+          <span class="badge-count primary">0</span>
+        </article>
+
         <Link to={`profile/${_id}`}>
-          <figure className="avatar avatar-lg cursor-pointer">
+          <figure className="avatar avatar-md cursor-pointer">
             <img className="avatar-img" src={avatar} alt="useravatar" />
           </figure>
         </Link>
