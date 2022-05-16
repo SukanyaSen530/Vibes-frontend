@@ -1,21 +1,24 @@
 import React from "react";
 
-import { SidebarSecondary } from "../../components";
+import { SidebarSecondary, PostCard } from "../../components";
+import { post } from "../../dummy";
 
 import "./feed.scss";
 
 const Feed = () => {
   return (
     <section className="feed flex">
-      <div className="flex-1 p-4">
+      <div className="flex-1 px-12 text-justify bg-slate-100 my-8 mx-12 rounded-2xl">
         {Array(5)
           .fill(0)
           .map((e, index) => (
-            <div key={index}>hi</div>
+            <PostCard key={index} {...post} />
           ))}
       </div>
 
-      <SidebarSecondary />
+      <div className="feed__sidebar sticky">
+        <SidebarSecondary />
+      </div>
     </section>
   );
 };

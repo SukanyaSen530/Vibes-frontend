@@ -1,3 +1,11 @@
 .feed {
   width: 100%;
+
+  &__sidebar {
+    width: 30%;
+    align-self: flex-start;
+    top: 11rem;
+    margin: 2rem 2rem 2rem auto;
+    position: sticky;
+  }
 }

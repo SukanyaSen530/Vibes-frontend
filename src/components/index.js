@@ -4,8 +4,10 @@ import Error from "./Error/Error";
 import SidebarMain from "./Sidebar/SidebarMain";
 import Navbar from "./Navbar/Navbar";
 import Modal from "./Modal/Modal";
+import Caraousel from "./Caraousel/Caraousel";
 
 import PostForm from "./Forms/PostForm";
+import PostCard from "./Cards/PostCard";
 import SidebarSecondary from "./Sidebar/SidebarSecondary";
 
 export {
@@ -17,4 +19,6 @@ export {
   Navbar,
   PostForm,
   Modal,
+  Caraousel,
+  PostCard,
 };

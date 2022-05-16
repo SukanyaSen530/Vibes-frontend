@@ -3,6 +3,7 @@
   top: 9rem;
   align-self: flex-start;
   min-width: 9rem;
+  z-index: 2;
 
   &__menu {
 
@@ -18,10 +19,12 @@
       font-size: 1.5rem;
       opacity: 0;
       transition: 0.4s;
+      visibility: hidden;
     }
 
     &__option:hover &__tooltip{
       opacity: 1;
+      visibility: visible;
     }
 
     &__option {

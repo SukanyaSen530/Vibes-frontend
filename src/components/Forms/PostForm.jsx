@@ -11,7 +11,6 @@ import "./post-form.scss";
 
 const initialData = {
   content: "",
-  location: "",
 };
 
 const PostForm = ({ open, onClose }) => {
@@ -78,15 +77,6 @@ const PostForm = ({ open, onClose }) => {
             autoFocus
           />
 
-          <InputField
-            type="text"
-            placeholder="Location"
-            required
-            onChange={handleChange}
-            name="location"
-            value={postData.location}
-          />
-
           <div className="flex justify-between">
             <label>
               <BsImages className="icons" />
@@ -130,7 +120,7 @@ const PostForm = ({ open, onClose }) => {
         {showPicker ? (
           <Picker
             onEmojiClick={onEmojiClick}
-            pickerStyle={{ width: "100%", height: "22rem" }}
+            pickerStyle={{ width: "100%", height: "18rem" }}
           />
         ) : null}
       </div>

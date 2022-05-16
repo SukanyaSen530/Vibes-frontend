@@ -55,7 +55,7 @@ function Navbar() {
           <span className="badge-count primary">0</span>
         </article>
 
-        <Link to={`profile/${_id}`}>
+        <Link to={`/home/profile/${_id}`}>
           <figure className="avatar avatar-md">
             <img className="avatar-img" src={avatar} alt="useravatar" />
           </figure>
