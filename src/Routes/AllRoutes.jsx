@@ -18,7 +18,7 @@ const AllRoutes = () => {
         }
       />
       <Route
-        path="/signup"
+        path="signup"
         element={
           <PreventedRoutes>
             <SignUp />
@@ -26,7 +26,7 @@ const AllRoutes = () => {
         }
       />
       <Route
-        path="/forgotpassword"
+        path="forgotpassword"
         element={
           <PreventedRoutes>
             <ForgetPassword />
@@ -34,15 +34,16 @@ const AllRoutes = () => {
         }
       />
       <Route
-        path="/resetpassword/:token"
+        path="resetpassword/:token"
         element={
           <PreventedRoutes>
             <ResetPassword />
           </PreventedRoutes>
         }
       />
+
       <Route
-        path="/home"
+        path="home"
         element={
           <ProtectedRoutes>
             <Home />

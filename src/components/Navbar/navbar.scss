@@ -1,0 +1,14 @@
+.navbar {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+
+  &__search {
+    &__input {
+      width: 50%;
+    }
+
+    &__input:not(:placeholder-shown) + &__btn {
+      opacity: 1;
+    }
+  }
+}
