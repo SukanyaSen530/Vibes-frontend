@@ -3,7 +3,18 @@ import { Routes, Route } from "react-router-dom";
 import PreventedRoutes from "./PreventedRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
 
-import { SignIn, SignUp, ForgetPassword, ResetPassword, Home } from "../pages";
+import {
+  SignIn,
+  SignUp,
+  ForgetPassword,
+  ResetPassword,
+  Home,
+  Explore,
+  Feed,
+  People,
+  Profile,
+  Saved,
+} from "../pages";
 
 const AllRoutes = () => {
   return (
@@ -50,11 +61,11 @@ const AllRoutes = () => {
           </ProtectedRoutes>
         }
       >
-        {/* <Route index path="feed" element={} />
-        <Route path="explore" element={} />
-        <Route path="people" element={} />
-        <Route path="saved" element={} />
-        <Route path="profile/:userId" element={} /> */}
+        <Route index path="feed" element={<Feed />} />
+        <Route path="explore" element={<Explore />} />
+        <Route path="people" element={<People />} />
+        <Route path="saved" element={<Saved />} />
+        <Route path="profile/:userId" element={<Profile />} />
         <Route path="*" element={<h1>Invalid Page</h1>} />
       </Route>
       <Route path="*" element={<h1>Invalid Page</h1>} />
