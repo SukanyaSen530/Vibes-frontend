@@ -1,0 +1,59 @@
+.sidebar {
+  min-height: calc(100vh - 9rem);
+  top: 9rem;
+  align-self: flex-start;
+  min-width: 9rem;
+
+  &__menu {
+
+    &__tooltip{
+      color: white;
+      padding: 0.5rem 1rem;
+      width: 100px;
+      border-radius: 5px;
+      background-color: #60a5fa;
+      top: 0;
+      left: 4.5rem;
+      z-index: 2;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    &__option:hover &__tooltip{
+      opacity: 1;
+    }
+
+    &__option {
+      display: block;
+      font-size: 3rem;
+      margin: 2rem 0;
+      color: #303030;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: 0.3s;
+      background-size: 200% auto;
+      background-image: linear-gradient(
+        to right,
+        #60a5fa 0%,
+        #bae6fd 51%,
+        #60a5fa 100%
+      );
+     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+      &:hover {
+        background-position: right center;
+      }
+
+      &.active {
+        color: white;
+        background-image: linear-gradient(
+          to right,
+          #4b5563 0%,
+          #9ca3af 51%,
+          #4b5563 100%
+        );
+      }
+    }
+  }
+}

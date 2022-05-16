@@ -53,8 +53,9 @@ const AllRoutes = () => {
         {/* <Route index path="feed" element={} />
         <Route path="explore" element={} />
         <Route path="people" element={} />
-        <Route path="bookmarks" element={} />
+        <Route path="saved" element={} />
         <Route path="profile/:userId" element={} /> */}
+        <Route path="*" element={<h1>Invalid Page</h1>} />
       </Route>
       <Route path="*" element={<h1>Invalid Page</h1>} />
     </Routes>

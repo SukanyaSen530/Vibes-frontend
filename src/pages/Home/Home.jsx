@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <main className="home">
       <Navbar />
-      <section className="home__content">
+      <section className="home__content flex">
         <Sidebar />
         <div className="home__content--item">
           <Outlet />
