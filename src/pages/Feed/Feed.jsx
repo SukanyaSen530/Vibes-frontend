@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PostForm, SidebarSecondary } from "../../components";
+import { SidebarSecondary } from "../../components";
 
 import "./feed.scss";
 
@@ -11,7 +11,7 @@ const Feed = () => {
         {Array(5)
           .fill(0)
           .map((e, index) => (
-            <div>hi</div>
+            <div key={index}>hi</div>
           ))}
       </div>
 

@@ -1,7 +1,7 @@
 @import "../../sass/global";
 
 .input-group-new {
-  &__label{
+  &__label {
     font-size: 1.4rem;
   }
 
@@ -22,8 +22,12 @@
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 3px;
     transition: 0.4s;
+  }
+
+    &__input.textarea  + &__focus-border {
+    bottom: 4px;
   }
 
   &__input:focus ~ &__focus-border {

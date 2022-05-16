@@ -3,7 +3,7 @@ import { IoClose } from "react-icons/io5";
 
 import "./modal.scss";
 
-const Modal = ({ open, onClose, closeOverlay, children }) => {
+const Modal = ({ open, onClose, closeOverlay = false, children }) => {
   if (!open) return null;
 
   const handleClose = () => {
