@@ -1,27 +1,57 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import loginImage from "../../assets/images/forgotpass.jpg";
-import logo from "../../assets/images/mainLogo.png";
-
-import InputField from "../../components/InputField/InputField";
-
-import "./auth.scss";
-
+// Icons and Images
 import { BiLockOpenAlt } from "react-icons/bi";
+import { forgetPasswordImage, logo } from "../../assets/images";
+
+// Custom Components
+import { InputField, FullLoader } from "../../components";
+
+//Initial State of form
+import { forgotPasswordData } from "./helper";
+
+import { useSendMailForgotPasswordMutation } from "../../redux/services/authApi";
 
 const ForgetPassword = () => {
-  const handleSubmit = (e) => {};
+  const [sendMailForgotPassword, { isLoading, error, isError, isSuccess }] =
+    useSendMailForgotPasswordMutation();
 
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({ ...forgotPasswordData });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendMailForgotPassword(userData);
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setUserData(forgotPasswordData);
+      toast.success("Please check your email for resetting the password!");
+    }
+
+    if (isError) toast.error(error?.data?.message);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError, error]);
+
+  const handleChange = ({ target: { name, value } }) =>
+    setUserData((prevState) => ({ ...prevState, [name]: value }));
 
   return (
     <section className="auth-section h-screen flex">
+      {isLoading ? <FullLoader /> : null}
+
       <div className="h-full">
-        <img src={loginImage} alt="loginImage" className="h-full w-full" />
+        <img
+          src={forgetPasswordImage}
+          alt="loginImage"
+          className="h-full w-full"
+        />
       </div>
 
-      <div class="flex-1 flex justify-center items-center">
+      <div className="flex-1 flex justify-center items-center">
         <form
           className="auth-section__form w-6/12 p-8 rounded-2xl"
           onSubmit={handleSubmit}
@@ -37,6 +67,8 @@ const ForgetPassword = () => {
             autoFocus
             required
             name="email"
+            onChange={handleChange}
+            value={userData.email}
           />
 
           <InputField
@@ -45,6 +77,10 @@ const ForgetPassword = () => {
             autoFocus
             required
             name="confirmEmail"
+            onChange={handleChange}
+            pattern={userData.email}
+            title="Email should match!"
+            value={userData.confirmEmail}
           />
 
           <div className="flex justify-between">

@@ -1,24 +1,57 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import signupImage from "../../assets/images/signup.jpg";
-import logo from "../../assets/images/mainLogo.png";
+// Icons and Images
+import { signupImage, logo } from "../../assets/images";
 
-import InputField from "../../components/InputField/InputField";
+// Custom Components
+import { InputField, FullLoader } from "../../components";
+
+//Initial State of form & gender Options
+import { signUpData, genderOptions } from "./helper";
+
+import { useSignupUserMutation } from "../../redux/services/authApi";
 
 const SignUp = () => {
-  const genderOptions = ["male", "female", "other"];
+  const [signupUser, { data, isLoading, error, isError, isSuccess }] =
+    useSignupUserMutation();
+  
+  const navigate = useNavigate();
 
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({ ...signUpData });
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    signupUser(userData);
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setUserData(signUpData);
+      toast.success(data?.message);
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
+
+    if (isError) toast.error(error?.data?.message);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError, data, error]);
+
+  const handleChange = ({ target: { name, value } }) =>
+    setUserData((prevState) => ({ ...prevState, [name]: value }));
 
   return (
     <section className="h-screen flex">
+      {isLoading ? <FullLoader /> : null}
+
       <div className="h-full">
         <img src={signupImage} alt="signupImage" className="h-full" />
       </div>
-      <div class="flex-1 flex justify-center items-center">
+      <div className="flex-1 flex justify-center items-center">
         <form
           className="auth-section__form w-6/12 p-8 rounded-2xl"
           onSubmit={handleSubmit}
@@ -34,9 +67,29 @@ const SignUp = () => {
             autoFocus
             required
             name="email"
+            onChange={handleChange}
+            value={userData.email}
           />
 
-          <InputField type="text" labelName="Username" required />
+          <div className="flex gap-8">
+            <InputField
+              type="text"
+              labelName="FullName"
+              required
+              name="fullName"
+              onChange={handleChange}
+              value={userData.fullName}
+            />
+
+            <InputField
+              type="text"
+              labelName="Username"
+              required
+              name="userName"
+              onChange={handleChange}
+              value={userData.userName}
+            />
+          </div>
 
           <div className="flex gap-8">
             <InputField
@@ -45,14 +98,20 @@ const SignUp = () => {
               required
               name="password"
               minLength={6}
+              onChange={handleChange}
+              value={userData.password}
             />
 
             <InputField
               type="password"
               labelName="Confirm Password"
               required
-              name="confirmpassword"
+              name="confirmPassword"
               minLength={6}
+              onChange={handleChange}
+              value={userData.confirmPassword}
+              pattern={userData.password}
+              title="Password should match!"
             />
           </div>
 
@@ -60,7 +119,9 @@ const SignUp = () => {
             type="dropdown"
             labelName="gender"
             options={genderOptions}
+            value={userData.gender}
             name="gender"
+            onChange={handleChange}
           />
 
           <button className="bg-blue-300 my-6 p-5 text-gray-600 font-medium text-3xl rounded-lg block w-full hover:bg-blue-500 hover:text-white ease-in duration-150">

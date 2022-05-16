@@ -1,0 +1,7 @@
+@import "../../sass/global";
+
+.full-loader {
+  &__content {
+    @include absCenter;
+  }
+}
