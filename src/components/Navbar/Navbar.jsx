@@ -60,9 +60,6 @@ function Navbar() {
             <img className="avatar-img" src={avatar} alt="useravatar" />
           </figure>
         </Link>
-        <button className="bg-blue-300 my-6 py-3 px-5 font-medium text-gray-900 text-3xl rounded-lg  hover:bg-blue-500 hover:text-white ease-in duration-150">
-          Logout
-        </button>
       </ul>
 
       {openPostModal ? (

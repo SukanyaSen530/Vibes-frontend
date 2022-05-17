@@ -15,7 +15,7 @@ const PostCard = ({
   user: { _id, avatar, userName },
 }) => {
   return (
-    <article className="post-card p-4">
+    <article className="post-card p-4 rounded-lg">
       <div className="flex justify-between">
         <div className="flex items-center gap-4">
           <Link to={`/home/profile/${_id}`}>

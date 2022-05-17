@@ -6,8 +6,11 @@ import Home from "./Home/Home";
 import Feed from "./Feed/Feed";
 import Profile from "./Profile/Profile";
 import People from "./People/People";
-import Saved from "./Saved/Saved";
 import Explore from "./Explore/Explore";
+
+import UserPosts from "./Profile/UserPosts";
+import UserLiked from "./Profile/UserLiked";
+import UserSaved from "./Profile/UserSaved";
 
 export {
   SignIn,
@@ -19,5 +22,7 @@ export {
   Feed,
   People,
   Profile,
-  Saved,
+  UserLiked,
+  UserPosts,
+  UserSaved,
 };
