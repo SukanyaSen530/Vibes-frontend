@@ -1,0 +1,16 @@
+.post-form {
+  &__image-input {
+    display: none;
+  }
+}
+
+.uploaded_images {
+  height: 15rem;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+  border: 2px solid rgb(211, 211, 211);
+  border-radius: 5px;
+  justify-content: center;
+}

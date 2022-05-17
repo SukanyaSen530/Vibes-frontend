@@ -3,22 +3,23 @@ import AllRoutes from "./Routes/AllRoutes";
 
 import "./App.scss";
 
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useRefreshTokenQuery } from "./redux/services/authApi";
 import { FullLoader } from "./components";
 
 const App = () => {
-  const { isLoading, isError, error } = useRefreshTokenQuery();
+  const { isLoading: authLoading, isError: isAuthError } =
+    useRefreshTokenQuery();
 
   useEffect(() => {
-    if (isError) toast.info(error?.data?.message);
-  }, [isError, error]);
+    if (isAuthError) console.log("Log in");
+  }, [isAuthError]);
 
   return (
     <div className="App">
-      {isLoading ? <FullLoader /> : null}
+      {authLoading ? <FullLoader /> : null}
 
       <AllRoutes />
       <ToastContainer

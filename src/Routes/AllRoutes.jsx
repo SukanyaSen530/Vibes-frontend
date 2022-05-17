@@ -1,9 +1,20 @@
 import { Routes, Route } from "react-router-dom";
 
 import PreventedRoutes from "./PreventedRoutes";
-// import ProtectedRoutes from "./ProtectedRoutes";
+import ProtectedRoutes from "./ProtectedRoutes";
 
-import { SignIn, SignUp, ForgetPassword, ResetPassword } from "../pages";
+import {
+  SignIn,
+  SignUp,
+  ForgetPassword,
+  ResetPassword,
+  Home,
+  Explore,
+  Feed,
+  People,
+  Profile,
+  Saved,
+} from "../pages";
 
 const AllRoutes = () => {
   return (
@@ -18,7 +29,7 @@ const AllRoutes = () => {
         }
       />
       <Route
-        path="/signup"
+        path="signup"
         element={
           <PreventedRoutes>
             <SignUp />
@@ -26,7 +37,7 @@ const AllRoutes = () => {
         }
       />
       <Route
-        path="/forgotpassword"
+        path="forgotpassword"
         element={
           <PreventedRoutes>
             <ForgetPassword />
@@ -34,13 +45,29 @@ const AllRoutes = () => {
         }
       />
       <Route
-        path="/resetpassword/:token"
+        path="resetpassword/:token"
         element={
           <PreventedRoutes>
             <ResetPassword />
           </PreventedRoutes>
         }
       />
+
+      <Route
+        path="home"
+        element={
+          <ProtectedRoutes>
+            <Home />
+          </ProtectedRoutes>
+        }
+      >
+        <Route index path="feed" element={<Feed />} />
+        <Route path="explore" element={<Explore />} />
+        <Route path="people" element={<People />} />
+        <Route path="saved" element={<Saved />} />
+        <Route path="profile/:userId" element={<Profile />} />
+        <Route path="*" element={<h1>Invalid Page</h1>} />
+      </Route>
       <Route path="*" element={<h1>Invalid Page</h1>} />
     </Routes>
   );

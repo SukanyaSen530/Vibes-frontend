@@ -1,0 +1,21 @@
+.sidebar-secondary {
+  width: 100%;
+
+  .suggestion {
+    &__see-all {
+      font-weight: 500;
+    }
+  }
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  border: 2px solid rgb(229, 229, 229);
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  gap: 1rem;
+  text-transform: capitalize;
+  width: 100%;
+}

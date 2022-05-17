@@ -1,0 +1,27 @@
+.navbar {
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  border-radius: 10px;
+  height: 9rem;
+  z-index: 5;
+
+  &__search {
+    &__input {
+      width: 50%;
+    }
+
+    &__input:not(:placeholder-shown) + &__btn {
+      opacity: 1;
+    }
+  }
+}
+
+  .icons{
+    font-size: 3rem;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover{
+      transform: scale(1.1);
+    }
+  }
