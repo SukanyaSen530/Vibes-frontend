@@ -11,6 +11,9 @@ import PostCard from "./Cards/PostCard";
 import ImagePostCard from "./Cards/ImagePostCard";
 import SidebarSecondary from "./Sidebar/SidebarSecondary";
 
+
+import EditPasswordForm from "./Forms/EditPasswordForm";
+
 export {
   InputField,
   FullLoader,
@@ -23,4 +26,5 @@ export {
   Caraousel,
   PostCard,
   ImagePostCard,
+  EditPasswordForm,
 };

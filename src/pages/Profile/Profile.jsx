@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { Outlet, NavLink, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -9,11 +9,16 @@ import { FaLink, FaUserCog } from "react-icons/fa";
 
 import { profileNav } from "./profileNav";
 
+import { EditPasswordForm } from "../../components";
+
 import "./profile.scss";
 
 const Profile = () => {
   const { user } = useSelector(selectAuth);
   const { userId } = useParams();
+
+  const [openEditPassword, setOpenSetPassword] = useState(false);
+  const handleEditPassword = () => setOpenSetPassword((val) => !val);
 
   return (
     <section className="profile bg-slate-100 p-4">
@@ -40,7 +45,10 @@ const Profile = () => {
                 <IoIosSettings className="text-4xl" />
                 Edit Profile
               </button>
-              <button className="bg-gray-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-gray-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20">
+              <button
+                className="bg-gray-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-gray-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20"
+                onClick={handleEditPassword}
+              >
                 <FaUserCog className="text-4xl" /> Password
               </button>
             </div>
@@ -98,6 +106,13 @@ const Profile = () => {
         </div>
         <Outlet />
       </div>
+
+      {openEditPassword ? (
+        <EditPasswordForm
+          open={openEditPassword}
+          onClose={handleEditPassword}
+        />
+      ) : null}
     </section>
   );
 };
