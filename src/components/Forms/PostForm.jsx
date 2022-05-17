@@ -28,7 +28,6 @@ const PostForm = ({ open, onClose }) => {
       ...prevState,
       content: prevState.content + String(emojiObject.emoji),
     }));
-    setShowPicker(false);
   };
 
   const handleChange = ({ target: { name, value } }) => {
@@ -60,53 +59,15 @@ const PostForm = ({ open, onClose }) => {
 
   return (
     <Modal open={open} onClose={onClose}>
-      <p className="post-header text-4xl font-semibold text-gray-700 mb-8">
-        Create a post
-      </p>
-      <div className="">
-        <form onSubmit={handleSubmit}>
-          <InputField
-            type="textarea"
-            required
-            onChange={handleChange}
-            name="content"
-            value={postData.content}
-            placeholder="What's on your mind?"
-            maxLength={150}
-            minLength={10}
-            autoFocus
-          />
-
-          <div className="flex justify-between">
-            <label>
-              <BsImages className="icons" />
-              <input
-                type="file"
-                required
-                multiple
-                className="post-form__image-input"
-                onChange={handleAddImage}
-              />
-            </label>
-
-            <BsFillEmojiHeartEyesFill
-              className="icons text-amber-500"
-              onClick={() => setShowPicker(true)}
-            />
-          </div>
-          <button className=" bg-blue-300 my-6 p-2 relative font-medium text-3xl rounded-lg block w-full hover:bg-blue-500 hover:text-white ease-in duration-150">
-            Post
-          </button>
-        </form>
-
+      <p className="text-4xl font-semibold text-gray-700 mb-8">Create a post</p>
+      <div className="flex gap-6">
         {images.length ? (
-          <div className="uploaded_images">
+          <div className="uploaded_images flex-1">
             {images?.map((image, index) => (
               <div className="relative">
                 <img
                   src={URL.createObjectURL(image)}
                   alt={`uploaded-${index}`}
-                  className="h-38 w-44"
                 />
                 <FcCancel
                   className="absolute top-1 right-1 text-4xl cursor-pointer"
@@ -116,13 +77,49 @@ const PostForm = ({ open, onClose }) => {
             ))}
           </div>
         ) : null}
+        <div className="flex-1 post-form__content">
+          <form onSubmit={handleSubmit}>
+            <InputField
+              type="textarea"
+              required
+              onChange={handleChange}
+              name="content"
+              value={postData.content}
+              placeholder="What's on your mind?"
+              maxLength={150}
+              minLength={10}
+              autoFocus
+            />
 
-        {showPicker ? (
-          <Picker
-            onEmojiClick={onEmojiClick}
-            pickerStyle={{ width: "100%", height: "18rem" }}
-          />
-        ) : null}
+            <div className="flex justify-between">
+              <label>
+                <BsImages className="icons" />
+                <input
+                  type="file"
+                  required
+                  multiple
+                  className="post-form__image-input"
+                  onChange={handleAddImage}
+                />
+              </label>
+
+              <BsFillEmojiHeartEyesFill
+                className="icons text-amber-500"
+                onClick={() => setShowPicker((val) => !val)}
+              />
+            </div>
+            <button className=" bg-blue-300 my-6 p-2 relative font-medium text-3xl rounded-lg block w-full hover:bg-blue-500 hover:text-white ease-in duration-150">
+              Post
+            </button>
+          </form>
+
+          {showPicker ? (
+            <Picker
+              onEmojiClick={onEmojiClick}
+              pickerStyle={{ width: "100%", height: "18rem" }}
+            />
+          ) : null}
+        </div>
       </div>
     </Modal>
   );

@@ -14,8 +14,7 @@
 
 .modal-content {
   position: fixed;
-  width: 30%;
-  max-width: 40rem;
+  min-width: 30%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
