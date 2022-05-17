@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectAuth } from "../../redux/slices/authSlice";
 
 import { IoIosSettings } from "react-icons/io";
-import { FaLink } from "react-icons/fa";
+import { FaLink, FaUserCog } from "react-icons/fa";
 
 import { profileNav } from "./profileNav";
 
@@ -35,10 +35,15 @@ const Profile = () => {
 
           {/* if user */}
           {userId === user._id ? (
-            <button className="bg-blue-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-blue-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20">
-              <IoIosSettings className="text-4xl" />
-              Edit Profile
-            </button>
+            <div className="flex gap-4">
+              <button className="bg-blue-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-blue-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20">
+                <IoIosSettings className="text-4xl" />
+                Edit Profile
+              </button>
+              <button className="bg-gray-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-gray-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20">
+                <FaUserCog className="text-4xl" /> Password
+              </button>
+            </div>
           ) : null}
         </div>
 

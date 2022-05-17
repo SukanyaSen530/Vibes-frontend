@@ -7,6 +7,7 @@ import Feed from "./Feed/Feed";
 import Profile from "./Profile/Profile";
 import People from "./People/People";
 import Explore from "./Explore/Explore";
+import SinglePost from "./SinglePost/SinglePost";
 
 import UserPosts from "./Profile/UserPosts";
 import UserLiked from "./Profile/UserLiked";
@@ -25,4 +26,5 @@ export {
   UserLiked,
   UserPosts,
   UserSaved,
+  SinglePost,
 };
