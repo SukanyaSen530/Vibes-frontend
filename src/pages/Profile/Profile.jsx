@@ -9,7 +9,7 @@ import { FaLink, FaUserCog } from "react-icons/fa";
 
 import { profileNav } from "./profileNav";
 
-import { EditPasswordForm } from "../../components";
+import { EditPasswordForm, EditProfileForm } from "../../components";
 
 import "./profile.scss";
 
@@ -19,6 +19,9 @@ const Profile = () => {
 
   const [openEditPassword, setOpenSetPassword] = useState(false);
   const handleEditPassword = () => setOpenSetPassword((val) => !val);
+
+  const [openEditProfile, setOpenSetProfile] = useState(false);
+  const handleEditProfile = () => setOpenSetProfile((val) => !val);
 
   return (
     <section className="profile bg-slate-100 p-4">
@@ -41,7 +44,10 @@ const Profile = () => {
           {/* if user */}
           {userId === user._id ? (
             <div className="flex gap-4">
-              <button className="bg-blue-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-blue-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20">
+              <button
+                className="bg-blue-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-blue-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20"
+                onClick={handleEditProfile}
+              >
                 <IoIosSettings className="text-4xl" />
                 Edit Profile
               </button>
@@ -112,6 +118,10 @@ const Profile = () => {
           open={openEditPassword}
           onClose={handleEditPassword}
         />
+      ) : null}
+
+      {openEditProfile ? (
+        <EditProfileForm open={openEditProfile} onClose={handleEditProfile} />
       ) : null}
     </section>
   );

@@ -13,6 +13,7 @@ import SidebarSecondary from "./Sidebar/SidebarSecondary";
 
 
 import EditPasswordForm from "./Forms/EditPasswordForm";
+import EditProfileForm from "./Forms/EditProfileForm";
 
 export {
   InputField,
@@ -27,4 +28,5 @@ export {
   PostCard,
   ImagePostCard,
   EditPasswordForm,
+  EditProfileForm,
 };
