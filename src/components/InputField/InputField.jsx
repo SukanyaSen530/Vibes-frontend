@@ -21,7 +21,7 @@ function InputField({
     content = (
       <textarea
         {...other}
-        placeholder={labelName}
+        placeholder={placeholder ? placeholder : labelName}
         className="input-group-new__input w-full p-4 textarea"
         name={name}
         value={value}

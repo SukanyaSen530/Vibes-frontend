@@ -1,5 +1,23 @@
 import React from "react";
 
-export default function Explore() {
-  return <div>Explore</div>;
-}
+import { ImagePostCard } from "../../components";
+
+import { post } from "../../dummy";
+
+import "./explore.scss";
+
+const Explore = () => {
+  return (
+    <section className="explore">
+      <div className="image-container">
+        {Array(10)
+          .fill(0)
+          .map((e, index) => (
+            <ImagePostCard key={index} {...post} />
+          ))}
+      </div>
+    </section>
+  );
+};
+
+export default Explore;

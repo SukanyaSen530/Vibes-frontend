@@ -13,7 +13,7 @@ const SidebarMain = () => {
           <NavLink
             key={option.id}
             to={
-              option.name === "profile" ? `${option.path}/:userId` : option.path
+              option.name === "profile" ? `${option.path}:userId` : option.path
             }
             className={({ isActive }) =>
               !isActive

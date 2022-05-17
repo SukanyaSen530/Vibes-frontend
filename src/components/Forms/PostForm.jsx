@@ -71,7 +71,7 @@ const PostForm = ({ open, onClose }) => {
             onChange={handleChange}
             name="content"
             value={postData.content}
-            labelName="What's on your mind?"
+            placeholder="What's on your mind?"
             maxLength={150}
             minLength={10}
             autoFocus
