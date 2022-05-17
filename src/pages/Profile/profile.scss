@@ -1,0 +1,22 @@
+.profile {
+  width: 70vw;
+  margin: 4rem auto;
+
+  &__banner {
+    height: 30rem;
+  }
+
+  &__details {
+    transform: translateY(-25%);
+    margin: 0 2rem;
+
+    &__content {
+      text-align: left;
+    }
+  }
+
+  .active-link {
+    color: black;
+    text-decoration: wavy;
+  }
+}

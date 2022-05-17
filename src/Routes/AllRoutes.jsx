@@ -13,7 +13,9 @@ import {
   Feed,
   People,
   Profile,
-  Saved,
+  UserLiked,
+  UserPosts,
+  UserSaved,
 } from "../pages";
 
 const AllRoutes = () => {
@@ -64,8 +66,15 @@ const AllRoutes = () => {
         <Route index path="feed" element={<Feed />} />
         <Route path="explore" element={<Explore />} />
         <Route path="people" element={<People />} />
-        <Route path="saved" element={<Saved />} />
-        <Route path="profile/:userId" element={<Profile />} />
+
+        <Route path="profile/:userId" element={<Profile />}>
+          <Route index element={<UserPosts />} />
+          <Route path="saved" element={<UserSaved />} />
+          <Route path="liked" element={<UserLiked />} />
+
+          <Route path="*" element={<h1>Invalid Page</h1>} />
+        </Route>
+
         <Route path="*" element={<h1>Invalid Page</h1>} />
       </Route>
       <Route path="*" element={<h1>Invalid Page</h1>} />

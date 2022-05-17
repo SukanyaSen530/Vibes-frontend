@@ -1,0 +1,34 @@
+@import "../../sass/global";
+
+.image-card {
+  max-width: 30rem;
+  height: 30rem;
+  position: relative;
+  cursor: pointer;
+
+  &__stats {
+    @include absCenter;
+    opacity: 0;
+    color: white;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(#303030, 0.5);
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+
+  &:hover &__stats{
+      opacity: 1;
+  }
+}

@@ -8,6 +8,7 @@ import Caraousel from "./Caraousel/Caraousel";
 
 import PostForm from "./Forms/PostForm";
 import PostCard from "./Cards/PostCard";
+import ImagePostCard from "./Cards/ImagePostCard";
 import SidebarSecondary from "./Sidebar/SidebarSecondary";
 
 export {
@@ -21,4 +22,5 @@ export {
   Modal,
   Caraousel,
   PostCard,
+  ImagePostCard,
 };
