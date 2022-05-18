@@ -27,7 +27,7 @@ const Profile = () => {
     <section className="profile bg-slate-100 p-4">
       <div className="profile__banner">
         <img
-          src={user.banner}
+          src={user.banner.secure_url}
           alt="profile_banner"
           className="img-responsive"
         />
@@ -36,7 +36,7 @@ const Profile = () => {
       <div className="profile__details">
         <div className="flex items-center justify-between">
           <img
-            src={user.avatar}
+            src={user.avatar.secure_url}
             alt="profile_avatar"
             className="h-60 w-60 avatar"
           />
@@ -68,17 +68,19 @@ const Profile = () => {
               <span> ✨ </span>
               <span>@{user.userName}</span>
             </div>
+
             <p>{user.email}</p>
 
-            {user.bio ? <p className="font-medium">{user.bio}</p> : null}
+            <p className="font-medium">{user.bio}</p>
+
             {user?.website ? (
               <a
-                href={user.website}
+                href={user?.website}
                 rel="noopener noreferrer"
                 target="_blank"
                 className="flex gap-2 items-center text-2xl text-blue-500 hover:text-black duration-150"
               >
-                <FaLink /> {user.website}
+                <FaLink /> {user?.website}
               </a>
             ) : null}
           </div>
@@ -121,7 +123,18 @@ const Profile = () => {
       ) : null}
 
       {openEditProfile ? (
-        <EditProfileForm open={openEditProfile} onClose={handleEditProfile} />
+        <EditProfileForm
+          open={openEditProfile}
+          onClose={handleEditProfile}
+          data={{
+            avatar: user.avatar,
+            website: user.website,
+            bio: user.bio,
+            banner: user.banner,
+            gender: user.gender,
+            fullName: user.fullName,
+          }}
+        />
       ) : null}
     </section>
   );

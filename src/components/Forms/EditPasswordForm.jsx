@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-import { InputField, Modal } from "../";
+//Custom Components
+import { InputField, Modal , FormButton} from "../";
 
+//RTK Query
 import { useUpdatePasswordMutation } from "../../redux/services/userApi";
-
-import { BiLoaderCircle } from "react-icons/bi";
 
 const initialState = {
   password: "",
@@ -49,6 +49,7 @@ const EditPasswordForm = ({ open, onClose }) => {
           onChange={handleChange}
           name="password"
         />
+
         <InputField
           type="password"
           value={userData.newPassword}
@@ -56,6 +57,7 @@ const EditPasswordForm = ({ open, onClose }) => {
           onChange={handleChange}
           name="newPassword"
         />
+
         <InputField
           type="password"
           value={userData.confirmPassword}
@@ -65,14 +67,8 @@ const EditPasswordForm = ({ open, onClose }) => {
           pattern={userData.newPassword}
           title="Password do not match!"
         />
-        <button className="bg-blue-300 p-4 relative font-medium text-2xl rounded-lg  hover:bg-blue-500 hover:text-white ease-in duration-150 w-full text-center flex items-center gap-4 justify-center">
-          {isLoading === false ? null : (
-            <BiLoaderCircle
-              className={`text-3xl ${isLoading ? "animate-spin" : null}`}
-            />
-          )}
-          {isLoading ? "Processing" : "Change Password"}
-        </button>
+
+        <FormButton isLoading={isLoading} text='Change Password'/>
       </form>
     </Modal>
   );

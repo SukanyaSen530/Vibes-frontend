@@ -56,7 +56,11 @@ function Navbar() {
 
         <Link to={`/home/profile/${_id}`}>
           <figure className="avatar avatar-md">
-            <img className="avatar-img" src={avatar} alt="useravatar" />
+            <img
+              className="avatar-img"
+              src={avatar.secure_url}
+              alt="useravatar"
+            />
           </figure>
         </Link>
       </ul>

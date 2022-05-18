@@ -1,0 +1,31 @@
+@import "../../sass/global";
+
+.profile-form {
+  width: 35vw;
+
+  &__avatar {
+    transform: translateY(-50%) translateX(10px);
+    margin: 0 auto;
+
+    img {
+      border: 2px solid rgb(139, 139, 139);
+    }
+
+    label {
+      transform: translateY(-50%);
+    }
+  }
+
+  .input-group-new {
+    margin-bottom: 1rem;
+
+    &__label {
+      font-size: 1.4rem;
+      margin: 0 1rem;
+    }
+  }
+
+  &__input {
+    font-size: 1.5rem;
+  }
+}

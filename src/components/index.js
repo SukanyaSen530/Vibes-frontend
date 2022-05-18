@@ -11,6 +11,7 @@ import PostCard from "./Cards/PostCard";
 import ImagePostCard from "./Cards/ImagePostCard";
 import SidebarSecondary from "./Sidebar/SidebarSecondary";
 
+import FormButton from "./Buttons/FormButton";
 
 import EditPasswordForm from "./Forms/EditPasswordForm";
 import EditProfileForm from "./Forms/EditProfileForm";
@@ -29,4 +30,5 @@ export {
   ImagePostCard,
   EditPasswordForm,
   EditProfileForm,
+  FormButton,
 };
