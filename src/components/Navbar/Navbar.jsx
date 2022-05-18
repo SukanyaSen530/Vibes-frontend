@@ -38,7 +38,7 @@ function Navbar() {
 
         <button
           type="submit"
-          className="navbar__search__btn h-16 bg-green-600 text-white text-3xl absolute px-4 rounded-tr-2xl rounded-br-2xl opacity-0 duration-200"
+          className="navbar__search__btn h-16 bg-blue-500 text-white text-3xl absolute px-4 rounded-tr-2xl rounded-br-2xl opacity-0 duration-200"
         >
           <RiUserSearchFill />
         </button>

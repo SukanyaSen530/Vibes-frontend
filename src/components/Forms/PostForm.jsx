@@ -34,10 +34,17 @@ const PostForm = ({ open, onClose }) => {
     setPostData((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const fileUpload = (files) => {
+    const fd = new FormData();
+    Array.from(files).forEach((file) => {
+      fd.append("postImages", file);
+    });
+    console.log(fd.postImages);
+  };
+
   const handleAddImage = (e) => {
     let files = [...e.target.files];
     const finalImages = [];
-    console.log(e.target.files);
 
     files.forEach((file) => {
       if (file.type !== "image/jpeg" && file.type !== "image/png")
@@ -47,15 +54,17 @@ const PostForm = ({ open, onClose }) => {
     });
 
     setImages((prevImages) => [...prevImages, ...finalImages]);
+    fileUpload(finalImages);
   };
 
   const handleRemoveImage = (index) => {
     setImages((prevImages) => prevImages.filter((img, ind) => ind !== index));
+    fileUpload(images.filter((img, ind) => ind !== index));
   };
 
-  useEffect(() => {
-    console.log(postData);
-  }, [postData]);
+  // useEffect(() => {
+  //   console.log(images);
+  // }, [images]);
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -100,6 +109,7 @@ const PostForm = ({ open, onClose }) => {
                   multiple
                   className="post-form__image-input"
                   onChange={handleAddImage}
+                  accept="image/png, image/jpeg, image/jpg"
                 />
               </label>
 
@@ -123,6 +133,6 @@ const PostForm = ({ open, onClose }) => {
       </div>
     </Modal>
   );
-};
+};;
 
 export default PostForm;
