@@ -1,11 +1,13 @@
 import { baseApi } from "./baseApi";
 
+const userRoute = "/user/";
+
 export const extendedAuthApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     updatePassword: builder.mutation({
       query: (body) => {
         return {
-          url: "/user/updatepassword",
+          url: `${userRoute}updatepassword`,
           method: "post",
           body,
         };
@@ -14,7 +16,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
     updateProfile: builder.mutation({
       query: (body) => {
         return {
-          url: "/user/updatedetails",
+          url: `${userRoute}updatedetails`,
           method: "put",
           body,
         };
@@ -23,7 +25,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
     followUser: builder.mutation({
       query: ({ userFollowId }) => {
         return {
-          url: `user/follow/${userFollowId}`,
+          url: `${userRoute}follow/${userFollowId}`,
           method: "post",
           body: {},
         };
@@ -32,7 +34,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
     unFollowUser: builder.mutation({
       query: ({ userFollowId }) => {
         return {
-          url: `user/unfollow/${userFollowId}`,
+          url: `${userRoute}unfollow/${userFollowId}`,
           method: "post",
           body: {},
         };
@@ -41,18 +43,19 @@ export const extendedAuthApi = baseApi.injectEndpoints({
     getUserProfile: builder.query({
       query: ({ userId }) => {
         return {
-          url: `user/${userId}`,
+          url: `${userRoute}${userId}`,
         };
       },
     }),
     searchUsers: builder.query({
       query: ({ userName }) => {
         return {
-          url: `user/serach?username=${userName}`,
+          url: `${userRoute}serach?username=${userName}`,
         };
       },
     }),
   }),
+  overrideExisting: false,
 });
 
 export const {

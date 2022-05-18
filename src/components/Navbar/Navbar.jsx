@@ -19,7 +19,6 @@ function Navbar() {
   } = useSelector(selectAuth);
 
   const [openPostModal, setOpenPostModal] = useState(false);
-
   const handlePostModal = () => setOpenPostModal((val) => !val);
 
   return (

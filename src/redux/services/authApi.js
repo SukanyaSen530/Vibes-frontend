@@ -53,10 +53,17 @@ export const extendedAuthApi = baseApi.injectEndpoints({
         };
       },
     }),
-    logoutUser: builder.query({
-      query: () => "auth/logout",
+    logoutUser: builder.mutation({
+      query: () => {
+        return {
+          url: "auth/logout",
+          credentials: "include",
+          headers,
+        };
+      },
     }),
   }),
+  overrideExisting: false,
 });
 
 export const {
@@ -65,5 +72,5 @@ export const {
   useSendMailForgotPasswordMutation,
   useResetPasswordMutation,
   useRefreshTokenQuery,
-  useLogoutUserQuery,
+  useLogoutUserMutation,
 } = extendedAuthApi;

@@ -9,11 +9,7 @@ const initialState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    logoutUser: (state) => {
-      state = initialState;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addMatcher(
@@ -21,6 +17,7 @@ export const authSlice = createSlice({
         (state, { payload }) => {
           state.token = payload.token;
           state.user = payload.user;
+          console.log('refresh', state.user, state.token);
         }
       )
       .addMatcher(
@@ -29,11 +26,18 @@ export const authSlice = createSlice({
           state.token = payload.token;
           state.user = payload.user;
         }
+      )
+      .addMatcher(
+        extendedAuthApi.endpoints.logoutUser.matchFulfilled,
+        (state) => {
+          state.token = null;
+          state.user = null;
+        }
       );
   },
 });
 
-export const { logoutUser } = authSlice.actions;
+// export const { logoutUser } = authSlice.actions;
 
 export const selectAuth = (state) => state.auth;
 
