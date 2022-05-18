@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { extendedAuthApi } from "../services/authApi";
+import { extendedUserApi } from "../services/userApi";
 
 const initialState = {
   user: null,
@@ -17,7 +18,6 @@ export const authSlice = createSlice({
         (state, { payload }) => {
           state.token = payload.token;
           state.user = payload.user;
-          console.log('refresh', state.user, state.token);
         }
       )
       .addMatcher(

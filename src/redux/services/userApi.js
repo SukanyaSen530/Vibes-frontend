@@ -2,7 +2,7 @@ import { baseApi } from "./baseApi";
 
 const userRoute = "/user/";
 
-export const extendedAuthApi = baseApi.injectEndpoints({
+export const extendedUserApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     updatePassword: builder.mutation({
       query: (body) => {
@@ -65,4 +65,4 @@ export const {
   useFollowUserMutation,
   useGetUserProfileQuery,
   useSearchUsersQuery,
-} = extendedAuthApi;
+} = extendedUserApi;

@@ -1,23 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
 import { menuOptions } from "./sidebarData";
 import { RiLogoutCircleRFill } from "react-icons/ri";
 
-import { baseApi } from "../../redux/services/baseApi";
-
 import "./sidebar-main.scss";
 
 import { useLogoutUserMutation } from "../../redux/services/authApi";
 
 const SidebarMain = () => {
-  const dispatch = useDispatch();
-
-  const [logoutUser, { isLoading, isError, isSuccess }] =
-    useLogoutUserMutation();
+  const [logoutUser, { isError, isSuccess }] = useLogoutUserMutation();
 
   useEffect(() => {
     if (isSuccess) {
