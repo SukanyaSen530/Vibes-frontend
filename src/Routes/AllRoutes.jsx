@@ -16,6 +16,7 @@ import {
   UserLiked,
   UserPosts,
   UserSaved,
+  SinglePost,
 } from "../pages";
 
 const AllRoutes = () => {
@@ -66,6 +67,8 @@ const AllRoutes = () => {
         <Route index path="feed" element={<Feed />} />
         <Route path="explore" element={<Explore />} />
         <Route path="people" element={<People />} />
+
+        <Route path=":postId" element={<SinglePost />} />
 
         <Route path="profile/:userId" element={<Profile />}>
           <Route index element={<UserPosts />} />

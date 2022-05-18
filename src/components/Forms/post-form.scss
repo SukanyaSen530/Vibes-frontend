@@ -2,15 +2,19 @@
   &__image-input {
     display: none;
   }
+
+  &__content{
+    min-width: 30rem;
+  }
 }
 
 .uploaded_images {
-  height: 15rem;
+  height: 50vh;
   overflow-y: auto;
   flex-wrap: wrap;
   display: flex;
-  gap: 10px;
-  border: 2px solid rgb(211, 211, 211);
+  gap: 5px;
+  border: 2px solid rgb(229, 229, 229);
   border-radius: 5px;
   justify-content: center;
 }

@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Caraousel } from "../";
 
-import { AiFillHeart, AiOutlineHeart, AiOutlineShareAlt } from "react-icons/ai";
-import { MdOutlineModeComment } from "react-icons/md";
-import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
+import { AiFillHeart, AiOutlineHeart, AiOutlineComment } from "react-icons/ai";
+import { MdBookmarkBorder, MdBookmark } from "react-icons/md";
+import { RiShareForwardLine } from "react-icons/ri";
+import { FaRegComments } from "react-icons/fa";
 
 import "./post-card.scss";
 
@@ -33,10 +34,10 @@ const PostCard = ({
       <div className="post-card__controls flex justify-between pt-4">
         <div className="flex gap-8">
           <AiOutlineHeart className="icons" />
-          <MdOutlineModeComment className="icons" />
-          <AiOutlineShareAlt className="icons" />
+          <FaRegComments className="icons" />
+          <RiShareForwardLine className="icons" />
         </div>
-        <BsBookmarks className="icons" />
+        <MdBookmarkBorder className="icons" />
       </div>
     </article>
   );

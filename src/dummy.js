@@ -22,5 +22,18 @@ export const post = {
     avatar:
       "https://www.kindpng.com/picc/m/645-6451405_angry-bird-hatchling-cute-hd-png-download.png",
   },
-  comments: ["121", "122", "123", "124", "125", "126"],
+  comments: [
+    "121",
+    "122",
+    "123",
+    "124",
+    "125",
+    "126",
+    "121",
+    "122",
+    "123",
+    "124",
+    "125",
+    "126",
+  ],
 };
