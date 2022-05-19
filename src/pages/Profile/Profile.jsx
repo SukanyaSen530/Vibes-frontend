@@ -126,7 +126,7 @@ const Profile = () => {
         <EditProfileForm
           open={openEditProfile}
           onClose={handleEditProfile}
-          data={{
+          user={{
             avatar: user.avatar,
             website: user.website,
             bio: user.bio,

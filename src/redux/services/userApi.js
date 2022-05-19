@@ -14,11 +14,12 @@ export const extendedUserApi = baseApi.injectEndpoints({
       },
     }),
     updateProfile: builder.mutation({
-      query: (body) => {
+      query: (data) => {
+        console.log("data", data);
         return {
           url: `${userRoute}updatedetails`,
           method: "put",
-          body,
+          body: data,
         };
       },
     }),

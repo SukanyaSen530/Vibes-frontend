@@ -28,6 +28,12 @@ export const authSlice = createSlice({
         }
       )
       .addMatcher(
+        extendedUserApi.endpoints.updateProfile.matchFulfilled,
+        (state, { payload }) => {
+          state.user = payload.user;
+        }
+      )
+      .addMatcher(
         extendedAuthApi.endpoints.logoutUser.matchFulfilled,
         (state) => {
           state.token = null;
@@ -37,7 +43,6 @@ export const authSlice = createSlice({
   },
 });
 
-// export const { logoutUser } = authSlice.actions;
 
 export const selectAuth = (state) => state.auth;
 

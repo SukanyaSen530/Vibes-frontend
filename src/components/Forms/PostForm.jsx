@@ -40,6 +40,7 @@ const PostForm = ({ open, onClose }) => {
       fd.append("postImages", file);
     });
     console.log(fd.postImages);
+    return fd;
   };
 
   const handleAddImage = (e) => {
@@ -54,17 +55,11 @@ const PostForm = ({ open, onClose }) => {
     });
 
     setImages((prevImages) => [...prevImages, ...finalImages]);
-    fileUpload(finalImages);
   };
 
   const handleRemoveImage = (index) => {
     setImages((prevImages) => prevImages.filter((img, ind) => ind !== index));
-    fileUpload(images.filter((img, ind) => ind !== index));
   };
-
-  // useEffect(() => {
-  //   console.log(images);
-  // }, [images]);
 
   return (
     <Modal open={open} onClose={onClose}>
