@@ -15,7 +15,6 @@ export const extendedUserApi = baseApi.injectEndpoints({
     }),
     updateProfile: builder.mutation({
       query: (data) => {
-        console.log("data", data);
         return {
           url: `${userRoute}updatedetails`,
           method: "put",
@@ -44,11 +43,12 @@ export const extendedUserApi = baseApi.injectEndpoints({
       invalidatesTags: ["Users"],
     }),
     getUserProfile: builder.query({
-      query: ({ userId }) => {
+      query: (userId) => {
         return {
           url: `${userRoute}${userId}`,
         };
       },
+      providesTags: ["Users"],
     }),
     searchUsers: builder.query({
       query: ({ userName }) => {

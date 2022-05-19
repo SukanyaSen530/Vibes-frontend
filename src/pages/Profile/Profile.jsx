@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Outlet, NavLink, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Outlet, NavLink, useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { selectAuth } from "../../redux/slices/authSlice";
@@ -9,13 +9,22 @@ import { FaLink, FaUserCog } from "react-icons/fa";
 
 import { profileNav } from "./profileNav";
 
-import { EditPasswordForm, EditProfileForm } from "../../components";
+import {
+  EditPasswordForm,
+  EditProfileForm,
+  FollowButton,
+  FullLoader,
+} from "../../components";
 
 import "./profile.scss";
+
+import { useGetUserProfileQuery } from "../../redux/services/userApi";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const { user } = useSelector(selectAuth);
   const { userId } = useParams();
+  const navigate = useNavigate();
 
   const [openEditPassword, setOpenSetPassword] = useState(false);
   const handleEditPassword = () => setOpenSetPassword((val) => !val);
@@ -23,11 +32,70 @@ const Profile = () => {
   const [openEditProfile, setOpenSetProfile] = useState(false);
   const handleEditProfile = () => setOpenSetProfile((val) => !val);
 
+  const {
+    data: profileData,
+    isLoading: profileLoading,
+    isError: isProfileError,
+  } = useGetUserProfileQuery(userId);
+
+  const { userProfile } = profileData || {};
+  const {
+    avatar,
+    banner,
+    bio,
+    website,
+    fullName,
+    userName,
+    email,
+    gender,
+    followers,
+    followings,
+    createdAt,
+  } = userProfile || {};
+
+  console.log(profileData);
+
+  useEffect(() => {
+    if (isProfileError) {
+      toast.error("User not found!");
+      navigate("/home/feed");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isProfileError]);
+
+  let actionButtons = null;
+  if (userId === user._id) {
+    actionButtons = (
+      <>
+        <div className="flex gap-4">
+          <button
+            className="bg-blue-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-blue-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20"
+            onClick={handleEditProfile}
+          >
+            <IoIosSettings className="text-4xl" />
+            Edit Profile
+          </button>
+
+          <button
+            className="bg-gray-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-gray-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20"
+            onClick={handleEditPassword}
+          >
+            <FaUserCog className="text-4xl" /> Password
+          </button>
+        </div>
+      </>
+    );
+  } else {
+    actionButtons = <FollowButton size="md" user={userProfile || {}} />;
+  }
+
   return (
     <section className="profile bg-slate-100 p-4">
+      {profileLoading ? <FullLoader /> : null}
+
       <div className="profile__banner">
         <img
-          src={user.banner.secure_url}
+          src={banner?.secure_url}
           alt="profile_banner"
           className="img-responsive"
         />
@@ -36,69 +104,56 @@ const Profile = () => {
       <div className="profile__details">
         <div className="flex items-center justify-between">
           <img
-            src={user.avatar.secure_url}
+            src={avatar?.secure_url}
             alt="profile_avatar"
             className="h-60 w-60 avatar"
           />
 
-          {/* if user */}
-          {userId === user._id ? (
-            <div className="flex gap-4">
-              <button
-                className="bg-blue-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-blue-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20"
-                onClick={handleEditProfile}
-              >
-                <IoIosSettings className="text-4xl" />
-                Edit Profile
-              </button>
-              <button
-                className="bg-gray-300 p-2 relative font-medium  text-2xl rounded-lg  hover:bg-gray-500 hover:text-white ease-in duration-150 flex items-center gap-3 mt-20"
-                onClick={handleEditPassword}
-              >
-                <FaUserCog className="text-4xl" /> Password
-              </button>
-            </div>
-          ) : null}
+          {/* if user opened his own profile */}
+          {actionButtons}
         </div>
 
         <article className="profile__details__content">
           <div className="mt-4">
             <div className="flex gap-4 items-center text-3xl">
-              <span className="text-4xl">{user.fullName}</span>
+              <span className="text-4xl">{fullName}</span>
               <span> ✨ </span>
-              <span>@{user.userName}</span>
+              <span>@{userName}</span>
             </div>
 
-            <p>{user.email}</p>
+            <p>{email}</p>
 
-            <p className="font-medium">{user.bio}</p>
+            <p className="font-medium">{bio}</p>
 
-            {user?.website ? (
+            {website ? (
               <a
-                href={user?.website}
+                href={website}
                 rel="noopener noreferrer"
                 target="_blank"
                 className="flex gap-2 items-center text-2xl text-blue-500 hover:text-black duration-150"
               >
-                <FaLink /> {user?.website}
+                <FaLink /> {website}
               </a>
             ) : null}
           </div>
 
           <ul className="flex gap-4 text-3xl mt-4">
             <li>
-              <span className="font-bold"> 47 </span> posts
+              <span className="font-bold"> 0 </span> posts
             </li>
             <li>
-              <span className="font-bold"> 300 </span> followers
+              <span className="font-bold"> {followers?.length || 0} </span>{" "}
+              followers
             </li>
             <li>
-              <span className="font-bold"> 47 </span> following
+              <span className="font-bold"> {followings?.length || 0} </span>{" "}
+              following
             </li>
           </ul>
         </article>
       </div>
 
+      {/* Saved Posts Liked */}
       <div className="bg-white min-h-screen">
         <div className="flex w-6/12 mx-auto text-4xl justify-between py-6 text-gray-500 font-semibold">
           {profileNav.map((nav) => (
@@ -107,8 +162,7 @@ const Profile = () => {
               to={`/home/profile/${userId}/${nav.link}`}
               className={({ isActive }) => (!isActive ? "" : "active-link")}
             >
-              {" "}
-              {nav.name}{" "}
+              {nav.name}
             </NavLink>
           ))}
         </div>

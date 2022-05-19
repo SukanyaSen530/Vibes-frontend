@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useSelector } from "react-redux";
@@ -11,12 +11,15 @@ import {
   useUnFollowUserMutation,
 } from "../../redux/services/userApi";
 
-const FollowButton = ({ user, isLoading }) => {
-  const {
-    user: { followings },
-  } = useSelector(selectAuth);
+const FollowButton = ({ user, isLoading, size = "sm" }) => {
+  const [followed, setFollowed] = useState("");
+  const { user: loggedInUser } = useSelector(selectAuth);
+  const { followers } = user || {};
 
-  const followed = followings.find((item) => item._id === user._id);
+  useEffect(() => {
+    const followed = followers?.find((item) => item === loggedInUser._id);
+    setFollowed(followed);
+  }, [user, followers, loggedInUser]);
 
   const [
     followUser,
@@ -72,16 +75,23 @@ const FollowButton = ({ user, isLoading }) => {
     }
   }, [unFollowUserIsError, unFollowUserIsSuccess, unFollowUserError]);
 
+  let classes = "";
+  if (size === "sm") {
+    classes = "py-2 px-4 text-2xl";
+  } else if (size === "md") {
+    classes = "py-4 px-6 text-4xl";
+  }
+
   return (
     <>
       {followed ? (
         <button
-          class="bg-blue-400 py-2 px-4 rounded-3xl text-2xl text-white ml-auto duration-300 hover:bg-blue-600"
+          className={`bg-red-400 text-white hover:bg-red-600 ml-auto rounded-3xl duration-300 flex gap-4 items-center justify-center ${classes}`}
           onClick={handleUnFollow}
         >
           {unFollowUserLoading === false ? null : (
             <BiLoaderCircle
-              className={`text-3xl ${isLoading ? "animate-spin" : null}`}
+              className={`text-4xl ${isLoading ? "animate-spin" : null}`}
             />
           )}
 
@@ -89,12 +99,12 @@ const FollowButton = ({ user, isLoading }) => {
         </button>
       ) : (
         <button
-          className="bg-gray-400 py-2 px-4 rounded-3xl text-2xl text-white ml-auto duration-300 hover:bg-gray-600"
+          className={`bg-blue-400 text-white hover:bg-blue-600 rounded-3xl ml-auto duration-300 flex gap-4 items-center justify-center ${classes}`}
           onClick={handleFollow}
         >
           {followUserLoading === false ? null : (
             <BiLoaderCircle
-              className={`text-3xl ${isLoading ? "animate-spin" : null}`}
+              className={`text-4xl ${isLoading ? "animate-spin" : null}`}
             />
           )}
           {isLoading === true ? null : "Follow"}

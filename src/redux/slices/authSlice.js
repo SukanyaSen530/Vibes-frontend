@@ -34,18 +34,6 @@ export const authSlice = createSlice({
         }
       )
       .addMatcher(
-        extendedUserApi.endpoints.followUser.matchFulfilled,
-        (state, { payload }) => {
-          state.user = payload.user;
-        }
-      )
-      .addMatcher(
-        extendedUserApi.endpoints.unFollowUser.matchFulfilled,
-        (state, { payload }) => {
-          state.user = payload.user;
-        }
-      )
-      .addMatcher(
         extendedAuthApi.endpoints.logoutUser.matchFulfilled,
         (state) => {
           state.token = null;

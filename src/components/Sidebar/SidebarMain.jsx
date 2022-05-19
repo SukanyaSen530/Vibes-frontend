@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+
+import { selectAuth } from "../../redux/slices/authSlice";
 
 import { menuOptions } from "./sidebarData";
 import { RiLogoutCircleRFill } from "react-icons/ri";
@@ -12,6 +14,10 @@ import { useLogoutUserMutation } from "../../redux/services/authApi";
 
 const SidebarMain = () => {
   const [logoutUser, { isError, isSuccess }] = useLogoutUserMutation();
+
+  const {
+    user: { _id },
+  } = useSelector(selectAuth);
 
   useEffect(() => {
     if (isSuccess) {
@@ -29,7 +35,7 @@ const SidebarMain = () => {
           <NavLink
             key={option.id}
             to={
-              option.name === "profile" ? `${option.path}:userId` : option.path
+              option.name === "profile" ? `${option.path}${_id}` : option.path
             }
             className={({ isActive }) =>
               !isActive
