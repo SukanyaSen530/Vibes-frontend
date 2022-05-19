@@ -24,22 +24,24 @@ export const extendedUserApi = baseApi.injectEndpoints({
       },
     }),
     followUser: builder.mutation({
-      query: ({ userFollowId }) => {
+      query: (userFollowId) => {
         return {
           url: `${userRoute}follow/${userFollowId}`,
-          method: "post",
+          method: "put",
           body: {},
         };
       },
+      invalidatesTags: ["Users"],
     }),
     unFollowUser: builder.mutation({
-      query: ({ userFollowId }) => {
+      query: (userFollowId) => {
         return {
           url: `${userRoute}unfollow/${userFollowId}`,
-          method: "post",
+          method: "put",
           body: {},
         };
       },
+      invalidatesTags: ["Users"],
     }),
     getUserProfile: builder.query({
       query: ({ userId }) => {
@@ -55,6 +57,14 @@ export const extendedUserApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getSuggestions: builder.query({
+      query: () => {
+        return {
+          url: `${userRoute}suggestionsUser`,
+        };
+      },
+      providesTags: ["Users"],
+    }),
   }),
   overrideExisting: false,
 });
@@ -66,4 +76,5 @@ export const {
   useFollowUserMutation,
   useGetUserProfileQuery,
   useSearchUsersQuery,
+  useGetSuggestionsQuery,
 } = extendedUserApi;
