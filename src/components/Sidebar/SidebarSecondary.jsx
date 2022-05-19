@@ -17,7 +17,11 @@ const SidebarSecondary = () => {
       <article className="profile-card">
         <Link to={`/home/profile/${_id}`}>
           <figure className="avatar avatar-md cursor-pointer">
-            <img className="avatar-img" src={avatar} alt="useravatar" />
+            <img
+              className="avatar-img"
+              src={avatar.secure_url}
+              alt="useravatar"
+            />
           </figure>
         </Link>
 
