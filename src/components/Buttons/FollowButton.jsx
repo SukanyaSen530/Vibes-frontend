@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 
 import { useSelector } from "react-redux";
@@ -12,14 +12,10 @@ import {
 } from "../../redux/services/userApi";
 
 const FollowButton = ({ user, isLoading, size = "sm" }) => {
-  const [followed, setFollowed] = useState("");
   const { user: loggedInUser } = useSelector(selectAuth);
   const { followers } = user || {};
 
-  useEffect(() => {
-    const followed = followers?.find((item) => item === loggedInUser._id);
-    setFollowed(followed);
-  }, [user, followers, loggedInUser]);
+  const followed = followers?.find((item) => item === loggedInUser._id);
 
   const [
     followUser,
