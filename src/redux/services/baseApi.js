@@ -1,9 +1,27 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseUrl = "http://localhost:8000";
+const mode = "dev";
+const baseUrl =
+  mode === "dev"
+    ? "http://localhost:8000"
+    : "https://vercel.com/sukanyasen530/vibes-backend";
+
+const baseQuery = fetchBaseQuery({
+  baseUrl,
+  prepareHeaders: (headers, { getState }) => {
+    const token = getState().auth.token;
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl }),
+  baseQuery,
+  tagTypes: ["Users", "Posts", "Comments"],
   endpoints: () => ({}),
 });
+
+

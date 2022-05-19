@@ -9,8 +9,11 @@ import Caraousel from "./Caraousel/Caraousel";
 import PostForm from "./Forms/PostForm";
 import PostCard from "./Cards/PostCard";
 import ImagePostCard from "./Cards/ImagePostCard";
+import UserCard from "./Cards/UserCard";
 import SidebarSecondary from "./Sidebar/SidebarSecondary";
 
+import FormButton from "./Buttons/FormButton";
+import FollowButton from "./Buttons/FollowButton";
 
 import EditPasswordForm from "./Forms/EditPasswordForm";
 import EditProfileForm from "./Forms/EditProfileForm";
@@ -26,7 +29,10 @@ export {
   Modal,
   Caraousel,
   PostCard,
+  UserCard,
   ImagePostCard,
   EditPasswordForm,
   EditProfileForm,
+  FormButton,
+  FollowButton,
 };

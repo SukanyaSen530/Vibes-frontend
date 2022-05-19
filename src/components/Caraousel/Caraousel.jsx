@@ -5,8 +5,6 @@ import "./caraousel.scss";
 import { GiPreviousButton, GiNextButton } from "react-icons/gi";
 
 const Caraousel = ({ images = [] }) => {
-  console.log(images);
-
   const [numOfSlides, setNumOfSlides] = useState(0);
 
   const movePrev = () => {

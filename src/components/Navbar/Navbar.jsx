@@ -19,7 +19,6 @@ function Navbar() {
   } = useSelector(selectAuth);
 
   const [openPostModal, setOpenPostModal] = useState(false);
-
   const handlePostModal = () => setOpenPostModal((val) => !val);
 
   return (
@@ -38,7 +37,7 @@ function Navbar() {
 
         <button
           type="submit"
-          className="navbar__search__btn h-16 bg-green-600 text-white text-3xl absolute px-4 rounded-tr-2xl rounded-br-2xl opacity-0 duration-200"
+          className="navbar__search__btn h-16 bg-blue-500 text-white text-3xl absolute px-4 rounded-tr-2xl rounded-br-2xl opacity-0 duration-200"
         >
           <RiUserSearchFill />
         </button>
@@ -57,7 +56,11 @@ function Navbar() {
 
         <Link to={`/home/profile/${_id}`}>
           <figure className="avatar avatar-md">
-            <img className="avatar-img" src={avatar} alt="useravatar" />
+            <img
+              className="avatar-img"
+              src={avatar.secure_url}
+              alt="useravatar"
+            />
           </figure>
         </Link>
       </ul>

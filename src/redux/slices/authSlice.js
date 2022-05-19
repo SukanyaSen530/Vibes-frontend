@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { extendedAuthApi } from "../services/authApi";
+import { extendedUserApi } from "../services/userApi";
 
 const initialState = {
   user: null,
@@ -9,11 +10,7 @@ const initialState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    logoutUser: (state) => {
-      state = initialState;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addMatcher(
@@ -29,11 +26,23 @@ export const authSlice = createSlice({
           state.token = payload.token;
           state.user = payload.user;
         }
+      )
+      .addMatcher(
+        extendedUserApi.endpoints.updateProfile.matchFulfilled,
+        (state, { payload }) => {
+          state.user = payload.user;
+        }
+      )
+      .addMatcher(
+        extendedAuthApi.endpoints.logoutUser.matchFulfilled,
+        (state) => {
+          state.token = null;
+          state.user = null;
+        }
       );
   },
 });
 
-export const { logoutUser } = authSlice.actions;
 
 export const selectAuth = (state) => state.auth;
 
