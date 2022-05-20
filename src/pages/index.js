@@ -9,9 +9,9 @@ import People from "./People/People";
 import Explore from "./Explore/Explore";
 import SinglePost from "./SinglePost/SinglePost";
 
-import UserPosts from "./Profile/UserPosts";
-import UserLiked from "./Profile/UserLiked";
-import UserSaved from "./Profile/UserSaved";
+import UserPosts from "./UserPosts/UserPosts";
+import UserLiked from "./UserPosts/UserLiked";
+import UserSaved from "./UserPosts/UserSaved";
 
 export {
   SignIn,

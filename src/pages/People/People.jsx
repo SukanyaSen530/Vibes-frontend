@@ -1,8 +1,8 @@
-import React from "react";
-
 import "./people.scss";
 
 import { follow } from "../../dummy";
+
+import { UserCard } from "../../components";
 
 const People = () => {
   return (

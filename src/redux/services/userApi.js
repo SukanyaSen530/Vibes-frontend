@@ -21,6 +21,7 @@ export const extendedUserApi = baseApi.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: ["Users"],
     }),
     followUser: builder.mutation({
       query: (userFollowId) => {

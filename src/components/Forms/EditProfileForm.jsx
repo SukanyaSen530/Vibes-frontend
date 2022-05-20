@@ -38,10 +38,10 @@ const EditProfileForm = ({ open, onClose, user }) => {
     setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleImage = (e) => {
+  const handleImage = ({ target }) => {
     setUserData((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.files[0],
+      [target.name]: target.files[0],
     }));
   };
 

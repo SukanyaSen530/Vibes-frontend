@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { selectAuth } from "../../redux/slices/authSlice";
 
@@ -11,8 +12,11 @@ import { RiLogoutCircleRFill } from "react-icons/ri";
 import "./sidebar-main.scss";
 
 import { useLogoutUserMutation } from "../../redux/services/authApi";
+import { baseApi } from "../../redux/services/baseApi";
 
 const SidebarMain = () => {
+  const dispatch = useDispatch();
+
   const [logoutUser, { isError, isSuccess }] = useLogoutUserMutation();
 
   const {
@@ -22,6 +26,7 @@ const SidebarMain = () => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Logged out successfully!");
+      dispatch(baseApi.util.resetApiState());
     }
     if (isError) {
       toast.error("Could not log you out!");

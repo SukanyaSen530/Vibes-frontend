@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { FollowButton } from "../";
+
+import { selectAuth } from "../../redux/slices/authSlice";
 
 import "./user-card.scss";
 
 const UserCard = ({ user, showFollow = true }) => {
   const { avatar, fullName, userName } = user;
+  const { user: loggedInUser } = useSelector(selectAuth);
+
+  console.log("loggedin", loggedInUser._id !== user._id);
 
   return (
     <article className="user-card">
@@ -22,7 +28,9 @@ const UserCard = ({ user, showFollow = true }) => {
         <p className="text-2xl text-left leading-loose">{userName}</p>
         <p className="text-xl text-left leading-loose">{fullName}</p>
       </div>
-      {showFollow === true ? <FollowButton user={user} /> : null}
+      {showFollow === true && loggedInUser._id !== user._id ? (
+        <FollowButton user={user} />
+      ) : null}
     </article>
   );
 };
