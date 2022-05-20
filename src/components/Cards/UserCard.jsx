@@ -25,7 +25,9 @@ const UserCard = ({ user, showFollow = true }) => {
         </figure>
       </Link>
       <div>
-        <p className="text-2xl text-left leading-loose">{userName}</p>
+        <Link to={`/home/profile/${user._id}`}>
+          <p className="text-2xl text-left hover:underline">{userName}</p>
+        </Link>
         <p className="text-xl text-left leading-loose">{fullName}</p>
       </div>
       {showFollow === true && loggedInUser._id !== user._id ? (

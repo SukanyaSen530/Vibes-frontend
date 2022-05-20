@@ -15,7 +15,13 @@ const FollowButton = ({ user, isLoading, size = "sm" }) => {
   const { user: loggedInUser } = useSelector(selectAuth);
   const { followers } = user || {};
 
-  const followed = followers?.find((item) => item === loggedInUser._id);
+  const followed = followers?.find((item) => {
+    if (typeof item === "object") {
+      return item._id === loggedInUser._id;
+    } else {
+      return item === loggedInUser._id;
+    }
+  });
 
   const [
     followUser,

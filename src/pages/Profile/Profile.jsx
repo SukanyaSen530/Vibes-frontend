@@ -64,6 +64,8 @@ const Profile = () => {
     createdAt,
   } = userProfile || {};
 
+  console.log(userProfile);
+
   useEffect(() => {
     if (isProfileError) {
       toast.error("User not found!");

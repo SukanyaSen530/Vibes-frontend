@@ -13,7 +13,7 @@ const Followers = ({ open, onClose, followers, userId }) => {
 
   return (
     <Modal open={open} onClose={onClose}>
-      <p className="text-3xl my-2">Followers</p>
+      <p className="text-3xl mb-4 font-semibold">Followers</p>
 
       <div className="follow-container">
         {followers?.map((user) => (
