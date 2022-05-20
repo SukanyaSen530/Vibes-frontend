@@ -1,7 +1,6 @@
-import { RiHomeHeartFill } from "react-icons/ri";
+import { RiHomeHeartFill, RiUser3Fill } from "react-icons/ri";
 import { MdExplore } from "react-icons/md";
-import { BsPeopleFill } from "react-icons/bs";
-import { FaUserAlt } from "react-icons/fa";
+import { IoIosPeople } from "react-icons/io";
 
 export const menuOptions = [
   {
@@ -13,21 +12,22 @@ export const menuOptions = [
   },
   {
     id: "m2",
-    icon: <MdExplore />,
-    tooltip: "explore",
-    path: "/home/explore",
-    name: "explore",
-  },
-  {
-    id: "m3",
-    icon: <BsPeopleFill />,
+    icon: <IoIosPeople />,
     tooltip: "people",
     path: "/home/people",
     name: "people",
   },
   {
+    id: "m3",
+    icon: <MdExplore />,
+    tooltip: "explore",
+    path: "/home/explore",
+    name: "explore",
+  },
+
+  {
     id: "m4",
-    icon: <FaUserAlt />,
+    icon: <RiUser3Fill />,
     tooltip: "profile",
     path: "/home/profile/",
     name: "profile",

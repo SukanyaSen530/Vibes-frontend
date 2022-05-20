@@ -2,7 +2,7 @@
 
 .caraousel {
   width: 100%;
-  height: 40rem;
+  height: 35rem;
   position: relative;
 
   &__image {
@@ -17,12 +17,11 @@
     @include absCenter;
     display: flex;
     justify-content: space-between;
-    padding: 0 1.5rem;
+    padding: 0 5px;
   
     &__btn{
       height: 4rem;
       width: 4rem;
-      background-color: whitesmoke;
       border-radius: 50%;
       cursor:pointer;
       padding: 0.5rem;

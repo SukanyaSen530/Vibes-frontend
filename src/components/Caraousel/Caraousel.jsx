@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./caraousel.scss";
 
-import { GiPreviousButton, GiNextButton } from "react-icons/gi";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 const Caraousel = ({ images = [] }) => {
   const [numOfSlides, setNumOfSlides] = useState(0);
@@ -25,14 +25,14 @@ const Caraousel = ({ images = [] }) => {
       />
       {images?.length > 0 ? (
         <div className="caraousel__controls">
-          <GiPreviousButton
+          <GrFormPrevious
             onClick={movePrev}
-            className="caraousel__controls__btn"
+            className="caraousel__controls__btn bg-blue-300 hover:bg-blue-400 duration-200 border-2"
           />
 
-          <GiNextButton
+          <GrFormNext
             onClick={moveNext}
-            className="caraousel__controls__btn"
+            className="caraousel__controls__btn bg-blue-300 hover:bg-blue-400 duration-200 border-2"
           />
         </div>
       ) : null}

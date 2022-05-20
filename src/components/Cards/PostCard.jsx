@@ -28,9 +28,10 @@ const PostCard = ({
         </div>
       </div>
 
+      <Caraousel images={images} />
+
       <p className="text-2xl my-2">{content}</p>
 
-      <Caraousel images={images} />
       <div className="post-card__controls flex justify-between pt-4">
         <div className="flex gap-8">
           <AiOutlineHeart className="icons" />
