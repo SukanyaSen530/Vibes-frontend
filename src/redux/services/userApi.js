@@ -52,9 +52,9 @@ export const extendedUserApi = baseApi.injectEndpoints({
       providesTags: ["Users"],
     }),
     searchUsers: builder.query({
-      query: ({ userName }) => {
+      query: (userName) => {
         return {
-          url: `${userRoute}serach?username=${userName}`,
+          url: `${userRoute}search?username=${userName}`,
         };
       },
     }),

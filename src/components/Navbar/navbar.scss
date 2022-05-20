@@ -4,24 +4,5 @@
   border-radius: 10px;
   height: 9rem;
   z-index: 5;
-
-  &__search {
-    &__input {
-      width: 50%;
-    }
-
-    &__input:not(:placeholder-shown) + &__btn {
-      opacity: 1;
-    }
-  }
 }
 
-  .icons{
-    font-size: 3rem;
-    transition: 0.3s;
-    cursor: pointer;
-
-    &:hover{
-      transform: scale(1.1);
-    }
-  }

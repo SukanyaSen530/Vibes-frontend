@@ -14,3 +14,12 @@
   border: 2px solid rgb(198, 198, 198);
   background-color: white;
 }
+
+.icons {
+  font-size: 3rem;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
