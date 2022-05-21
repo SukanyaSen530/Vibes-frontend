@@ -2,7 +2,7 @@ import { baseApi } from "./baseApi";
 
 const postRoute = "/post/";
 
-export const extendedUserApi = baseApi.injectEndpoints({
+export const extendedPostApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllPosts: builder.query({
       query: () => `${postRoute}`,
@@ -114,4 +114,4 @@ export const {
   useSavePostMutation,
   useUnsavePostMutation,
   useGetSavedPostsQuery,
-} = extendedUserApi;
+} = extendedPostApi;

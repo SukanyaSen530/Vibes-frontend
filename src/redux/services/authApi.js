@@ -17,6 +17,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     signupUser: builder.mutation({
       query: (body) => {
         return {
@@ -26,6 +27,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     sendMailForgotPassword: builder.mutation({
       query: (body) => {
         return {
@@ -35,6 +37,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     resetPassword: builder.mutation({
       query: ({ token, ...body }) => {
         return {
@@ -44,6 +47,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     refreshToken: builder.query({
       query: () => {
         return {
@@ -53,6 +57,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     logoutUser: builder.mutation({
       query: () => {
         return {
