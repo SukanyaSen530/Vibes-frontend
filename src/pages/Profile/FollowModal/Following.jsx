@@ -15,7 +15,7 @@ const Following = ({ open, onClose, followings, userId }) => {
     <Modal open={open} onClose={onClose}>
       <p className="text-3xl mb-4 font-semibold">Following</p>
 
-      <div className="follow-container">
+      <div className="follow-container pr-4 scrollbar">
         {followings?.map((user) => (
           <UserCard user={user} key={user._id} />
         ))}

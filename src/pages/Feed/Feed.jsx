@@ -1,19 +1,20 @@
 import React from "react";
 
 import { SidebarSecondary, PostCard } from "../../components";
-import { post } from "../../dummy";
+
+import { useGetAllPostsQuery } from "../../redux/services/postApi";
 
 import "./feed.scss";
 
 const Feed = () => {
+  const { data, isLoading, error } = useGetAllPostsQuery();
+
   return (
     <section className="feed flex">
       <div className="flex-1 px-12 text-justify bg-slate-100 my-8 mx-12 rounded-2xl">
-        {Array(5)
-          .fill(0)
-          .map((e, index) => (
-            <PostCard key={index} {...post} />
-          ))}
+        {data?.posts?.map((post) => (
+          <PostCard key={post._id} {...post} />
+        ))}
       </div>
 
       <div className="feed__sidebar sticky">

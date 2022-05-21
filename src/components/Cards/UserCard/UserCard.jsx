@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { FollowButton } from "../";
+import { FollowButton } from "../../";
 
-import { selectAuth } from "../../redux/slices/authSlice";
+import { selectAuth } from "../../../redux/slices/authSlice";
 
 import "./user-card.scss";
 
@@ -11,7 +11,6 @@ const UserCard = ({ user, showFollow = true }) => {
   const { avatar, fullName, userName } = user;
   const { user: loggedInUser } = useSelector(selectAuth);
 
-  console.log("loggedin", loggedInUser._id !== user._id);
 
   return (
     <article className="user-card">

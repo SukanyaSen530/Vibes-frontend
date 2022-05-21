@@ -26,7 +26,7 @@ const SidebarMain = () => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Logged out successfully!");
-      dispatch(baseApi.util.resetApiState());
+      // dispatch(baseApi.util.resetApiState());
     }
     if (isError) {
       toast.error("Could not log you out!");
@@ -58,7 +58,10 @@ const SidebarMain = () => {
         ))}
         <button
           className="sidebar__menu__option mt-auto"
-          onClick={() => logoutUser()}
+          onClick={() => {
+            logoutUser();
+            dispatch(baseApi.util.resetApiState());
+          }}
         >
           <div className="relative">
             <RiLogoutCircleRFill />

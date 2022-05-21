@@ -13,6 +13,7 @@ export const extendedUserApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     updateProfile: builder.mutation({
       query: (data) => {
         return {
@@ -23,6 +24,7 @@ export const extendedUserApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["Users"],
     }),
+
     followUser: builder.mutation({
       query: (userFollowId) => {
         return {
@@ -33,6 +35,7 @@ export const extendedUserApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["Users"],
     }),
+
     unFollowUser: builder.mutation({
       query: (userFollowId) => {
         return {
@@ -43,27 +46,18 @@ export const extendedUserApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["Users"],
     }),
+
     getUserProfile: builder.query({
-      query: (userId) => {
-        return {
-          url: `${userRoute}${userId}`,
-        };
-      },
+      query: (userId) => `${userRoute}${userId}`,
       providesTags: ["Users"],
     }),
+
     searchUsers: builder.query({
-      query: (userName) => {
-        return {
-          url: `${userRoute}search?username=${userName}`,
-        };
-      },
+      query: (userName) => `${userRoute}search?username=${userName}`,
     }),
+
     getSuggestions: builder.query({
-      query: () => {
-        return {
-          url: `${userRoute}suggestionsUser`,
-        };
-      },
+      query: () => `${userRoute}suggestionsUser`,
       providesTags: ["Users"],
     }),
   }),

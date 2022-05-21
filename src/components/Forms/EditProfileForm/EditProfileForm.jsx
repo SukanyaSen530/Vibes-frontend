@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-import { Modal, InputField, FormButton } from "../";
-
 import { BsImage } from "react-icons/bs";
 import { AiFillCamera } from "react-icons/ai";
 
-import { genderOptions } from "../../pages/Auth/helper";
+import { Modal, InputField, FormButton } from "../../";
+import { genderOptions } from "../../../pages/Auth/helper";
+import { useUpdateProfileMutation } from "../../../redux/services/userApi";
 
 import "./edit-profile-form.scss";
-
-import { useUpdateProfileMutation } from "../../redux/services/userApi";
 
 const EditProfileForm = ({ open, onClose, user }) => {
   const [userData, setUserData] = useState({

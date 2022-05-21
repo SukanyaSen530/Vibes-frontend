@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 //Custom Components
-import { InputField, Modal , FormButton} from "../";
+import { InputField, Modal, FormButton } from "../../";
 
 //RTK Query
-import { useUpdatePasswordMutation } from "../../redux/services/userApi";
+import { useUpdatePasswordMutation } from "../../../redux/services/userApi";
 
 const initialState = {
   password: "",
@@ -68,7 +68,7 @@ const EditPasswordForm = ({ open, onClose }) => {
           title="Password do not match!"
         />
 
-        <FormButton isLoading={isLoading} text='Change Password'/>
+        <FormButton isLoading={isLoading} text="Change Password" />
       </form>
     </Modal>
   );
