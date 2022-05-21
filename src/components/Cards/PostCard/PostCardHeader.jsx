@@ -1,13 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-
-import useClickOutside from "../../../hooks/useClickOutside";
 
 import { BiDotsVerticalRounded } from "react-icons/bi";
 
-const PostCardHeader = ({ _id, avatar, createdAt, userName }) => {
+import { useDeletePostMutation } from "../../../redux/services/postApi";
+import useClickOutside from "../../../hooks/useClickOutside";
+import FormButton from "../../Buttons/FormButton";
+
+const PostCardHeader = ({ _id, avatar, createdAt, userName, postId }) => {
   const [open, setOpen] = useState(false);
   const domNode = useClickOutside(() => setOpen(false));
+
+  const [deletePost, { isLoading, isSuccess, isError, error }] =
+    useDeletePostMutation();
+
+  console.log(error);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Post Deleted!");
+    }
+
+    if (isError) {
+      toast.error(error?.data?.message || "Post could not be deleted!");
+    }
+  }, [isSuccess, isError, error]);
 
   return (
     <div className="flex justify-between mb-4 items-center">
@@ -40,8 +58,17 @@ const PostCardHeader = ({ _id, avatar, createdAt, userName }) => {
           onClick={() => setOpen((val) => !val)}
         />
         <ul className={`menu__items bg-slate-100 ${open ? "active" : ""}`}>
-          <li>Edit</li>
-          <li>Delete</li>
+          <li>
+            <FormButton text="Edit" classes="py-2 px-6 w-full" />
+          </li>
+          <li>
+            <FormButton
+              text="Delete"
+              isLoading={isLoading}
+              classes="py-2 px-6 w-full"
+              handleClick={() => deletePost(postId)}
+            />
+          </li>
         </ul>
       </div>
     </div>

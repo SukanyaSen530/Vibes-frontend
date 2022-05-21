@@ -9,8 +9,6 @@ import "./feed.scss";
 const Feed = () => {
   const { data, isLoading, error } = useGetAllPostsQuery();
 
-  console.log(data);
-
   return (
     <section className="feed flex">
       <div className="flex-1 px-12 text-justify bg-slate-100 my-8 mx-12 rounded-2xl">

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Caraousel } from "../..";
 
 import { FaRegComments } from "react-icons/fa";
@@ -9,10 +10,18 @@ import BookMarkButton from "../../Buttons/BookMarkButton";
 import LikeButton from "../../Buttons/LikeButton";
 import ShareButton from "../../Buttons/ShareButton";
 
-const PostCard = ({ description, images, likes, createdAt, user }) => {
+const PostCard = ({
+  _id,
+  description,
+  images,
+  createdAt,
+  user,
+  likes,
+  comments,
+}) => {
   return (
     <article className="post-card p-4">
-      <PostCardHeader {...user} createdAt={createdAt} />
+      <PostCardHeader {...user} createdAt={createdAt} postId={_id} />
 
       <Caraousel images={images} />
 
@@ -21,12 +30,20 @@ const PostCard = ({ description, images, likes, createdAt, user }) => {
       <div className="post-card__controls flex justify-between">
         <div className="flex gap-8">
           <LikeButton />
-          <FaRegComments className="icons" />
-          <ShareButton />
+
+          <Link to={`/home/post/${_id}`}>
+            {" "}
+            <FaRegComments className="icons" />
+          </Link>
+
+          <ShareButton id={_id} />
         </div>
 
         <BookMarkButton />
       </div>
+      <p className="text-gray-500 text-xl pt-2">
+        {likes?.length} likes, {comments?.length} comments!
+      </p>
     </article>
   );
 };

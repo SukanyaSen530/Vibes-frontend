@@ -2,7 +2,7 @@ import React from "react";
 
 import { RiShareForwardLine } from "react-icons/ri";
 
-function ShareButton() {
+function ShareButton({ _id }) {
   return (
     <>
       <RiShareForwardLine className="icons" />

@@ -6,6 +6,7 @@ export const extendedPostApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllPosts: builder.query({
       query: () => `${postRoute}`,
+      providesTags: ["Posts"],
     }),
 
     getPost: builder.query({
@@ -28,6 +29,7 @@ export const extendedPostApi = baseApi.injectEndpoints({
           body,
         };
       },
+      invalidatesTags: ["Posts"],
     }),
 
     updatePost: builder.mutation({
@@ -42,11 +44,13 @@ export const extendedPostApi = baseApi.injectEndpoints({
 
     deletePost: builder.mutation({
       query: (postId) => {
+        console.log("delete called", postId);
         return {
-          url: `${postRoute}/${postId}`,
+          url: `${postRoute}${postId}`,
           method: "delete",
         };
       },
+      invalidatesTags: ["Posts"],
     }),
 
     likePost: builder.mutation({
@@ -57,6 +61,7 @@ export const extendedPostApi = baseApi.injectEndpoints({
           body: {},
         };
       },
+      invalidatesTags: ["Posts"],
     }),
 
     dislikePost: builder.mutation({
@@ -67,6 +72,7 @@ export const extendedPostApi = baseApi.injectEndpoints({
           body: {},
         };
       },
+      invalidatesTags: ["Posts"],
     }),
 
     getLikedPosts: builder.query({
@@ -81,6 +87,7 @@ export const extendedPostApi = baseApi.injectEndpoints({
           body: {},
         };
       },
+      invalidatesTags: ["Posts"],
     }),
 
     unsavePost: builder.mutation({
@@ -91,6 +98,7 @@ export const extendedPostApi = baseApi.injectEndpoints({
           body: {},
         };
       },
+      invalidatesTags: ["Posts"],
     }),
 
     getSavedPosts: builder.query({

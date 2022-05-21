@@ -11,7 +11,6 @@ const UserCard = ({ user, showFollow = true }) => {
   const { avatar, fullName, userName } = user;
   const { user: loggedInUser } = useSelector(selectAuth);
 
-  console.log("loggedin", loggedInUser._id !== user._id);
 
   return (
     <article className="user-card">
