@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { FollowButton } from "../";
+import { FollowButton } from "../../";
 
-import { selectAuth } from "../../redux/slices/authSlice";
+import { selectAuth } from "../../../redux/slices/authSlice";
 
 import "./user-card.scss";
 
