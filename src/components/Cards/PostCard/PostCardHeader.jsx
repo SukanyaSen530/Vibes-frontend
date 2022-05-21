@@ -1,21 +1,47 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { BiDotsVerticalRounded } from "react-icons/bi";
 
-import { useDeletePostMutation } from "../../../redux/services/postApi";
 import useClickOutside from "../../../hooks/useClickOutside";
 import FormButton from "../../Buttons/FormButton";
+import {
+  togglePostModal,
+  updateEditPostData,
+} from "../../../redux/slices/postSlice";
+import { selectAuth } from "../../../redux/slices/authSlice";
+import { useDeletePostMutation } from "../../../redux/services/postApi";
 
-const PostCardHeader = ({ _id, avatar, createdAt, userName, postId }) => {
+const PostCardHeader = ({
+  _id,
+  avatar,
+  createdAt,
+  userName,
+  postId,
+  description,
+}) => {
   const [open, setOpen] = useState(false);
   const domNode = useClickOutside(() => setOpen(false));
+  const dispatch = useDispatch();
+  const {
+    user: { _id: loggedInUserId },
+  } = useSelector(selectAuth);
+
+  const handleEdit = () => {
+    dispatch(togglePostModal());
+    dispatch(
+      updateEditPostData({
+        isEditModal: true,
+        description,
+        postId,
+      })
+    );
+  };
 
   const [deletePost, { isLoading, isSuccess, isError, error }] =
     useDeletePostMutation();
-
-  console.log(error);
 
   useEffect(() => {
     if (isSuccess) {
@@ -52,25 +78,31 @@ const PostCardHeader = ({ _id, avatar, createdAt, userName, postId }) => {
         </div>
       </div>
 
-      <div className="menu" ref={domNode}>
-        <BiDotsVerticalRounded
-          className="icons text-gray-700"
-          onClick={() => setOpen((val) => !val)}
-        />
-        <ul className={`menu__items bg-slate-100 ${open ? "active" : ""}`}>
-          <li>
-            <FormButton text="Edit" classes="py-2 px-6 w-full" />
-          </li>
-          <li>
-            <FormButton
-              text="Delete"
-              isLoading={isLoading}
-              classes="py-2 px-6 w-full"
-              handleClick={() => deletePost(postId)}
-            />
-          </li>
-        </ul>
-      </div>
+      {loggedInUserId === _id ? (
+        <div className="menu" ref={domNode}>
+          <BiDotsVerticalRounded
+            className="icons text-gray-700"
+            onClick={() => setOpen((val) => !val)}
+          />
+          <ul className={`menu__items bg-slate-100 ${open ? "active" : ""}`}>
+            <li>
+              <FormButton
+                text="Edit"
+                classes="py-2 px-6 w-full"
+                handleClick={handleEdit}
+              />
+            </li>
+            <li>
+              <FormButton
+                text="Delete"
+                isLoading={isLoading}
+                classes="py-2 px-6 w-full"
+                handleClick={() => deletePost(postId)}
+              />
+            </li>
+          </ul>
+        </div>
+      ) : null}
     </div>
   );
 };

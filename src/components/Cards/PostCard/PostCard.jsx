@@ -21,7 +21,12 @@ const PostCard = ({
 }) => {
   return (
     <article className="post-card p-4">
-      <PostCardHeader {...user} createdAt={createdAt} postId={_id} />
+      <PostCardHeader
+        {...user}
+        createdAt={createdAt}
+        postId={_id}
+        description={description}
+      />
 
       <Caraousel images={images} />
 
@@ -32,7 +37,6 @@ const PostCard = ({
           <LikeButton />
 
           <Link to={`/home/post/${_id}`}>
-            {" "}
             <FaRegComments className="icons" />
           </Link>
 

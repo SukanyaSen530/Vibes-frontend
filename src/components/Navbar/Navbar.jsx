@@ -1,8 +1,9 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { selectAuth } from "../../redux/slices/authSlice";
+import { togglePostModal } from "../../redux/slices/postSlice";
 
 import { smallLogo } from "../../assets/images";
 
@@ -14,22 +15,24 @@ import { PostForm } from "../";
 import "./navbar.scss";
 
 function Navbar() {
+  const dispatch = useDispatch();
   const {
     user: { _id, avatar },
   } = useSelector(selectAuth);
-
-  const [openPostModal, setOpenPostModal] = useState(false);
-  const handlePostModal = () => setOpenPostModal((val) => !val);
 
   return (
     <nav className="navbar flex items-center px-8 bg-slate-100 p-4 sticky top-0 gap-4">
       <img className="w-24 h-24" src={smallLogo} alt="VibesLogo" />
 
       <ul className="ml-auto flex items-center gap-10">
-        <RiImageAddFill
-          className="icons cursor-pointer"
-          onClick={() => handlePostModal()}
-        />
+        <p className="flex gap-4 items-center text-2xl">
+          <RiImageAddFill
+            className="icons cursor-pointer"
+            onClick={() => dispatch(togglePostModal())}
+          />
+          Add a post!
+        </p>
+
         <article className="badge">
           <GrNotification className="icons" />
           <span className="badge-count primary">0</span>
@@ -45,9 +48,7 @@ function Navbar() {
         </Link>
       </ul>
 
-      {openPostModal ? (
-        <PostForm open={openPostModal} onClose={handlePostModal} />
-      ) : null}
+      <PostForm />
     </nav>
   );
 }

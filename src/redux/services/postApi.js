@@ -33,13 +33,14 @@ export const extendedPostApi = baseApi.injectEndpoints({
     }),
 
     updatePost: builder.mutation({
-      query: (data) => {
+      query: ({ postId, ...data }) => {
         return {
-          url: `${postRoute}updatedetails`,
+          url: `${postRoute}${postId}`,
           method: "put",
           body: data,
         };
       },
+      invalidatesTags: ["Posts"],
     }),
 
     deletePost: builder.mutation({

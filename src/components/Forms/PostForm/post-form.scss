@@ -13,7 +13,7 @@
     border-radius: 5px;
     padding: 1rem;
     font-size: 1.4rem;
-    height: 25rem;
+    height: 20rem;
 
     &:focus{
       outline: 0;
@@ -23,8 +23,8 @@
   &__emoji-picker{
     position: absolute;
     z-index: 20;
-    bottom: 4rem;
-    transform: translateX(-40%);
+    bottom: 5rem;
+    transform: translateX(-50%);
   }
 }
 

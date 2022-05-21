@@ -7,9 +7,9 @@ import Modal from "./Modal/Modal";
 import Caraousel from "./Caraousel/Caraousel";
 import SidebarSecondary from "./Sidebar/SidebarSecondary";
 
-import PostForm from "./Forms/PostForm";
-import EditPasswordForm from "./Forms/EditPasswordForm";
-import EditProfileForm from "./Forms/EditProfileForm";
+import PostForm from "./Forms/PostForm/PostForm";
+import EditPasswordForm from "./Forms/EditPasswordForm/EditPasswordForm";
+import EditProfileForm from "./Forms/EditProfileForm/EditProfileForm";
 
 import PostCard from "./Cards/PostCard/PostCard";
 import ImagePostCard from "./Cards/ImageCard/ImagePostCard";
