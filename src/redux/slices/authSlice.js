@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { extendedAuthApi } from "../services/authApi";
 import { extendedUserApi } from "../services/userApi";
 
+
 const initialState = {
   user: null,
   token: null,

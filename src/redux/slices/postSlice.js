@@ -15,7 +15,6 @@ const postModalSlice = createSlice({
       state.isOpen = !state.isOpen;
     },
     updateEditPostData: (state, action) => {
-      console.log("action", action);
       state.editPostData.isEditModal = action.payload.isEditModal;
       state.editPostData.description = action.payload.description;
       state.editPostData.postId = action.payload.postId;

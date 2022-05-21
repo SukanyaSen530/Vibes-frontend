@@ -66,6 +66,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
           headers,
         };
       },
+      invalidatesTags: ["Users", "Posts"],
     }),
   }),
   overrideExisting: false,
