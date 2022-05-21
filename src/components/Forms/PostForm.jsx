@@ -1,21 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Picker from "emoji-picker-react";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
-import { Modal } from "../";
+import { Modal, FormButton } from "../";
+
+import { selectAuth } from "../../redux/slices/authSlice";
+import { fileUpload } from "./helper";
 
 import { BsFillEmojiHeartEyesFill } from "react-icons/bs";
 import { IoIosImages } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 
-import { selectAuth } from "../../redux/slices/authSlice";
-
 import "./post-form.scss";
+
+import { useCreatePostMutation } from "../../redux/services/postApi";
 
 const PostForm = ({ open, onClose }) => {
   const { user: loggedInUser } = useSelector(selectAuth);
   const { avatar, userName } = loggedInUser;
+
+  const [createPost, { isLoading, isError, isSuccess, error }] =
+    useCreatePostMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Post created!");
+      onClose();
+    }
+
+    if (isError) {
+      toast.error(error?.data?.message || "Post could not be created!");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError, error]);
 
   //States
   const [description, setDescription] = useState("");
@@ -24,8 +42,10 @@ const PostForm = ({ open, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (images.length === 0) alert("Choose atleast 1 image!");
+    const formData = fileUpload(images);
+    formData.append("description", description);
+    createPost(formData);
   };
 
   const onEmojiClick = (e, emojiObject) => {
@@ -35,15 +55,17 @@ const PostForm = ({ open, onClose }) => {
   const handleAddImage = (e) => {
     let files = [...e.target.files];
     const finalImages = [];
-
-    if (Array.from(files).length > 3) {
+    if (files.length > 3) {
       e.preventDefault();
       alert(`Cannot upload files more than 3`);
       return;
     }
-
     files.forEach((file) => {
-      if (file.type !== "image/jpeg" && file.type !== "image/png")
+      if (
+        file.type !== "image/jpeg" &&
+        file.type !== "image/png" &&
+        file.type !== "image/jpg"
+      )
         toast.error("Currently supports only jpeg and png!");
       finalImages.push(file);
     });
@@ -54,18 +76,12 @@ const PostForm = ({ open, onClose }) => {
     setImages((prevImages) => prevImages.filter((img, ind) => ind !== index));
   };
 
-  // const fileUpload = (files) => {
-  //   const fd = new FormData();
-  //   Array.from(files).forEach((file) => {
-  //     fd.append("postImages", file);
-  //   });
-  //   console.log(fd.postImages);
-  //   return fd;
-  // };
-
   return (
     <Modal open={open} onClose={onClose}>
-      <p className="text-4xl font-semibold text-gray-700 mb-8">Create a post</p>
+      <p className="text-4xl font-semibold text-gray-700 mb-8">
+        {" "}
+        Create a post!{" "}
+      </p>
 
       <div className="flex gap-6">
         <div className="flex-1 post-form__content">
@@ -92,7 +108,7 @@ const PostForm = ({ open, onClose }) => {
               />
             </div>
 
-            <div className="flex gap-4 justify-end items-center mt-6">
+            <div className="flex gap-6 justify-end items-center mt-6">
               <p
                 className={`font-semibold text-2xl ${
                   description?.length === 200 ? "text-red-600" : ""
@@ -130,9 +146,11 @@ const PostForm = ({ open, onClose }) => {
                 />
               </label>
 
-              <button className="bg-blue-300 py-2 px-12 relative font-medium text-3xl rounded-lg block  hover:bg-blue-500 hover:text-white ease-in duration-150">
-                Post
-              </button>
+              <FormButton
+                text="Post"
+                classes="py-2 px-10 block"
+                isLoading={isLoading}
+              />
             </div>
           </form>
         </div>
