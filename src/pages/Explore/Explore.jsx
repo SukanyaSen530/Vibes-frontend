@@ -17,11 +17,11 @@ const Explore = () => {
   }
 
   if (data?.posts?.length === 0 && !isLoading) {
-    content = <EmptyState type="caught-up" />;
+    return <EmptyState type="caught-up" />;
   }
 
   if (error) {
-    content = (
+    return (
       <p className="text-red-500 text-medium my-8">Error loading more posts!</p>
     );
   }

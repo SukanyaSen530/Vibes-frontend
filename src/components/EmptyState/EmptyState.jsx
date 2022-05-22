@@ -3,12 +3,13 @@ import {
   epmtyPosts,
   emptySaved,
   emptyLikes,
-  emptySuggestion,
+  allCaughtUp,
+  empty,
 } from "../../assets/images";
 
 import "./empty-state.scss";
 
-const EmptyState = ({ type }) => {
+const EmptyState = ({ type, text = "" }) => {
   let source = null,
     altText = null,
     emptyText = null;
@@ -30,11 +31,13 @@ const EmptyState = ({ type }) => {
     altText = "no_saved_posts";
     emptyText = "Start saving posts to get updates!";
   } else if (type === "caught-up") {
-    source = emptySuggestion;
+    source = allCaughtUp;
     altText = "all_caught_up";
     emptyText = "All caught up!";
   } else {
-    return <p>Empty Page</p>;
+    source = empty;
+    altText = "empty";
+    emptyText = text ? text : "Empty!";
   }
 
   return (

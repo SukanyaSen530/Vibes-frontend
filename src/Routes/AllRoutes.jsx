@@ -18,6 +18,7 @@ import {
   UserSaved,
   SinglePost,
 } from "../pages";
+import { ErrorComponent } from "../components";
 
 const AllRoutes = () => {
   return (
@@ -75,12 +76,12 @@ const AllRoutes = () => {
           <Route path="saved" element={<UserSaved />} />
           <Route path="liked" element={<UserLiked />} />
 
-          <Route path="*" element={<h1>Invalid Page</h1>} />
+          <Route path="*" element={<ErrorComponent />} />
         </Route>
 
-        <Route path="*" element={<h1>Invalid Page</h1>} />
+        <Route path="*" element={<ErrorComponent />} />
       </Route>
-      <Route path="*" element={<h1>Invalid Page</h1>} />
+      <Route path="*" element={<ErrorComponent />} />
     </Routes>
   );
 };

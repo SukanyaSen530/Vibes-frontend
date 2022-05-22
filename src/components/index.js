@@ -7,7 +7,7 @@ import SidebarSecondary from "./Sidebar/SidebarSecondary";
 
 import FullLoader from "./Loader/FullLoader/FullLoader";
 import EmptyState from "./EmptyState/EmptyState";
-import Error from "./Error/Error";
+import ErrorComponent from "./ErrorComponent/ErrorComponent";
 
 import Skeletal from "./Loader/Skeletal/Skeletal";
 
@@ -29,7 +29,6 @@ import UserDetail from "./UserDetail/UserDetail";
 
 export {
   InputField,
-  Error,
   SidebarMain,
   SidebarSecondary,
   Caraousel,
@@ -37,6 +36,7 @@ export {
   Navbar,
   FullLoader,
   EmptyState,
+  ErrorComponent,
   PostForm,
   EditPasswordForm,
   EditProfileForm,
