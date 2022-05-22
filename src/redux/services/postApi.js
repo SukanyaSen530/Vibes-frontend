@@ -40,12 +40,11 @@ export const extendedPostApi = baseApi.injectEndpoints({
           body: data,
         };
       },
-      invalidatesTags: ["Posts"],
+      invalidatesTags: ["Posts", "Users"],
     }),
 
     deletePost: builder.mutation({
       query: (postId) => {
-        console.log("delete called", postId);
         return {
           url: `${postRoute}${postId}`,
           method: "delete",
@@ -88,7 +87,6 @@ export const extendedPostApi = baseApi.injectEndpoints({
           body: {},
         };
       },
-      invalidatesTags: ["Posts"],
     }),
 
     unsavePost: builder.mutation({
@@ -99,7 +97,6 @@ export const extendedPostApi = baseApi.injectEndpoints({
           body: {},
         };
       },
-      invalidatesTags: ["Posts"],
     }),
 
     getSavedPosts: builder.query({
