@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useSearchUsersQuery } from "../../redux/services/userApi";
 import useDebounce from "../../hooks/useDebounce";
-import { UserCard, UserSkeletal } from "../../components";
+import { UserCard, Skeletal } from "../../components";
 
 import "./people.scss";
 
@@ -27,9 +27,7 @@ const People = () => {
   }
 
   if (isLoading) {
-    content = Array(3)
-      .fill(0)
-      .map((e, index) => <UserSkeletal key={index} />);
+    content = <Skeletal type="user" num={4} />;
   }
 
   if (users.length === 0 && searchQuery.length > 0 && !isLoading) {

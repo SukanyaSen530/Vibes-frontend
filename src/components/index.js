@@ -9,7 +9,7 @@ import FullLoader from "./Loader/FullLoader/FullLoader";
 import EmptyState from "./EmptyState/EmptyState";
 import Error from "./Error/Error";
 
-import UserSkeletal from "./Loader/Skeletal/UserSkeletal";
+import Skeletal from "./Loader/Skeletal/Skeletal";
 
 import PostForm from "./Forms/PostForm/PostForm";
 import EditPasswordForm from "./Forms/EditPasswordForm/EditPasswordForm";
@@ -49,5 +49,5 @@ export {
   ShareButton,
   SaveButton,
   UserDetail,
-  UserSkeletal,
+  Skeletal,
 };

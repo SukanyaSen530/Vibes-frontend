@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import { selectAuth } from "../../redux/slices/authSlice";
 import { useGetSuggestionsQuery } from "../../redux/services/userApi";
-import { EmptyState, UserSkeletal, UserCard } from "../";
+import { EmptyState, Skeletal, UserCard } from "../";
 
 const SidebarSecondary = () => {
   const {
@@ -15,15 +15,7 @@ const SidebarSecondary = () => {
   let content = null;
 
   if (isLoading) {
-    content = (
-      <>
-        {Array(3)
-          .fill(0)
-          .map((e, index) => (
-            <UserSkeletal key={index} />
-          ))}
-      </>
-    );
+    content = <Skeletal type="user" />;
   } else {
     content = data?.users?.map((user) => (
       <UserCard user={user} key={user._id} />
