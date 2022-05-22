@@ -28,7 +28,7 @@ function UserPosts() {
   }
 
   if (error) {
-    return <ErrorComponent type="error" text=" Error loading more posts!" />;
+    return <ErrorComponent type="error" text="Error loading more posts!" />;
   }
 
   return <div className="image-container">{content}</div>;
