@@ -180,19 +180,35 @@ const Profile = () => {
 
         {/*  Posts Saved Liked */}
         <div className="bg-white">
-          <div className="flex w-6/12 mx-auto justify-between py-6 text-gray-600 font-semibold">
-            {profileNav.map((nav) => (
+          <div className="nav-links flex w-6/12 mx-auto justify-between py-6 text-gray-600 font-semibold">
+            {profileNav.slice(0, 1).map((nav) => (
               <NavLink
                 key={nav.id}
                 to={`/home/profile/${userId}/${nav.link}`}
                 className={({ isActive }) => (!isActive ? "" : "active-link")}
               >
-                <p className="flex gap-4 text-4xl hover:bg-slate-200 p-4 rounded-md duration-300">
+                <p className="flex gap-4 text-4xl justify-center hover:bg-slate-200 p-4 rounded-md duration-300">
                   {nav.icon}
                   {nav.name}
                 </p>
               </NavLink>
             ))}
+            {userId === user._id
+              ? profileNav.slice(1).map((nav) => (
+                  <NavLink
+                    key={nav.id}
+                    to={`/home/profile/${userId}/${nav.link}`}
+                    className={({ isActive }) =>
+                      !isActive ? "" : "active-link"
+                    }
+                  >
+                    <p className="flex gap-4 text-4xl hover:bg-slate-200 p-4 rounded-md duration-300">
+                      {nav.icon}
+                      {nav.name}
+                    </p>
+                  </NavLink>
+                ))
+              : null}
           </div>
           <div className="p-4">
             <Outlet />
