@@ -1,30 +1,30 @@
-import React from "react";
-
 import { MdBookmarkBorder, MdBookmark } from "react-icons/md";
 
-function BookMarkButton({
-  isbookMarked = true,
+function SaveButton({
+  isSaved = false,
   isLoading = false,
-  handleBookMark = () => {},
+  handleSave = () => {},
 }) {
   const handleDisable = (e) => {
     if (isLoading) e.preventDefault();
-    else handleBookMark();
+    else handleSave();
   };
 
   return (
     <>
-      {isbookMarked ? (
+      {isSaved ? (
         <MdBookmark
           className={`icons ${isLoading ? "text-gray-400" : "text-blue-500"}`}
+          onClick={handleDisable}
         />
       ) : (
         <MdBookmarkBorder
           className={`icons ${isLoading ? "text-gray-400" : ""}`}
+          onClick={handleDisable}
         />
       )}
     </>
   );
 }
 
-export default BookMarkButton;
+export default SaveButton;

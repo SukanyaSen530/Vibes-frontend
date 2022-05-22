@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { extendedAuthApi } from "../services/authApi";
 import { extendedUserApi } from "../services/userApi";
-
+import { extendedPostApi } from "../services/postApi";
 
 const initialState = {
   user: null,
@@ -39,6 +39,26 @@ export const authSlice = createSlice({
         (state) => {
           state.token = null;
           state.user = null;
+        }
+      )
+      .addMatcher(
+        extendedPostApi.endpoints.savePost.matchFulfilled,
+        (state, { payload: { postId } }) => {
+          const updatedUser = {
+            ...state.user,
+            saved: [...state.user.saved, postId],
+          };
+          state.user = updatedUser;
+        }
+      )
+      .addMatcher(
+        extendedPostApi.endpoints.unsavePost.matchFulfilled,
+        (state, { payload: { postId } }) => {
+          const updatedUser = {
+            ...state.user,
+            saved: state.user.saved.filter((id) => id !== postId),
+          };
+          state.user = updatedUser;
         }
       );
   },

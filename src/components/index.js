@@ -18,8 +18,10 @@ import UserCard from "./Cards/UserCard/UserCard";
 import FormButton from "./Buttons/FormButton";
 import FollowButton from "./Buttons/FollowButton";
 import LikeButton from "./Buttons/LikeButton";
-import BookMarkButton from "./Buttons/BookMarkButton";
+import SaveButton from "./Buttons/SaveButton";
 import ShareButton from "./Buttons/ShareButton";
+
+import UserDetail from "./UserDetail/UserDetail";
 
 export {
   InputField,
@@ -40,5 +42,6 @@ export {
   FollowButton,
   LikeButton,
   ShareButton,
-  BookMarkButton,
+  SaveButton,
+  UserDetail,
 };

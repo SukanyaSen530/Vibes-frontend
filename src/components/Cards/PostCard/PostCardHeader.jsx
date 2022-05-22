@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { BiDotsVerticalRounded } from "react-icons/bi";
 
 import useClickOutside from "../../../hooks/useClickOutside";
-import FormButton from "../../Buttons/FormButton";
+import { FormButton, UserDetail } from "../../";
 import {
   togglePostModal,
   updateEditPostData,
@@ -55,28 +54,12 @@ const PostCardHeader = ({
 
   return (
     <div className="flex justify-between mb-4 items-center">
-      <div className="flex items-center gap-4">
-        <Link to={`/home/profile/${_id}`}>
-          <figure className="avatar avatar-sm cursor-pointer">
-            <img
-              className="avatar-img"
-              src={avatar.secure_url}
-              alt="useravatar"
-            />
-          </figure>
-        </Link>
-        <div className="flex-col">
-          <p className="text-2xl text-left">{userName}</p>
-          <p className="text-xl text-gray-500">
-            {new Date(createdAt).toLocaleDateString("en-US", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
-        </div>
-      </div>
+      <UserDetail
+        id={_id}
+        avatar={avatar}
+        createdAt={createdAt}
+        userName={userName}
+      />
 
       {loggedInUserId === _id ? (
         <div className="menu" ref={domNode}>

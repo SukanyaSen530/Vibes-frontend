@@ -15,8 +15,6 @@ const People = () => {
     skip: debouncedSearchTerm.length === 0,
   });
 
-  console.log("search", searchQuery);
-
   const users = data?.users || [];
 
   let content = null;

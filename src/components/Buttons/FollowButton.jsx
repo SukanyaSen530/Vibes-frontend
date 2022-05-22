@@ -60,8 +60,6 @@ const FollowButton = ({ user, isLoading, size = "sm" }) => {
       toast.error(
         followUserError?.data?.message || "Can not follow user at the moment!"
       );
-
-      console.log(followUserError);
     }
   }, [followUserIsSuccess, followUserIsError, followUserError]);
 

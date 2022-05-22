@@ -9,7 +9,7 @@ import { IoIosImages } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 
 //Custom
-import { Modal, FormButton } from "../..";
+import { Modal, FormButton, UserDetail } from "../..";
 import { selectAuth } from "../../../redux/slices/authSlice";
 import { selectPostModal } from "../../../redux/slices/postSlice";
 import { togglePostModal, resetData } from "../../../redux/slices/postSlice";
@@ -22,7 +22,7 @@ import "./post-form.scss";
 const PostForm = () => {
   // States
   const { user: loggedInUser } = useSelector(selectAuth);
-  const { avatar, userName, fullName } = loggedInUser;
+  const { avatar, userName, fullName, _id: loggedInUserId } = loggedInUser;
   const dispatch = useDispatch();
   const {
     isOpen,
@@ -141,19 +141,12 @@ const PostForm = () => {
       <div className="flex gap-6">
         <div className="flex-1 post-form__content">
           <form onSubmit={handleSubmit}>
-            <div className="flex gap-4 items-center mb-4">
-              <figure className="avatar avatar-sm">
-                <img
-                  className="avatar-img"
-                  src={avatar.secure_url}
-                  alt="useravatar"
-                />
-              </figure>
-              <div>
-                <p className="leading-normal text-3xl">{userName}</p>
-                <p className="leading-normal text-xl">{fullName}</p>
-              </div>
-            </div>
+            <UserDetail
+              avatar={avatar}
+              id={loggedInUserId}
+              fullName={fullName}
+              userName={userName}
+            />
 
             <textarea
               required

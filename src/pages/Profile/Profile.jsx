@@ -6,6 +6,7 @@ import { selectAuth } from "../../redux/slices/authSlice";
 
 import { IoIosSettings } from "react-icons/io";
 import { FaLink, FaUserCog } from "react-icons/fa";
+import { BsCalendarCheck } from "react-icons/bs";
 
 import { profileNav } from "./profileNav";
 import { Followers, Following } from "./FollowModal";
@@ -58,13 +59,10 @@ const Profile = () => {
     fullName,
     userName,
     email,
-    gender,
     followers,
     followings,
     createdAt,
   } = userProfile || {};
-
-  console.log(userProfile);
 
   useEffect(() => {
     if (isProfileError) {
@@ -134,6 +132,11 @@ const Profile = () => {
               </div>
 
               <p>{email}</p>
+
+              <p className="flex items-center gap-4 text-xl">
+                <BsCalendarCheck /> Joined -{" "}
+                {new Date(createdAt).toDateString()}
+              </p>
 
               <p className="font-medium">{bio}</p>
 
