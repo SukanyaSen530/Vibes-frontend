@@ -1,18 +1,13 @@
 import React from "react";
-import { ImagePostCard } from "../../components";
-
-import { post } from "../../dummy";
+import { ImagePostCard, EmptyState } from "../../components";
 
 import "./common-user.scss";
 
 function UserPosts() {
+  const images = [];
   return (
     <div className="image-container">
-      {Array(5)
-        .fill(0)
-        .map((e, index) => (
-          <ImagePostCard key={index} {...post} />
-        ))}
+      {images.length === 0 ? <EmptyState type="posts" /> : null}
     </div>
   );
 }

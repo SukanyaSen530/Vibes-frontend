@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 // Icons and Images
 import { BiLockOpenAlt } from "react-icons/bi";
-import { forgetPasswordImage, logo } from "../../assets/images";
+import { logo } from "../../assets/images";
 
 // Custom Components
 import { InputField, FullLoader } from "../../components";
@@ -45,7 +45,7 @@ const ForgetPassword = () => {
 
       <div className="h-full">
         <img
-          src={forgetPasswordImage}
+          src="https://res.cloudinary.com/weebofigurines/image/upload/v1653225336/vibes/forgotpass_jjqxbt.jpg"
           alt="loginImage"
           className="h-full w-full"
         />

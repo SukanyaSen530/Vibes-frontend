@@ -1,4 +1,4 @@
-import { loaderLarge } from "../../assets/images";
+import { loaderLarge } from "../../../assets/images";
 
 import "./full-loader.scss";
 

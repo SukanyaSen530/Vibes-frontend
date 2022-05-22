@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 // Icons and Images
-import { signupImage, logo } from "../../assets/images";
+import { logo } from "../../assets/images";
 
 // Custom Components
 import { InputField, FullLoader } from "../../components";
@@ -16,7 +16,7 @@ import { useSignupUserMutation } from "../../redux/services/authApi";
 const SignUp = () => {
   const [signupUser, { data, isLoading, error, isError, isSuccess }] =
     useSignupUserMutation();
-  
+
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({ ...signUpData });
@@ -49,7 +49,11 @@ const SignUp = () => {
       {isLoading ? <FullLoader /> : null}
 
       <div className="h-full">
-        <img src={signupImage} alt="signupImage" className="h-full" />
+        <img
+          src="https://res.cloudinary.com/weebofigurines/image/upload/v1653225337/vibes/signup_bygec0.jpg"
+          alt="signupImage"
+          className="h-full"
+        />
       </div>
       <div className="flex-1 flex justify-center items-center">
         <form

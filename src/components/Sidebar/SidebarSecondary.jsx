@@ -6,6 +6,7 @@ import { selectAuth } from "../../redux/slices/authSlice";
 import { UserCard } from "../";
 
 import { useGetSuggestionsQuery } from "../../redux/services/userApi";
+import EmptyState from "../EmptyState/EmptyState";
 
 const SidebarSecondary = () => {
   const {
@@ -48,9 +49,11 @@ const SidebarSecondary = () => {
         </Link>
       </p>
 
-      {data?.users?.map((user) => (
-        <UserCard user={user} key={user._id} />
-      ))}
+      {data?.users?.length === 0 ? (
+        <EmptyState type="suggestion" />
+      ) : (
+        data?.users?.map((user) => <UserCard user={user} key={user._id} />)
+      )}
     </div>
   );
 };

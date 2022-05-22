@@ -6,7 +6,7 @@ export const extendedPostApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllPosts: builder.query({
       query: () => `${postRoute}`,
-      providesTags: ["Posts"],
+      providesTags: ["Posts", "Users"],
     }),
 
     getPost: builder.query({

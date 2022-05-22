@@ -4,6 +4,7 @@ import {
   PostCard,
   FullLoader,
   UserDetail,
+  EmptyState,
 } from "../../components";
 import { useGetAllPostsQuery } from "../../redux/services/postApi";
 import { selectAuth } from "../../redux/slices/authSlice";
@@ -17,6 +18,8 @@ const Feed = () => {
   } = useSelector(selectAuth);
   const dispatch = useDispatch();
   const { data, isLoading, error } = useGetAllPostsQuery();
+
+  console.log(data);
 
   return (
     <section className="feed flex">
@@ -37,9 +40,11 @@ const Feed = () => {
           />
         </div>
 
-        {data?.posts?.map((post) => (
-          <PostCard key={post._id} {...post} />
-        ))}
+        {data?.posts?.length === 0 ? (
+          <EmptyState type="feed" />
+        ) : (
+          data?.posts?.map((post) => <PostCard key={post._id} {...post} />)
+        )}
       </div>
 
       <div className="feed__sidebar sticky">

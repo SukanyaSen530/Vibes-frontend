@@ -1,19 +1,13 @@
-import React from "react";
-
-import { ImagePostCard } from "../../components";
-
-import { post } from "../../dummy";
+import { useEffect } from "react";
+import { ImagePostCard, EmptyState } from "../../components";
 
 import "./common-user.scss";
 
 function UserLiked() {
+  const images = [];
   return (
     <div className="image-container">
-      {Array(10)
-        .fill(0)
-        .map((e, index) => (
-          <ImagePostCard key={index} {...post} />
-        ))}
+      {images.length === 0 ? <EmptyState type="likes" /> : null}
     </div>
   );
 }

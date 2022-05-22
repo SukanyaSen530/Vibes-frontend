@@ -1,0 +1,15 @@
+.emptystate {
+  width: fit-content;
+  margin: 5rem auto;
+  text-align: center;
+
+  &__image {
+    height: 13rem;
+    margin: 1rem auto;
+  }
+
+  &__text {
+    font-size: 2rem;
+    color: #303030;
+  }
+}
