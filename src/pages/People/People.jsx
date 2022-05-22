@@ -1,11 +1,10 @@
 import { useState } from "react";
 
-import "./people.scss";
-
 import { useSearchUsersQuery } from "../../redux/services/userApi";
 import useDebounce from "../../hooks/useDebounce";
-import { UserCard } from "../../components";
-import { loaderSmall } from "../../assets/images";
+import { UserCard, UserSkeletal } from "../../components";
+
+import "./people.scss";
 
 const People = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,22 +19,24 @@ const People = () => {
   let content = null;
 
   if (error) {
-    content = <div className="text-hint">Error while fetching users</div>;
-  }
-
-  if (isLoading) {
     content = (
-      <div className="mt-10">
-        <img src={loaderSmall} alt="loader" className="h-10" />
-      </div>
+      <p className="text-red-500 text-medium my-8">
+        Could not fetch the users!
+      </p>
     );
   }
 
-  if (users.length === 0 && searchQuery.length > 0) {
+  if (isLoading) {
+    content = Array(3)
+      .fill(0)
+      .map((e, index) => <UserSkeletal key={index} />);
+  }
+
+  if (users.length === 0 && searchQuery.length > 0 && !isLoading) {
     content = <p className="mt-10 text-4xl font font-medium">No users found</p>;
   }
 
-  if (users?.length === 0 && searchQuery.length === 0) {
+  if (users?.length === 0 && searchQuery.length === 0 && !isLoading) {
     content = (
       <p className="mt-10 text-4xl font font-medium">
         Start searching your friends!
