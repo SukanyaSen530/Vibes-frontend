@@ -27,7 +27,7 @@ const People = () => {
   }
 
   if (isLoading) {
-    content = <Skeletal type="user" num={4} />;
+    content = <Skeletal type="user" num={2} />;
   }
 
   if (users.length === 0 && searchQuery.length > 0 && !isLoading) {

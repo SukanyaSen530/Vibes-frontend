@@ -29,9 +29,9 @@ const EmptyState = ({ type }) => {
     source = emptySaved;
     altText = "no_saved_posts";
     emptyText = "Start saving posts to get updates!";
-  } else if (type === "suggestion") {
+  } else if (type === "caught-up") {
     source = emptySuggestion;
-    altText = "no_suggestions";
+    altText = "all_caught_up";
     emptyText = "All caught up!";
   } else {
     return <p>Empty Page</p>;

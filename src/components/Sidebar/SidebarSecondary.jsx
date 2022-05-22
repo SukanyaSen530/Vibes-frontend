@@ -23,7 +23,7 @@ const SidebarSecondary = () => {
   }
 
   if (data?.users?.length === 0 && !isLoading) {
-    content = <EmptyState type="suggestion" />;
+    content = <EmptyState type="caught-up" />;
   }
 
   if (error) {

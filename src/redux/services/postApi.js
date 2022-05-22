@@ -15,10 +15,12 @@ export const extendedPostApi = baseApi.injectEndpoints({
 
     getUserPosts: builder.query({
       query: (userId) => `${postRoute}user_posts/${userId}`,
+      providesTags: ["Posts"],
     }),
 
     getDiscoverPosts: builder.query({
       query: () => `${postRoute}discover`,
+      providesTags: ["Posts", "Users"],
     }),
 
     createPost: builder.mutation({
@@ -77,6 +79,7 @@ export const extendedPostApi = baseApi.injectEndpoints({
 
     getLikedPosts: builder.query({
       query: () => `${postRoute}liked_posts`,
+      providesTags: ["Posts"],
     }),
 
     savePost: builder.mutation({
@@ -101,6 +104,7 @@ export const extendedPostApi = baseApi.injectEndpoints({
 
     getSavedPosts: builder.query({
       query: () => `${postRoute}saved_posts`,
+      providesTags: ["Posts"],
     }),
   }),
   overrideExisting: false,
