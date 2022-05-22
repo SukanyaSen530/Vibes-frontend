@@ -10,7 +10,6 @@ import "./common-user.scss";
 
 function UserLiked() {
   const { data, isLoading, error } = useGetLikedPostsQuery();
-
   let content = null;
 
   if (isLoading) {
@@ -22,7 +21,7 @@ function UserLiked() {
   }
 
   if (data?.likedPosts?.length === 0 && !isLoading) {
-    return <EmptyState type="posts" />;
+    return <EmptyState type="likes" />;
   }
 
   if (error) {

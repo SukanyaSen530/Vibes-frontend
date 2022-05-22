@@ -16,13 +16,13 @@ function UserSaved() {
   if (isLoading) {
     content = <Skeletal num={5} />;
   } else {
-    content = data?.posts?.map((post) => (
+    content = data?.savedPosts?.map((post) => (
       <ImagePostCard key={post._id} {...post} />
     ));
   }
 
-  if (data?.posts?.length === 0 && !isLoading) {
-    return <EmptyState type="posts" />;
+  if (data?.savedPosts?.length === 0 && !isLoading) {
+    return <EmptyState type="saved" />;
   }
 
   if (error) {
