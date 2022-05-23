@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 // Icons and Images
-import { signinImage, logo } from "../../assets/images";
+import { logo } from "../../assets/images";
 
 // Custom Components
 import { InputField, FullLoader } from "../../components";
@@ -46,7 +46,11 @@ const SignIn = () => {
       {isLoading ? <FullLoader /> : null}
 
       <div className="h-full">
-        <img src={signinImage} alt="loginImage" className="h-full w-full" />
+        <img
+          src="https://res.cloudinary.com/weebofigurines/image/upload/v1653225336/vibes/signin_nye7mg.jpg"
+          alt="loginImage"
+          className="h-full w-full"
+        />
       </div>
 
       <div className="flex-1 flex justify-center items-center">

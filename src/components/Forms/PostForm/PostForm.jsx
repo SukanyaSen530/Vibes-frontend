@@ -40,6 +40,8 @@ const PostForm = () => {
   const handleCloseModal = () => {
     dispatch(togglePostModal());
     dispatch(resetData());
+    setImages([]);
+    setDescription("");
   };
 
   const handleSubmit = (e) => {

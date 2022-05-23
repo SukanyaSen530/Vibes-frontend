@@ -19,4 +19,10 @@
     color: black;
     text-decoration: wavy;
   }
+
+  .nav-links{
+    & > *{
+      flex: 1;
+    }
+  }
 }

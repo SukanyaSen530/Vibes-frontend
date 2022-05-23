@@ -18,6 +18,7 @@ import {
   UserSaved,
   SinglePost,
 } from "../pages";
+import { ErrorComponent } from "../components";
 
 const AllRoutes = () => {
   return (
@@ -68,19 +69,19 @@ const AllRoutes = () => {
         <Route path="explore" element={<Explore />} />
         <Route path="people" element={<People />} />
 
-        <Route path=":postId" element={<SinglePost />} />
+        <Route path="post/:postId" element={<SinglePost />} />
 
         <Route path="profile/:userId" element={<Profile />}>
           <Route index element={<UserPosts />} />
           <Route path="saved" element={<UserSaved />} />
           <Route path="liked" element={<UserLiked />} />
 
-          <Route path="*" element={<h1>Invalid Page</h1>} />
+          <Route path="*" element={<ErrorComponent />} />
         </Route>
 
-        <Route path="*" element={<h1>Invalid Page</h1>} />
+        <Route path="*" element={<ErrorComponent />} />
       </Route>
-      <Route path="*" element={<h1>Invalid Page</h1>} />
+      <Route path="*" element={<ErrorComponent />} />
     </Routes>
   );
 };

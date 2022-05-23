@@ -2,8 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   SidebarSecondary,
   PostCard,
-  FullLoader,
   UserDetail,
+  EmptyState,
+  Skeletal,
 } from "../../components";
 import { useGetAllPostsQuery } from "../../redux/services/postApi";
 import { selectAuth } from "../../redux/slices/authSlice";
@@ -18,10 +19,24 @@ const Feed = () => {
   const dispatch = useDispatch();
   const { data, isLoading, error } = useGetAllPostsQuery();
 
+  let content = null;
+
+  if (isLoading) {
+    content = <Skeletal type="post" />;
+  } else {
+    content = data?.posts?.map((post) => <PostCard key={post._id} {...post} />);
+  }
+
+  if (!isLoading && data?.posts?.length === 0) {
+    content = <EmptyState type="feed" />;
+  }
+
+  if (error) {
+    content = <p>Error loading posts!</p>;
+  }
+
   return (
     <section className="feed flex">
-      {isLoading ? <FullLoader /> : null}
-
       <div className="flex-1 px-12 text-justify bg-slate-100 my-8 mx-12 rounded-2xl">
         <div className="flex gap-4 rounded-lg items-center feed__post">
           <UserDetail
@@ -37,9 +52,7 @@ const Feed = () => {
           />
         </div>
 
-        {data?.posts?.map((post) => (
-          <PostCard key={post._id} {...post} />
-        ))}
+        {content}
       </div>
 
       <div className="feed__sidebar sticky">

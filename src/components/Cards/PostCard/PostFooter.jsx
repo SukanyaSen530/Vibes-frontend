@@ -69,7 +69,9 @@ const PostFooter = ({ postId, likes, comments }) => {
       toast.error(likeError?.data?.message || "Can not like the post now!");
       console.log(likeError?.data);
     }
+  }, [islikeSuccess, islikeError, likeError]);
 
+  useEffect(() => {
     if (isDislikeSuccess) {
       toast.success("Disliked!");
     }
@@ -77,14 +79,7 @@ const PostFooter = ({ postId, likes, comments }) => {
       toast.error(dislikeError?.data?.message || "Can not like the post now!");
       console.log(dislikeError?.data);
     }
-  }, [
-    islikeSuccess,
-    islikeError,
-    likeError,
-    isDislikeSuccess,
-    isDislikeError,
-    dislikeError,
-  ]);
+  }, [isDislikeError, isDislikeSuccess, dislikeError]);
 
   useEffect(() => {
     if (isSaveSuccess) {
@@ -94,7 +89,9 @@ const PostFooter = ({ postId, likes, comments }) => {
       toast.error(saveError?.data?.message || "Can not like the post now!");
       console.log(saveError?.data);
     }
+  }, [isSaveSuccess, isSaveError, saveError]);
 
+  useEffect(() => {
     if (isUnsaveSuccess) {
       toast.success("Unsaved!");
     }
@@ -102,14 +99,7 @@ const PostFooter = ({ postId, likes, comments }) => {
       toast.error(unsaveError?.data?.message || "Can not like the post now!");
       console.log(unsaveError?.data);
     }
-  }, [
-    isSaveSuccess,
-    isSaveError,
-    saveError,
-    isUnsaveError,
-    isUnsaveSuccess,
-    unsaveError,
-  ]);
+  }, [isUnsaveError, isUnsaveSuccess, unsaveError]);
 
   const handleLike = () => {
     if (isLiked) {

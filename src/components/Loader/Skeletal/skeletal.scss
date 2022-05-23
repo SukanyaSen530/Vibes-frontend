@@ -1,0 +1,15 @@
+.post-skeletal {
+  width: 50rem;
+  margin: 2rem auto;
+
+  &__body {
+    min-height: 30rem;
+  }
+}
+
+
+.image-skeletal{
+  height: 25rem;
+  width: 25rem;
+  border-radius: 10px;
+}

@@ -2,23 +2,37 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { selectAuth } from "../../redux/slices/authSlice";
-
-import { UserCard } from "../";
-
 import { useGetSuggestionsQuery } from "../../redux/services/userApi";
+import { EmptyState, Skeletal, UserCard } from "../";
 
 const SidebarSecondary = () => {
   const {
     user: { _id, avatar, userName, fullName, email },
   } = useSelector(selectAuth);
 
-  const {
-    data,
-    // isLoading,
-    // isError,
-    // isSuccess,
-    // error,
-  } = useGetSuggestionsQuery();
+  const { data, isLoading, error } = useGetSuggestionsQuery();
+
+  let content = null;
+
+  if (isLoading) {
+    content = <Skeletal type="user" />;
+  } else {
+    content = data?.users?.map((user) => (
+      <UserCard user={user} key={user._id} />
+    ));
+  }
+
+  if (data?.users?.length === 0 && !isLoading) {
+    content = <EmptyState type="caught-up" />;
+  }
+
+  if (error) {
+    content = (
+      <p className="text-red-500 text-medium my-8">
+        Could not get the suggestions!
+      </p>
+    );
+  }
 
   return (
     <div className="w-full bg-slate-100 flex-col items-center justify-center rounded-2xl p-5 ml-auto">
@@ -48,9 +62,7 @@ const SidebarSecondary = () => {
         </Link>
       </p>
 
-      {data?.users?.map((user) => (
-        <UserCard user={user} key={user._id} />
-      ))}
+      {content}
     </div>
   );
 };

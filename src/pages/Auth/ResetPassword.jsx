@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 // Icons and Images
-import { resetPasswordImage, logo } from "../../assets/images";
+import { logo } from "../../assets/images";
 import { BiLockAlt } from "react-icons/bi";
 
 // Custom Components
@@ -52,7 +52,7 @@ const ResetPassword = () => {
 
       <div className="h-full">
         <img
-          src={resetPasswordImage}
+          src="https://res.cloudinary.com/weebofigurines/image/upload/v1653225337/vibes/resetpass_ko7mpp.jpg"
           alt="loginImage"
           className="h-full w-full"
         />
