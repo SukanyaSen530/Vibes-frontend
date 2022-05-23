@@ -5,7 +5,7 @@ function PostCardBody({ description }) {
 
   let content = null;
 
-  if (description.length <= 100) {
+  if (description?.length <= 100) {
     content = description;
   } else {
     content = (
@@ -23,7 +23,9 @@ function PostCardBody({ description }) {
     );
   }
   return (
-    <p className="text-2xl my-2 font-medium text-gray-600 py-4">{content}</p>
+    <p className="text-2xl my-2 font-medium text-gray-600 py-2 text-left">
+      {content}
+    </p>
   );
 }
 

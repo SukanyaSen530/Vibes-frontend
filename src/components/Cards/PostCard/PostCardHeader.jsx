@@ -53,7 +53,7 @@ const PostCardHeader = ({
   }, [isSuccess, isError, error]);
 
   return (
-    <div className="flex justify-between mb-4 items-center">
+    <div className="flex justify-between">
       <UserDetail
         id={_id}
         avatar={avatar}

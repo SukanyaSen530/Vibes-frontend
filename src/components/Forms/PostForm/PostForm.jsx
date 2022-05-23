@@ -9,6 +9,7 @@ import { IoIosImages } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 
 //Custom
+import useClickOutside from "../../../hooks/useClickOutside";
 import { Modal, FormButton, UserDetail } from "../..";
 import { selectAuth } from "../../../redux/slices/authSlice";
 import { selectPostModal } from "../../../redux/slices/postSlice";
@@ -31,6 +32,7 @@ const PostForm = () => {
   const [description, setDescription] = useState(updatedDescription);
   const [images, setImages] = useState([]);
   const [showPicker, setShowPicker] = useState(false);
+  const domNode = useClickOutside(() => setShowPicker(false));
 
   useEffect(() => {
     setDescription(updatedDescription);
@@ -171,7 +173,7 @@ const PostForm = () => {
                 ({description.length} / {200 - description.length})
               </p>
 
-              <div className="relative">
+              <div className="relative" ref={domNode}>
                 <BsFillEmojiHeartEyesFill
                   className="icons text-amber-500"
                   onClick={() => setShowPicker((val) => !val)}

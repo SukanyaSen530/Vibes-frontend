@@ -18,10 +18,18 @@ const ErrorComponent = ({ type, text = "" }) => {
         <div className="text-center">
           <img src={notFound} alt="not_found" className="h-80 mx-auto my-4" />
 
-          <h3 className="p-4 text-6xl my-4 font-semibold text-blue-400">
-            How did you land here?
-          </h3>
-          <p className="text-3xl">You are not supposed to be here!</p>
+          {text ? (
+            <h3 className="p-4 text-4xl my-4 font-semibold text-blue-400">
+              {text}
+            </h3>
+          ) : (
+            <>
+              <h3 className="p-4 text-6xl my-4 font-semibold text-blue-400">
+                How did you land here?
+              </h3>
+              <p className="text-3xl">You are not supposed to be here!</p>
+            </>
+          )}
 
           <button
             className="bg-blue-300 hover:bg-blue-500  relative font-medium text-2xl rounded-lg  hover:text-white ease-in duration-150 text-center p-4 m-6"

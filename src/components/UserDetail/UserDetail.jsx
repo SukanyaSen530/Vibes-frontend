@@ -12,7 +12,7 @@ const UserDetail = ({ id, avatar, userName, fullName, createdAt }) => {
           />
         </figure>
       </Link>
-      <div className="flex-col">
+      <div>
         <p className="text-2xl text-left">{userName}</p>
         {createdAt ? (
           <p className="text-xl text-gray-500">
