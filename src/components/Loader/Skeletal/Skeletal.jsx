@@ -56,10 +56,6 @@ const Skeletal = ({ type, num = 3 }) => {
               <p class="w-full bg-gray-400 h-10 rounded-md "></p>
             </div>
           </div>
-          {/* <div class="post-skeletal border-2 rounded-2xl p-4 mx-auto my-4">
-           
-            <div className="post-skeletal__body animate-pulse bg-gray-400 mt-4"></div>
-          </div> */}
         </div>
       </div>
     );
