@@ -140,7 +140,7 @@ const PostFooter = ({ postId, likes, comments }) => {
           isLoading={saveLoading || unsaveLoading}
         />
       </div>
-      <p className="text-gray-500 text-xl pt-2">
+      <p className="text-gray-500 text-xl pt-2 text-left">
         {likes?.length || 0} likes, {comments?.length || 0} comments!
       </p>
     </>

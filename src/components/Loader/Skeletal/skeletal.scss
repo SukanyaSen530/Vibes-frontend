@@ -7,6 +7,14 @@
   }
 }
 
+.single-post-skeletal{
+  &__body{
+    min-height: 30rem;
+    width: 30rem;
+    border-radius: 10px;
+  }
+}
+
 
 .image-skeletal{
   height: 25rem;
