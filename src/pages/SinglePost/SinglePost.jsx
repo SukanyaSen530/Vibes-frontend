@@ -16,11 +16,9 @@ import "./single-post.scss";
 
 const Comment = () => {
   const { postId } = useParams();
-
   const { data, isLoading, error } = useGetPostQuery(postId);
 
   const { post } = data || {};
-
   const { description, images, likes, comments, createdAt, user } = post || {};
 
   if (isLoading) {

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const postModalSlice = createSlice({
-  name: "post",
+  name: "postModal",
   initialState: {
     isOpen: false,
     editPostData: {
