@@ -64,7 +64,7 @@ const PostCardHeader = ({
       {loggedInUserId === _id ? (
         <div className="menu" ref={domNode}>
           <BiDotsVerticalRounded
-            className="icons text-gray-700"
+            className="icons text-gray-700 cursor-pointer"
             onClick={() => setOpen((val) => !val)}
           />
           <ul className={`menu__items bg-slate-100 ${open ? "active" : ""}`}>

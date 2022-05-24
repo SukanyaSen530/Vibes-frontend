@@ -6,7 +6,7 @@ export const extendedCommentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getComments: builder.query({
       query: (postId) => `${commentRoute}/${postId}`,
-      providesTags: ["Comment"],
+      providesTags: ["Comments"],
     }),
 
     createComment: builder.mutation({
@@ -32,9 +32,9 @@ export const extendedCommentApi = baseApi.injectEndpoints({
     }),
 
     deleteComment: builder.mutation({
-      query: (commentId) => {
+      query: ({ commentId, postId }) => {
         return {
-          url: `${commentRoute}${commentId}`,
+          url: `${commentRoute}${commentId}/${postId}`,
           method: "delete",
         };
       },

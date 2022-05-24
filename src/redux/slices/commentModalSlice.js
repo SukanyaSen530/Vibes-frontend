@@ -11,7 +11,7 @@ const commentModalSlice = createSlice({
     },
   },
   reducers: {
-    toggleCommentModal: (state, action) => {
+    toggleCommentModal: (state) => {
       state.isOpen = !state.isOpen;
     },
     updateEditCommentData: (state, action) => {
@@ -19,11 +19,11 @@ const commentModalSlice = createSlice({
       state.editCommentData.content = action.payload.content;
       state.editCommentData.commentId = action.payload.commentId;
     },
-    resetCommentData: (state, action) => {
+    resetCommentData: (state) => {
       state.isOpen = false;
-      state.editPostData.isEditModal = false;
-      state.editPostData.content = "";
-      state.editPostData.commentId = 0;
+      state.editCommentData.isEditModal = false;
+      state.editCommentData.content = "";
+      state.editCommentData.commentId = 0;
     },
   },
 });
