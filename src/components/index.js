@@ -14,6 +14,7 @@ import Skeletal from "./Loader/Skeletal/Skeletal";
 import PostForm from "./Forms/PostForm/PostForm";
 import EditPasswordForm from "./Forms/EditPasswordForm/EditPasswordForm";
 import EditProfileForm from "./Forms/EditProfileForm/EditProfileForm";
+import CommentForm from "./Forms/CommentForm/CommentForm";
 
 import PostCard from "./Cards/PostCard/PostCard";
 import ImagePostCard from "./Cards/ImageCard/ImagePostCard";
@@ -26,6 +27,8 @@ import SaveButton from "./Buttons/SaveButton";
 import ShareButton from "./Buttons/ShareButton";
 
 import UserDetail from "./UserDetail/UserDetail";
+
+import Comments from "./Comments/Comments";
 
 export {
   InputField,
@@ -40,6 +43,7 @@ export {
   PostForm,
   EditPasswordForm,
   EditProfileForm,
+  CommentForm,
   PostCard,
   UserCard,
   ImagePostCard,
@@ -50,4 +54,5 @@ export {
   SaveButton,
   UserDetail,
   Skeletal,
+  Comments,
 };

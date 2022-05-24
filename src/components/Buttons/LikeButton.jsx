@@ -16,7 +16,7 @@ const LikeButton = ({
     <>
       {isLiked ? (
         <AiFillHeart
-          className={`icons ${isLoading ? "text-gray-400" : "text-blue-500"}`}
+          className={`icons ${isLoading ? "text-gray-400" : "text-red-600"}`}
           onClick={handleDisable}
         />
       ) : (

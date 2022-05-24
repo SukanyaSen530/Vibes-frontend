@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const UserDetail = ({ id, avatar, userName, fullName, createdAt }) => {
   return (
@@ -16,12 +17,9 @@ const UserDetail = ({ id, avatar, userName, fullName, createdAt }) => {
         <p className="text-2xl text-left">{userName}</p>
         {createdAt ? (
           <p className="text-xl text-gray-500">
-            {new Date(createdAt).toLocaleDateString("en-US", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+            {`${moment(new Date(createdAt), "YYYYMMDD").fromNow()}, ${moment(
+              new Date(createdAt)
+            ).format("LL")}`}
           </p>
         ) : null}
         {fullName ? <p className="text-xl text-gray-500">{fullName}</p> : null}

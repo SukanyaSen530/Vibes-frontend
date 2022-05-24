@@ -1,9 +1,18 @@
 import { useParams } from "react-router-dom";
 
-import { Caraousel, ErrorComponent, Skeletal } from "../../components";
+import {
+  Caraousel,
+  ErrorComponent,
+  Skeletal,
+  Comments,
+  CommentForm,
+} from "../../components";
+import { toggleCommentModal } from "../../redux/slices/commentModalSlice";
 import PostCardBody from "../../components/Cards/PostCard/PostCardBody";
 import PostFooter from "../../components/Cards/PostCard/PostFooter";
 import PostCardHeader from "../../components/Cards/PostCard/PostCardHeader";
+import { selectCommentModal } from "../../redux/slices/commentModalSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useGetPostQuery } from "../../redux/services/postApi";
 
@@ -11,19 +20,12 @@ import "./single-post.scss";
 
 const Comment = () => {
   const { postId } = useParams();
-
+  const dispatch = useDispatch();
   const { data, isLoading, error } = useGetPostQuery(postId);
 
   const { post } = data || {};
-
-  const {
-    description,
-    images,
-    likes,
-    comments,
-    createdAt,
-    user,
-  } = post || {};
+  const { description, images, likes, comments, createdAt, user } = post || {};
+  const { isOpen } = useSelector(selectCommentModal);
 
   if (isLoading) {
     return <Skeletal type="single_post" num={1} />;
@@ -64,27 +66,7 @@ const Comment = () => {
           {/* Comments */}
           <div className="flex-1 relative border-t-2">
             <div className="absolute top-0 bottom-0 right-0 left-0 overflow-y-auto px-4">
-              {comments?.map((comment) => (
-                <div className="flex my-8 items-start text-xl gap-6 text-justify">
-                  <figure className="avatar avatar-sm cursor-pointer flex-shrink-0">
-                    <img
-                      className="avatar-img"
-                      src={user?.avatar?.secure_url}
-                      alt="useravatar"
-                    />
-                  </figure>
-                  <div>
-                    <span className="font-bold">{user?.userName}</span>
-                    <span>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                    </span>
-                  </div>
-                  {/* <AiOutlineHeart className="ml-auto text-4xl flex-shrink-0" /> */}
-                </div>
-              ))}
+              <Comments postId={postId} />
             </div>
           </div>
 
@@ -94,21 +76,21 @@ const Comment = () => {
               likes={likes}
               comments={comments}
               user={user}
+              showComments={false}
             />
           </div>
 
-          <div className="flex mx-4 gap-4 items-center py-2">
+          <div className="flex mx-4 gap-4 items-center py-4">
             <input
               type="text"
               placeholder="Add a comment..."
               className="outline-0 text-2xl w-full"
+              onFocus={() => dispatch(toggleCommentModal())}
             />
-            <button className="bg-blue-300 rounded-lg py-2 px-12 text-3xl hover:bg-blue-500 hover:text-white ease-in duration-150">
-              Post
-            </button>
           </div>
         </div>
       </article>
+      {isOpen ? <CommentForm postId={postId} /> : null}
     </section>
   );
 };

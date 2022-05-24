@@ -29,11 +29,15 @@ const App = () => {
 
       <AllRoutes />
       <ToastContainer
-        position="top-left"
-        autoClose={1200}
-        hideProgressBar
+        position="bottom-left"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
         closeOnClick
-        theme="colored"
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
       />
     </div>
   );

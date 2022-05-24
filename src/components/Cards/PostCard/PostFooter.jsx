@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { SaveButton, LikeButton, ShareButton } from "../../";
-import { FaRegComment } from "react-icons/fa";
+import { BiMessageRounded } from "react-icons/bi";
 
 import {
   useLikePostMutation,
@@ -15,7 +15,7 @@ import {
 import { selectAuth } from "../../../redux/slices/authSlice";
 import { toast } from "react-toastify";
 
-const PostFooter = ({ postId, likes, comments }) => {
+const PostFooter = ({ postId, likes, comments, showComments = true }) => {
   const { user: loggedInUser } = useSelector(selectAuth);
   const { _id: loggedInUserId, saved } = loggedInUser;
 
@@ -127,9 +127,11 @@ const PostFooter = ({ postId, likes, comments }) => {
             isLiked={isLiked}
           />
 
-          <Link to={`/home/post/${postId}`}>
-            <FaRegComment className="icons" />
-          </Link>
+          {showComments ? (
+            <Link to={`/home/post/${postId}`}>
+              <BiMessageRounded className="icons" />
+            </Link>
+          ) : null}
 
           <ShareButton postId={postId} />
         </div>
