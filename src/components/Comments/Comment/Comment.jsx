@@ -4,12 +4,14 @@ import moment from "moment";
 import CommentBody from "./CommentBody";
 import CommentFooter from "./CommentFooter";
 
+import "./comment.scss";
+
 const Comment = ({ comment }) => {
   const { user, content, createdAt } = comment || {};
 
   return (
     <>
-      <div className="flex mt-8 items-start gap-4 text-justify">
+      <div className="comment flex mt-8 items-start gap-4 text-justify">
         <Link to={`/home/profile/${user?._id}`} replace className="shrink-0">
           <img
             className="h-16 w-16"

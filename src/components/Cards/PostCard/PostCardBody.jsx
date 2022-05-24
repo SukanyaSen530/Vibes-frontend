@@ -10,7 +10,7 @@ function PostCardBody({ description }) {
   } else {
     content = (
       <>
-        <span>
+        <span className="post-card__description">
           {readMore ? description + " " : `${description?.substr(0, 100)} ... `}
         </span>
         <button
