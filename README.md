@@ -59,7 +59,7 @@
 
 # Images
 
-<img src="src/assets/app/im3.png" width="100%" title="Feed_Page">
+<img src="src/assets/app/im3.jpg" width="100%" title="Feed_Page">
 <br/>
 <img src="src/assets/app/im1.jpg" width="100%" title="Feed_Page">
 <br/>
