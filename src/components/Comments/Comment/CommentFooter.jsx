@@ -21,7 +21,7 @@ import {
 import { selectAuth } from "../../../redux/slices/authSlice";
 
 const CommentFooter = ({ comment }) => {
-  const { _id, content, postId, likes } = comment || {};
+  const { _id, content, postId, likes, user } = comment || {};
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const domNode = useClickOutside(() => setOpen(false));
@@ -141,23 +141,28 @@ const CommentFooter = ({ comment }) => {
             open ? "active" : ""
           }`}
         >
-          {/* <li className="flex gap-1 items-center cursor-pointer hover:text-blue-600 duration-150">
+          <li className="flex gap-1 items-center cursor-pointer hover:text-blue-600 duration-150">
             <MdQuickreply /> Reply
-          </li> */}
-          <li
-            className="flex gap-1 items-center cursor-pointer hover:text-blue-600 duration-150"
-            onClick={handleUpdate}
-          >
-            <MdModeEditOutline />
-            Edit
           </li>
-          <li
-            className="flex gap-1 items-center cursor-pointer hover:text-blue-600 duration-150"
-            onClick={handleDelete}
-          >
-            <MdDelete />
-            Delete
-          </li>
+
+          {loggedInUserId === user._id ? (
+            <>
+              <li
+                className="flex gap-1 items-center cursor-pointer hover:text-blue-600 duration-150"
+                onClick={handleUpdate}
+              >
+                <MdModeEditOutline />
+                Edit
+              </li>
+              <li
+                className="flex gap-1 items-center cursor-pointer hover:text-blue-600 duration-150"
+                onClick={handleDelete}
+              >
+                <MdDelete />
+                Delete
+              </li>
+            </>
+          ) : null}
         </ul>
       </div>
 
