@@ -6,7 +6,7 @@ import { selectAuth } from "../../redux/slices/authSlice";
 
 import { IoIosSettings } from "react-icons/io";
 import { FaLink, FaUserCog } from "react-icons/fa";
-import { BsCalendarCheck } from "react-icons/bs";
+import { BsCalendar3 } from "react-icons/bs";
 
 import { profileNav } from "./profileNav";
 import { Followers, Following } from "./FollowModal";
@@ -133,9 +133,11 @@ const Profile = () => {
 
               <p>{email}</p>
 
-              <p className="flex items-center gap-4 text-xl">
-                <BsCalendarCheck /> Joined -{" "}
-                {new Date(createdAt).toDateString()}
+              <p className="flex items-center gap-4 text-2xl">
+                <BsCalendar3 /> Joined on{" "}
+                {`${new Date(createdAt).toLocaleString("default", {
+                  month: "long",
+                })} ${new Date(createdAt).getFullYear()}`}
               </p>
 
               <p className="font-medium">{bio}</p>

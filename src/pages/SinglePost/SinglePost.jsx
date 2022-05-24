@@ -20,10 +20,12 @@ const Comment = () => {
     description,
     images,
     likes,
-    comments,
+    comments: hhehr,
     createdAt,
     user,
   } = post || {};
+
+  const comments = [1, 2, 3, 4, 4, 3, 2, 3, 3, 33, 3, 1, 2, 2, 2];
 
   if (isLoading) {
     return <Skeletal type="single_post" num={1} />;
@@ -94,6 +96,7 @@ const Comment = () => {
               likes={likes}
               comments={comments}
               user={user}
+              showComments={false}
             />
           </div>
 
