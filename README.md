@@ -3,7 +3,7 @@
 <div align="center">
   <img src="src/assets/images/mainLogo.png" width="150" title="Vibes Logo">
 
-   # [Vibes](https://weebofigurines.vercel.app/)
+   # [Vibes](https://vibes--frontend.vercel.app)
    Social media for sharing photos :)
 </div>
 
