@@ -1,6 +1,11 @@
 import { useParams } from "react-router-dom";
 
-import { Caraousel, ErrorComponent, Skeletal } from "../../components";
+import {
+  Caraousel,
+  ErrorComponent,
+  Skeletal,
+  Comments,
+} from "../../components";
 import PostCardBody from "../../components/Cards/PostCard/PostCardBody";
 import PostFooter from "../../components/Cards/PostCard/PostFooter";
 import PostCardHeader from "../../components/Cards/PostCard/PostCardHeader";
@@ -16,16 +21,7 @@ const Comment = () => {
 
   const { post } = data || {};
 
-  const {
-    description,
-    images,
-    likes,
-    comments: hhehr,
-    createdAt,
-    user,
-  } = post || {};
-
-  const comments = [1, 2, 3, 4, 4, 3, 2, 3, 3, 33, 3, 1, 2, 2, 2];
+  const { description, images, likes, comments, createdAt, user } = post || {};
 
   if (isLoading) {
     return <Skeletal type="single_post" num={1} />;
@@ -66,27 +62,7 @@ const Comment = () => {
           {/* Comments */}
           <div className="flex-1 relative border-t-2">
             <div className="absolute top-0 bottom-0 right-0 left-0 overflow-y-auto px-4">
-              {comments?.map((comment) => (
-                <div className="flex my-8 items-start text-xl gap-6 text-justify">
-                  <figure className="avatar avatar-sm cursor-pointer flex-shrink-0">
-                    <img
-                      className="avatar-img"
-                      src={user?.avatar?.secure_url}
-                      alt="useravatar"
-                    />
-                  </figure>
-                  <div>
-                    <span className="font-bold">{user?.userName}</span>
-                    <span>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                    </span>
-                  </div>
-                  {/* <AiOutlineHeart className="ml-auto text-4xl flex-shrink-0" /> */}
-                </div>
-              ))}
+              <Comments postId={postId} />
             </div>
           </div>
 
