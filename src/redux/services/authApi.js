@@ -1,15 +1,28 @@
 import { baseApi } from "./baseApi";
 
+const mode = "prod";
+const clientUrl =
+  mode === "dev"
+    ? "http://localhost:3000"
+    : "https://vibes--frontend.vercel.app";
+
 const headers = new Headers();
-headers.append("Access-Control-Allow-Origin", "http://localhost:3000/");
+headers.append("Access-Control-Allow-Origin", clientUrl);
 headers.append("Access-Control-Allow-Credentials", "true");
+headers.append(
+  "Access-Control-Allow-Headers",
+  "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-CSRF-Token"
+);
+headers.append("Access-Control-Allow-Methods", "GET,POST");
+
+const authRoute = "/auth/";
 
 export const extendedAuthApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     signinUser: builder.mutation({
       query: (body) => {
         return {
-          url: "/auth/signin",
+          url: `${authRoute}signin`,
           method: "post",
           body,
           credentials: "include",
@@ -21,7 +34,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
     signupUser: builder.mutation({
       query: (body) => {
         return {
-          url: "/auth/signup",
+          url: `${authRoute}signup`,
           method: "post",
           body,
         };
@@ -31,7 +44,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
     sendMailForgotPassword: builder.mutation({
       query: (body) => {
         return {
-          url: "/auth/forgotpassword",
+          url: `${authRoute}forgotpassword`,
           method: "post",
           body,
         };
@@ -41,7 +54,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
     resetPassword: builder.mutation({
       query: ({ token, ...body }) => {
         return {
-          url: `auth/reset/password/${token}`,
+          url: `${authRoute}reset/password/${token}`,
           method: "put",
           body,
         };
@@ -51,7 +64,8 @@ export const extendedAuthApi = baseApi.injectEndpoints({
     refreshToken: builder.query({
       query: () => {
         return {
-          url: "auth/refreshToken",
+          url: `${authRoute}refreshToken`,
+          method: "get",
           credentials: "include",
           headers,
         };
@@ -61,7 +75,8 @@ export const extendedAuthApi = baseApi.injectEndpoints({
     logoutUser: builder.mutation({
       query: () => {
         return {
-          url: "auth/logout",
+          url: `${authRoute}logout`,
+          method: "post",
           credentials: "include",
           headers,
         };
@@ -76,6 +91,7 @@ export const {
   useSignupUserMutation,
   useSendMailForgotPasswordMutation,
   useResetPasswordMutation,
+  // useRefreshTokenMutation,
   useRefreshTokenQuery,
   useLogoutUserMutation,
 } = extendedAuthApi;

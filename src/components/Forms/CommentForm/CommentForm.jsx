@@ -76,10 +76,8 @@ const CommentForm = ({ postId }) => {
 
     if (isEditModal) {
       updateComment({ commentId, content });
-      handleCloseModal();
     } else {
       createComment({ postId, content });
-      handleCloseModal();
     }
   };
 
@@ -90,6 +88,7 @@ const CommentForm = ({ postId }) => {
   useEffect(() => {
     if (createCommentIsSuccess) {
       toast.success("Comment added");
+      handleCloseModal();
     }
 
     if (createCommentIsError) {
@@ -97,11 +96,13 @@ const CommentForm = ({ postId }) => {
         createCommentError?.data?.message || "Comment could not be added!"
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createCommentIsError, createCommentIsSuccess, createCommentError]);
 
   useEffect(() => {
     if (updateCommentIsSuccess) {
       toast.success("Comment added");
+      handleCloseModal();
     }
 
     if (updateCommentIsError) {
@@ -109,6 +110,7 @@ const CommentForm = ({ postId }) => {
         updateCommentError?.data?.message || "Comment could not be added!"
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateCommentIsError, updateCommentIsSuccess, updateCommentError]);
 
   return (

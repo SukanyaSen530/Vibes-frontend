@@ -67,7 +67,6 @@ const PostFooter = ({ postId, likes, comments, showComments = true }) => {
     }
     if (islikeError) {
       toast.error(likeError?.data?.message || "Can not like the post now!");
-      console.log(likeError?.data);
     }
   }, [islikeSuccess, islikeError, likeError]);
 
@@ -77,7 +76,6 @@ const PostFooter = ({ postId, likes, comments, showComments = true }) => {
     }
     if (isDislikeError) {
       toast.error(dislikeError?.data?.message || "Can not like the post now!");
-      console.log(dislikeError?.data);
     }
   }, [isDislikeError, isDislikeSuccess, dislikeError]);
 
@@ -87,7 +85,6 @@ const PostFooter = ({ postId, likes, comments, showComments = true }) => {
     }
     if (isSaveError) {
       toast.error(saveError?.data?.message || "Can not like the post now!");
-      console.log(saveError?.data);
     }
   }, [isSaveSuccess, isSaveError, saveError]);
 
@@ -97,7 +94,6 @@ const PostFooter = ({ postId, likes, comments, showComments = true }) => {
     }
     if (isUnsaveError) {
       toast.error(unsaveError?.data?.message || "Can not like the post now!");
-      console.log(unsaveError?.data);
     }
   }, [isUnsaveError, isUnsaveSuccess, unsaveError]);
 

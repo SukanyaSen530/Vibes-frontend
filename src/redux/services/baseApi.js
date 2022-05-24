@@ -1,10 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const mode = "dev";
+const mode = "prod";
 const baseUrl =
-  mode === "dev"
-    ? "http://localhost:8000"
-    : "https://vercel.com/sukanyasen530/vibes-backend";
+  mode === "dev" ? "http://localhost:8000" : "https://vibes-backend.vercel.app";
 
 const baseQuery = fetchBaseQuery({
   baseUrl,

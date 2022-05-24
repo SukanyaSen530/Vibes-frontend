@@ -6,8 +6,6 @@ const Comments = ({ postId }) => {
   const { data, error } = useGetCommentsQuery(postId);
   const comments = data?.comments || [];
 
-  console.log(comments);
-
   if (error) {
     return (
       <ErrorComponent

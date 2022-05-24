@@ -5,7 +5,7 @@ const commentRoute = "/comment/";
 export const extendedCommentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getComments: builder.query({
-      query: (postId) => `${commentRoute}/${postId}`,
+      query: (postId) => `${commentRoute}${postId}`,
       providesTags: ["Comments"],
     }),
 
