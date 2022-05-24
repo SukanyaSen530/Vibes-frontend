@@ -1,11 +1,10 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import CommentBody from "./CommentBody";
 import CommentFooter from "./CommentFooter";
 
 const Comment = ({ comment }) => {
-  const { user, content, createdAt } = comment || {};
+  const { user, content, createdAt, likes } = comment || {};
 
   return (
     <>

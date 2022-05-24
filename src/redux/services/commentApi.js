@@ -21,11 +21,11 @@ export const extendedCommentApi = baseApi.injectEndpoints({
     }),
 
     updateComment: builder.mutation({
-      query: ({ commentId, ...data }) => {
+      query: ({ commentId, content }) => {
         return {
           url: `${commentRoute}${commentId}`,
           method: "put",
-          body: data,
+          body: { content },
         };
       },
       invalidatesTags: ["Comments"],

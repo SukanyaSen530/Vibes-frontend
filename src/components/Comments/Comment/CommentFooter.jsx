@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 
 import { MdModeEditOutline, MdDelete, MdQuickreply } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -8,10 +9,14 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import useClickOutside from "../../../hooks/useClickOutside";
 import { useDeleteCommentMutation } from "../../../redux/services/commentApi";
 import { FullLoader } from "../../";
+import {
+  toggleCommentModal,
+  updateEditCommentData,
+} from "../../../redux/slices/commentModalSlice";
 
 const CommentFooter = ({ comment }) => {
   const { _id, content, postId } = comment || {};
-
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const domNode = useClickOutside(() => setOpen(false));
 
@@ -42,6 +47,17 @@ const CommentFooter = ({ comment }) => {
     deleteComment({ commentId: _id, postId });
   };
 
+  const handleUpdate = () => {
+    dispatch(toggleCommentModal());
+    dispatch(
+      updateEditCommentData({
+        isEditModal: true,
+        content,
+        commentId: _id,
+      })
+    );
+  };
+
   return (
     <>
       {isDeleteCommentLoading ? <FullLoader /> : null}
@@ -58,7 +74,10 @@ const CommentFooter = ({ comment }) => {
           <li className="flex gap-1 items-center cursor-pointer hover:text-blue-600 duration-150">
             <MdQuickreply /> Reply
           </li>
-          <li className="flex gap-1 items-center cursor-pointer hover:text-blue-600 duration-150">
+          <li
+            className="flex gap-1 items-center cursor-pointer hover:text-blue-600 duration-150"
+            onClick={handleUpdate}
+          >
             <MdModeEditOutline />
             Edit
           </li>

@@ -39,6 +39,27 @@ const CommentForm = ({ postId }) => {
   const [showPicker, setShowPicker] = useState(false);
   const domNode = useClickOutside(() => setShowPicker(false));
 
+  // Mutations
+  const [
+    createComment,
+    {
+      isLoading: createCommentLoading,
+      isError: createCommentIsError,
+      isSuccess: createCommentIsSuccess,
+      error: createCommentError,
+    },
+  ] = useCreateCommentMutation();
+
+  const [
+    updateComment,
+    {
+      isLoading: updateCommentLoading,
+      isError: updateCommentIsError,
+      isSuccess: updateCommentIsSuccess,
+      error: updateCommentError,
+    },
+  ] = useUpdateCommentMutation();
+
   useEffect(() => {
     setContent(contentToUpdate);
   }, [contentToUpdate]);
@@ -54,26 +75,17 @@ const CommentForm = ({ postId }) => {
     e.preventDefault();
 
     if (isEditModal) {
+      updateComment({ commentId, content });
+      handleCloseModal();
     } else {
       createComment({ postId, content });
+      handleCloseModal();
     }
-    handleCloseModal();
   };
 
   const onEmojiClick = (e, emojiObject) => {
     setContent((prevState) => prevState + String(emojiObject.emoji));
   };
-
-  // Mutations
-  const [
-    createComment,
-    {
-      isLoading: createCommentLoading,
-      isError: createCommentIsError,
-      isSuccess: createCommentIsSuccess,
-      error: createCommentError,
-    },
-  ] = useCreateCommentMutation();
 
   useEffect(() => {
     if (createCommentIsSuccess) {
@@ -87,15 +99,17 @@ const CommentForm = ({ postId }) => {
     }
   }, [createCommentIsError, createCommentIsSuccess, createCommentError]);
 
-  // const [
-  //   updatePost,
-  //   {
-  //     isLoading: updatePostLoading,
-  //     isError: updatePostIsError,
-  //     isSuccess: updatePostIsSuccess,
-  //     error: updatePostError,
-  //   },
-  // ] = useUpdatePostMutation();
+  useEffect(() => {
+    if (updateCommentIsSuccess) {
+      toast.success("Comment added");
+    }
+
+    if (updateCommentIsError) {
+      toast.error(
+        updateCommentError?.data?.message || "Comment could not be added!"
+      );
+    }
+  }, [updateCommentIsError, updateCommentIsSuccess, updateCommentError]);
 
   return (
     <Modal open={isOpen} onClose={handleCloseModal}>
@@ -151,7 +165,7 @@ const CommentForm = ({ postId }) => {
               <FormButton
                 text={!isEditModal ? "Comment" : "Update Comment"}
                 classes="py-2 px-10 block"
-                isLoading={createCommentLoading}
+                isLoading={createCommentLoading || updateCommentLoading}
               />
             </div>
           </form>
