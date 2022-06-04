@@ -7,14 +7,16 @@ import { selectAuth } from "../../../redux/slices/authSlice";
 
 import "./user-card.scss";
 
-const UserCard = ({ user, showFollow = true }) => {
+const UserCard = ({ user, showFollow = true, onClose }) => {
   const { avatar, fullName, userName } = user;
   const { user: loggedInUser } = useSelector(selectAuth);
 
-
   return (
     <article className="user-card">
-      <Link to={`/home/profile/${user._id}`}>
+      <Link
+        to={`/home/profile/${user._id}`}
+        onClick={() => onClose && onClose()}
+      >
         <figure className="avatar avatar-sm cursor-pointer">
           <img
             className="avatar-img"

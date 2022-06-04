@@ -155,9 +155,6 @@ const Profile = () => {
             </div>
 
             <ul className="flex gap-4 text-3xl mt-4">
-              {/* <li>
-                <span className="font-bold"> 0 </span> posts
-              </li> */}
               <li
                 onClick={() =>
                   followers?.length > 0 ? handleOpenFollowers() : null
