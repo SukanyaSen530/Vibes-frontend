@@ -26,7 +26,10 @@ const UserCard = ({ user, showFollow = true, onClose }) => {
         </figure>
       </Link>
       <div>
-        <Link to={`/home/profile/${user._id}`}>
+        <Link
+          to={`/home/profile/${user._id}`}
+          onClick={() => onClose && onClose()}
+        >
           <p className="text-2xl text-left hover:underline">{userName}</p>
         </Link>
         <p className="text-xl text-left leading-loose">{fullName}</p>
