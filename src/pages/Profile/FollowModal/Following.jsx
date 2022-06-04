@@ -8,8 +8,7 @@ const Following = ({ open, onClose, followings, userId }) => {
     if (open === true) {
       onClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId, followings]);
+  }, [userId, open, followings, onClose]);
 
   return (
     <Modal open={open} onClose={onClose}>
