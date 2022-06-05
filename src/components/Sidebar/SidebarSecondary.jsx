@@ -36,7 +36,7 @@ const SidebarSecondary = () => {
 
   return (
     <div className="w-full bg-slate-100 flex-col items-center justify-center rounded-2xl p-5 ml-auto">
-      <article className="border-2 rounded-2xl p-4 mb-4">
+      <article className="border-2 rounded-2xl p-4 mb-4 flex gap-4 items-center justify-center sm:block">
         <Link to={`/home/profile/${_id}`}>
           <figure className="avatar avatar-lg cursor-pointer">
             <img

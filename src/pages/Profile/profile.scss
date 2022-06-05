@@ -1,14 +1,29 @@
+@import "../../sass/global";
+
 .profile {
   width: 70vw;
   margin: 4rem auto;
 
+  @include respond(phone) {
+    width: 90%;
+    margin-top: 2rem;
+  }
+
   &__banner {
     height: 30rem;
+
+    @include respond(phone) {
+      height: 20rem;
+    }
   }
 
   &__details {
     transform: translateY(-25%);
     margin: 0 2rem;
+
+    @include respond(phone) {
+       transform: translateY(-15%);
+    }
 
     &__content {
       text-align: left;
@@ -20,8 +35,8 @@
     text-decoration: wavy;
   }
 
-  .nav-links{
-    & > *{
+  .nav-links {
+    & > * {
       flex: 1;
     }
   }

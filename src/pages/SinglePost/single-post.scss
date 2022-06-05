@@ -1,17 +1,25 @@
+@import "../../sass/global";
+
 .single-post {
   width: 80vw;
   padding: 2rem 0;
   margin: 0 auto;
   height: 100%;
+  overflow: hidden;
+
+  @include respond(phone){
+    width: 90%;
+  }
 
   .content{
      height: 100%;
+
+     @include respond(phone){
+       height: 90vh;
+     }
 
      &__details{
          border: 2px solid rgb(229, 229, 229);
      }
   }
-}
-.single-post{
-  overflow: hidden;
 }

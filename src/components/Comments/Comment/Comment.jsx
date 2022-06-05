@@ -14,7 +14,7 @@ const Comment = ({ comment }) => {
       <div className="comment flex mt-8 items-start gap-4 text-justify">
         <Link to={`/home/profile/${user?._id}`} replace className="shrink-0">
           <img
-            className="h-16 w-16"
+            className="h-16 w-16 rounded-full"
             src={user?.avatar?.secure_url}
             alt="useravatar"
           />

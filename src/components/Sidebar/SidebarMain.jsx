@@ -34,7 +34,7 @@ const SidebarMain = () => {
   }, [isSuccess, isError]);
 
   return (
-    <aside className="sidebar bg-slate-100 flex justify-center items-center sticky">
+    <aside className="sidebar bg-slate-100 flex justify-center items-center">
       <ul className="sidebar__menu">
         {menuOptions.map((option) => (
           <NavLink

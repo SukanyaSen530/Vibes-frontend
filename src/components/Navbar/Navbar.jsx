@@ -33,10 +33,11 @@ function Navbar() {
           Add a post!
         </p>
 
-        <article className="badge">
+        {/* Todo - implement notification */}
+        {/* <article className="badge">
           <GrNotification className="icons" />
           <span className="badge-count primary">0</span>
-        </article>
+        </article> */}
         <Link to={`/home/profile/${_id}`}>
           <figure className="avatar avatar-md">
             <img

@@ -1,23 +1,33 @@
+@import "../../../sass/global";
+
 .post-skeletal {
   width: 50rem;
   margin: 2rem auto;
+
+  @include respond(phone) {
+    width: 100%;
+  }
 
   &__body {
     min-height: 30rem;
   }
 }
 
-.single-post-skeletal{
-  &__body{
+.single-post-skeletal {
+  &__body {
     min-height: 30rem;
     width: 30rem;
     border-radius: 10px;
   }
 }
 
-
-.image-skeletal{
+.image-skeletal {
   height: 25rem;
   width: 25rem;
   border-radius: 10px;
+
+  @include respond(phone) {
+    width: 20rem;
+    height: 20rem;
+  }
 }

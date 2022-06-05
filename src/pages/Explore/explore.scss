@@ -1,4 +1,10 @@
-.explore {
+@import "../../sass/global";
+
+.conatiner {
   width: 70vw;
   margin: 4rem auto;
+
+  @include respond(phone) {
+    width: 90vw;
+  }
 }

@@ -45,7 +45,7 @@ const Comment = () => {
 
   return (
     <section className="single-post">
-      <article className="content flex">
+      <article className="content flex flex-col sm:flex-row">
         <div className="flex p-2 items-center justify-center basis-2/5">
           <div className="w-full">
             <Caraousel images={images} />

@@ -4,8 +4,6 @@ import { useSearchUsersQuery } from "../../redux/services/userApi";
 import useDebounce from "../../hooks/useDebounce";
 import { UserCard, Skeletal } from "../../components";
 
-import "./people.scss";
-
 const People = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearchTerm = useDebounce(searchQuery, 500);
@@ -53,7 +51,7 @@ const People = () => {
   }
 
   return (
-    <section className="people">
+    <section className="conatiner">
       <input
         id="search"
         type="search"

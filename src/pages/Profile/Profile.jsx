@@ -113,46 +113,58 @@ const Profile = () => {
 
         <div className="profile__details">
           <div className="flex items-center justify-between">
-            <img
-              src={avatar?.secure_url}
-              alt="profile_avatar"
-              className="h-60 w-60 avatar"
-            />
+            {profileLoading ? (
+              <div className="h-36 w-36 rounded-full animate-pulse bg-gray-400 sm:h-60 sm:w-60"></div>
+            ) : (
+              <img
+                src={avatar?.secure_url}
+                alt="profile_avatar"
+                className="h-36 w-36 avatar sm:h-60 sm:w-60"
+              />
+            )}
 
             {/* if user opened his own profile */}
             {actionButtons}
           </div>
 
           <article className="profile__details__content">
-            <div className="mt-4">
-              <div className="flex gap-4 items-center text-3xl">
-                <span className="text-4xl">{fullName}</span>
-                <span> ✨ </span>
-                <span>@{userName}</span>
+            {profileLoading ? (
+              <div className="w-8/12 flex flex-col gap-6 my-6 sm:w-3/12">
+                <p className="w-full bg-gray-400 h-6 rounded-md "></p>
+                <p className="w-full bg-gray-400 h-10 rounded-md "></p>
+                <p className="w-full bg-gray-400 h-8 rounded-md "></p>
               </div>
+            ) : (
+              <div className="mt-4">
+                <div className="flex gap-4 items-center text-3xl">
+                  <span className="text-4xl">{fullName}</span>
+                  <span> ✨ </span>
+                  <span>@{userName}</span>
+                </div>
 
-              <p>{email}</p>
+                <p>{email}</p>
 
-              <p className="flex items-center gap-4 text-2xl">
-                <BsCalendar3 /> Joined on{" "}
-                {`${new Date(createdAt).toLocaleString("default", {
-                  month: "long",
-                })} ${new Date(createdAt).getFullYear()}`}
-              </p>
+                <p className="flex items-center gap-4 text-2xl">
+                  <BsCalendar3 /> Joined on{" "}
+                  {`${new Date(createdAt).toLocaleString("default", {
+                    month: "long",
+                  })} ${new Date(createdAt).getFullYear()}`}
+                </p>
 
-              <p className="font-medium">{bio}</p>
+                <p className="font-medium">{bio}</p>
 
-              {website ? (
-                <a
-                  href={website}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="flex gap-2 items-center text-2xl text-blue-500 hover:text-black duration-150"
-                >
-                  <FaLink /> {website}
-                </a>
-              ) : null}
-            </div>
+                {website ? (
+                  <a
+                    href={website}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="flex gap-2 items-center text-2xl text-blue-500 hover:text-black duration-150"
+                  >
+                    <FaLink /> {website}
+                  </a>
+                ) : null}
+              </div>
+            )}
 
             <ul className="flex gap-4 text-3xl mt-4">
               <li
@@ -179,7 +191,7 @@ const Profile = () => {
 
         {/*  Posts Saved Liked */}
         <div className="bg-white">
-          <div className="nav-links flex w-6/12 mx-auto justify-between py-6 text-gray-600 font-semibold">
+          <div className="nav-links flex sm:w-6/12 mx-auto justify-between px-2 py-6 text-gray-600 font-semibold">
             {profileNav.slice(0, 1).map((nav) => (
               <NavLink
                 key={nav.id}
@@ -201,7 +213,7 @@ const Profile = () => {
                       !isActive ? "" : "active-link"
                     }
                   >
-                    <p className="flex gap-4 text-4xl hover:bg-slate-200 p-4 rounded-md duration-300">
+                    <p className="flex gap-4 text-4xl justify-center hover:bg-slate-200 p-4 rounded-md duration-300">
                       {nav.icon}
                       {nav.name}
                     </p>

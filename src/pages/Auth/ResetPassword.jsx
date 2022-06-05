@@ -47,20 +47,20 @@ const ResetPassword = () => {
   }, [isSuccess, isError, error]);
 
   return (
-    <section className="auth-section h-screen flex">
+    <section className="auth-section h-screen flex flex-col md:flex-row">
       {isLoading ? <FullLoader /> : null}
 
-      <div className="h-full">
+      <div className="h-1/2 md:h-full md:w-1/2 lg:w-fit">
         <img
           src="https://res.cloudinary.com/weebofigurines/image/upload/v1653225337/vibes/resetpass_ko7mpp.jpg"
           alt="loginImage"
-          className="h-full w-full"
+          className="h-full w-full object-cover"
         />
       </div>
 
       <div className="flex-1 flex justify-center items-center">
         <form
-          className="auth-section__form w-6/12 p-8 rounded-2xl"
+          className="auth-section__form m-6 p-8 rounded-2xl w-full gap-4 lg:w-6/12 md:gap-0"
           onSubmit={handleSubmit}
         >
           <img className="mx-auto w-32 h-32" src={logo} alt="VibesLogo" />
