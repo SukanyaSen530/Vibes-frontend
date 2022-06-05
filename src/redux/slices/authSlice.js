@@ -29,16 +29,16 @@ export const authSlice = createSlice({
         }
       )
       .addMatcher(
-        extendedUserApi.endpoints.updateProfile.matchFulfilled,
-        (state, { payload }) => {
-          state.user = payload.user;
-        }
-      )
-      .addMatcher(
-        extendedAuthApi.endpoints.logoutUser.matchFulfilled,
+        extendedAuthApi.endpoints.refreshToken.matchRejected,
         (state) => {
           state.token = null;
           state.user = null;
+        }
+      )
+      .addMatcher(
+        extendedUserApi.endpoints.updateProfile.matchFulfilled,
+        (state, { payload }) => {
+          state.user = payload.user;
         }
       )
       .addMatcher(
