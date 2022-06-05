@@ -1,11 +1,15 @@
 @import "../../sass/global";
 
 .home {
-  
-
   &__content {
     min-height: calc(100vh - 9rem);
     align-items: stretch;
+
+    &__item {
+      @include respond(phone) {
+        min-height: 100%;
+      }
+    }
   }
 
   @include respond(phone) {
