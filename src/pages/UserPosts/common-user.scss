@@ -1,7 +1,13 @@
+@import "../../sass/global";
+
 .image-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   row-gap: 2rem;
   justify-items: center;
   margin: 2rem auto;
+
+  @include respond(phone) {
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  }
 }

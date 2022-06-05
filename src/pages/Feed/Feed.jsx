@@ -37,7 +37,7 @@ const Feed = () => {
 
   return (
     <section className="feed flex">
-      <div className="flex-1 px-12 text-justify bg-slate-100 my-8 mx-12 rounded-2xl">
+      <div className="flex-1 text-justify px-4 bg-slate-100 rounded-2xl sm:my-8 sm:mx-12 sm:px-12">
         <div className="flex gap-4 rounded-lg items-center feed__post">
           <UserDetail
             avatar={avatar}
@@ -55,7 +55,7 @@ const Feed = () => {
         {content}
       </div>
 
-      <div className="feed__sidebar sticky">
+      <div className="feed__sidebar sticky hidden">
         <SidebarSecondary />
       </div>
     </section>

@@ -27,7 +27,7 @@ const Explore = () => {
   }
 
   return (
-    <section className="explore">
+    <section className="conatiner">
       <div className="image-container">{content}</div>
     </section>
   );

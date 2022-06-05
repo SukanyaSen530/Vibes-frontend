@@ -86,7 +86,7 @@ const SignIn = () => {
             Sign In
           </button>
 
-          <div className="flex justify-between flex-col md:flex-row">
+          <div className="flex justify-between gap-6 flex-col md:flex-row md:gap-0">
             <Link
               to="/forgotpassword"
               className="text-2xl font-medium text-gray-500 hover:text-blue-500 ease-in duration-150"
