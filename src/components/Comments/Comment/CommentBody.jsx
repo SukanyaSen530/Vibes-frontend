@@ -10,7 +10,7 @@ export const CommentBody = ({ content }) => {
   } else {
     commentContent = (
       <>
-        <span className="coomment__description">
+        <span className="comment__description">
           {readMore ? content + " " : `${content?.substr(0, 100)} ... `}
         </span>
         <button

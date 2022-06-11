@@ -7,9 +7,9 @@ const Home = () => {
   return (
     <main className="home">
       <Navbar />
-      <section className="home__content flex">
+      <section className="home__content sm:flex">
         <SidebarMain />
-        <div className="home__content--item flex-1">
+        <div className="home__content__item flex-1">
           <Outlet />
         </div>
       </section>

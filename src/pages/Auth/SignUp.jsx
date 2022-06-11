@@ -45,19 +45,19 @@ const SignUp = () => {
     setUserData((prevState) => ({ ...prevState, [name]: value }));
 
   return (
-    <section className="h-screen flex">
+    <section className="auth-section h-screen flex flex-col md:flex-row">
       {isLoading ? <FullLoader /> : null}
 
-      <div className="h-full">
+      <div className="h-1/2 md:h-full md:w-1/2 lg:w-fit">
         <img
           src="https://res.cloudinary.com/weebofigurines/image/upload/v1653225337/vibes/signup_bygec0.jpg"
           alt="signupImage"
-          className="h-full"
+          className="h-full w-full object-cover"
         />
       </div>
       <div className="flex-1 flex justify-center items-center">
         <form
-          className="auth-section__form w-6/12 p-8 rounded-2xl"
+          className="auth-section__form m-6 p-8 rounded-2xl w-full gap-4 lg:w-6/12 md:gap-0"
           onSubmit={handleSubmit}
         >
           <img className="mx-auto w-32 h-32" src={logo} alt="VibesLogo" />
@@ -75,7 +75,7 @@ const SignUp = () => {
             value={userData.email}
           />
 
-          <div className="flex gap-8">
+          <div className="flex flex-col md:flex-row md:gap-8">
             <InputField
               type="text"
               labelName="FullName"
@@ -95,7 +95,7 @@ const SignUp = () => {
             />
           </div>
 
-          <div className="flex gap-8">
+          <div className="flex flex-col md:flex-row md:gap-8">
             <InputField
               type="password"
               labelName="Password"

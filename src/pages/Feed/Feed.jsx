@@ -36,8 +36,8 @@ const Feed = () => {
   }
 
   return (
-    <section className="feed flex">
-      <div className="flex-1 px-12 text-justify bg-slate-100 my-8 mx-12 rounded-2xl">
+    <section className="feed flex flex-col-reverse sm:flex-row">
+      <div className="flex-1 text-justify px-2 mx-4 bg-slate-100 rounded-2xl sm:my-8 lg:mx-12 lg:px-12">
         <div className="flex gap-4 rounded-lg items-center feed__post">
           <UserDetail
             avatar={avatar}

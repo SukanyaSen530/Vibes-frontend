@@ -70,6 +70,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
           headers,
         };
       },
+      providesTags: ["Auth"],
     }),
 
     logoutUser: builder.mutation({
@@ -81,6 +82,7 @@ export const extendedAuthApi = baseApi.injectEndpoints({
           headers,
         };
       },
+      invalidatesTags: ["Auth"],
     }),
   }),
   overrideExisting: false,

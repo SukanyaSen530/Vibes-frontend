@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import AllRoutes from "./Routes/AllRoutes";
 
 import { useSelector } from "react-redux";
@@ -19,9 +18,7 @@ const App = () => {
     { skip: token === null }
   );
 
-  useEffect(() => {
-    if (isAuthError) console.log("Log in");
-  }, [isAuthError]);
+  if (isAuthError) console.log("Log in");
 
   return (
     <div className="App">

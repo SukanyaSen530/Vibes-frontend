@@ -142,7 +142,7 @@ const PostForm = () => {
         {isEditModal ? "Update the" : "Create a"} post!{" "}
       </p>
 
-      <div className="flex gap-6">
+      <div className="flex gap-6 flex-col sm:flex-row">
         <div className="flex-1 post-form__content">
           <form onSubmit={handleSubmit}>
             <UserDetail
@@ -215,7 +215,7 @@ const PostForm = () => {
         </div>
 
         {images.length ? (
-          <div className="uploaded_images flex-1 scrollbar pr-4">
+          <div className="uploaded_images flex-1 scrollbar pr-4 flex gap-4 w-full sm:block sm:gap-0 sm:w-fit">
             {images?.map((image, index) => (
               <div className="relative my-2" key={index}>
                 <img

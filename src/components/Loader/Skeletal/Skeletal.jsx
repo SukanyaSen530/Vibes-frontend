@@ -33,7 +33,7 @@ const Skeletal = ({ type, num = 3 }) => {
   } else if (type === "single_post") {
     card = (
       <div className="single-post-skeletal h-full w-full">
-        <div className="p-8 flex h-full gap-6">
+        <div className="p-8 flex h-full gap-6 flex-col sm:flex-row">
           <div className="flex items-center justify-center">
             <div>
               <div className="single-post-skeletal__body animate-pulse bg-gray-400 mt-4"></div>

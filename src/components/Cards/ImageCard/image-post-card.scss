@@ -6,6 +6,11 @@
   position: relative;
   cursor: pointer;
 
+  @include respond(phone){
+    width: 20rem;
+    height: 20rem;
+  }
+
   &__stats {
     @include absCenter;
     opacity: 0;
