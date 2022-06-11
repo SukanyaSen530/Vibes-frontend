@@ -1,5 +1,3 @@
-#### (WeebO-frontend)
-
 <div align="center">
   <img src="src/assets/images/mainLogo.png" width="150" title="Vibes Logo">
 
