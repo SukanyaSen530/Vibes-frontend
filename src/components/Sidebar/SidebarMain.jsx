@@ -26,7 +26,6 @@ const SidebarMain = () => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Logged out successfully!");
-      // dispatch(baseApi.util.resetApiState());
     }
     if (isError) {
       toast.error("Could not log you out!");
@@ -43,10 +42,11 @@ const SidebarMain = () => {
               option.name === "profile" ? `${option.path}${_id}` : option.path
             }
             className={({ isActive }) =>
-              !isActive
-                ? "sidebar__menu__option"
-                : "sidebar__menu__option active"
+              isActive
+                ? "sidebar__menu__option active"
+                : "sidebar__menu__option"
             }
+            end={option.end ? option.end : null}
           >
             <li className="relative">
               {option.icon}

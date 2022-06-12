@@ -103,13 +103,17 @@ const Profile = () => {
       <section className="profile bg-slate-100 p-4">
         {profileLoading ? <FullLoader /> : null}
 
-        <div className="profile__banner">
-          <img
-            src={banner?.secure_url}
-            alt="profile_banner"
-            className="img-responsive"
-          />
-        </div>
+        {profileLoading ? (
+          <div className="profile__banner bg-slate-400 animate-pulse"></div>
+        ) : (
+          <div className="profile__banner">
+            <img
+              src={banner?.secure_url}
+              alt="profile_banner"
+              className="img-responsive"
+            />
+          </div>
+        )}
 
         <div className="profile__details">
           <div className="flex items-center justify-between">
