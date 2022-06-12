@@ -7,8 +7,9 @@ export const menuOptions = [
     id: "m1",
     icon: <RiHomeHeartFill />,
     tooltip: "feed",
-    path: "/home/feed",
+    path: "/home",
     name: "feed",
+    end: true,
   },
   {
     id: "m2",

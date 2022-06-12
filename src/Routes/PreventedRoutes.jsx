@@ -7,7 +7,7 @@ const PreventedRoutes = ({ children }) => {
   const { token } = useSelector(selectAuth);
 
   const location = useLocation();
-  const pathName = location?.state?.from?.pathname || "home/feed";
+  const pathName = location?.state?.from?.pathname || "home";
 
   if (token) {
     return <Navigate to={pathName} state={{ from: location }} replace />;

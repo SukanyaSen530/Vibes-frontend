@@ -65,7 +65,7 @@ const AllRoutes = () => {
           </ProtectedRoutes>
         }
       >
-        <Route index path="feed" element={<Feed />} />
+        <Route index element={<Feed />} />
         <Route path="explore" element={<Explore />} />
         <Route path="people" element={<People />} />
 
